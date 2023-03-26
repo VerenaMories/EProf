@@ -639,7 +639,7 @@ const Profile = ({ userMain }) => {
           )}
         </Col>
       </Row>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

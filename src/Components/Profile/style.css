@@ -1,29 +1,4 @@
-/* .section1 {
-  height: 4vw;
-  background-color: #ffc600;
-  margin: auto !important;
-  margin-top: 2% !important;
-  width: 60% !important;
-}
-.imgdiv {
-  position: absolute;
-  width: 8vw !important;
-  height: 8vw;
-  top: 48%;
-  left: 25%;
-  border-radius: 50%;
-}
-.active {
-  color: white;
-  background-color: #0000ffbd;
-  border-radius: 5%;
-}
-.profileinput {
-  font-size: 20px;
-  padding: 1%;
-  padding-left: 3%;
-  border-radius: 0px;
-} */
+
 .forFont {
     font-family: "Playfair display";
     font-size: 16px;
