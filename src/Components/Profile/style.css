@@ -1,0 +1,81 @@
+
+.forFont {
+    font-family: "Playfair display";
+    font-size: 16px;
+  }
+  .menitem {
+    padding: 4%;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  /* .active {
+    color: white !important;
+    background-color: #3c719a;
+    border-radius: 10px 0px 0px 10px;
+  } */
+  .active > i {
+    color: white !important;
+  }
+  .menrow {
+    position: relative;
+  }
+  .menrow::before {
+    content: "";
+    width: 2px;
+    height: 90%;
+    opacity: 0.5;
+    background-color: grey;
+    position: absolute;
+    top: -8px;
+    right: 2.5%;
+  }
+  .goodmoring {
+    margin-left: 5%;
+    font-size: 26px !important;
+    font-family: "Playfair display";
+  }
+  .imgdiv > img {
+    max-width: 10vw;
+    border: 2px solid #3c719a;
+    border-radius: 10px 10px 10px 10px;
+  }
+  .imgdiv {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .introdiv {
+    padding: 3%;
+    border: 1px solid #3c719a;
+    border-radius: 15px;
+  }
+  .statdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3%;
+    border: 1px solid #3c719a;
+    border-radius: 15px;
+  }
+  .idiv {
+    padding: 5%;
+    background-color: #3c719a;
+    border-radius: 50%;
+  }
+  .idiv > i {
+    color: #3c719a;
+  }
+  .progress-bar {
+    background-color: #3c719a;
+    color: black;
+  }
+  .profileMain{
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
+    /* margin: 16px 0px; */
+    /* padding: 0.875rem 1.438rem; */
+    /* max-width: 422px; */
+    width: 100%;
+  }

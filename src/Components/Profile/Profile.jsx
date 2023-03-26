@@ -19,16 +19,16 @@ const Profile = ({ userMain }) => {
   const [progress, setProgress] = useState(0);
 
   const [stats, setStats] = useState({ baby: "baby", baby: "baby" });
-  async function logOut() {
-    let { data } = await axios.get(
-      "https://student-system.herokuapp.com/user_logout/" +
-        sessionStorage.getItem("user_id")
-    );
-    console.log("tm l logout b ngah");
-    sessionStorage.clear();
-    sessionStorage.clear();
-    window.location.replace("/");
-  }
+//   async function logOut() {
+//     let { data } = await axios.get(
+//       "https://student-system.herokuapp.com/user_logout/" +
+//         sessionStorage.getItem("user_id")
+//     );
+//     console.log("tm l logout b ngah");
+//     sessionStorage.clear();
+//     sessionStorage.clear();
+//     window.location.replace("/");
+//   }
   var days = [
     "Sunday",
     "Monday",
@@ -153,7 +153,7 @@ const Profile = ({ userMain }) => {
         console.log(res);
         if (res.data.success === true) {
           setActive(3);
-          logOut();
+        //   logOut();
         } else {
           setAlert("Wrong old password.");
         }
@@ -167,13 +167,15 @@ const Profile = ({ userMain }) => {
       <div className="section "></div>
       <div class="section page-banner">
         <div
+        className="p-3"
           style={{
-            backgroundColor: "rgba(0,0,0,0.4)",
+            // backgroundColor: "rgba(0,0,0,0.4)",
             width: "100%",
             height: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            color:'#3c719a'
           }}
         >
           <div
@@ -189,7 +191,7 @@ const Profile = ({ userMain }) => {
                         <li><a>Home</a></li>
                         <li class="active">About</li>
                     </ul> */}
-              <h2 class="title" style={{ color: "#fff" }}>
+              <h2 class="title" style={{ color: "#3c719a" }}>
                 Your <span>Profile.</span>
               </h2>
             </div>
@@ -214,7 +216,7 @@ const Profile = ({ userMain }) => {
             <i
               class="fa fa-tachometer fa-lg"
               aria-hidden="true"
-              style={{ color: "#ffc600", marginRight: "2%" }}
+              style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
             <span className="forFont"> Dashboard </span>
           </div>
@@ -227,20 +229,20 @@ const Profile = ({ userMain }) => {
             <i
               class="fa fa-address-card fa-lg"
               aria-hidden="true"
-              style={{ color: "#ffc600", marginRight: "2%" }}
+              style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
             <span className="forFont"> Profile </span>
           </div>
           <div
             className={active === 4 ? "menitem active" : "menitem"}
             onClick={() => {
-              setActive(4);
+            //   setActive(4);
             }}
           >
             <i
               class="fa fa-address-card fa-lg"
               aria-hidden="true"
-              style={{ color: "#ffc600", marginRight: "2%" }}
+              style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
             <span className="forFont"> Change Password </span>
           </div>
@@ -251,13 +253,13 @@ const Profile = ({ userMain }) => {
               // sessionStorage.clear();
               // sessionStorage.clear();
               // window.location.replace("/");
-              logOut();
+            //   logOut();
             }}
           >
             <i
               class="fa fa-sign-out fa-lg"
               aria-hidden="true"
-              style={{ color: "#ffc600", marginRight: "2%" }}
+              style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
             <span className="forFont"> Logout </span>
           </div>
@@ -352,7 +354,7 @@ const Profile = ({ userMain }) => {
                     style={{
                       marginTop: "30px",
                       padding: "18px 32px 18px 32px",
-                      border: "#FFC600 1px solid",
+                      border: "#3c719a 1px solid",
                       borderRadius: "50px",
                       fontWeight: "700",
                       fontSize: "15px",
@@ -530,8 +532,44 @@ const Profile = ({ userMain }) => {
                   </Col>
                 </Row>
                 <section>
+                <div className="profileMain" style={{display:'flex', alignItems:'center'}}>
+{/* <h2 className='my-3'>Login Now</h2> */}
+
+
+
+<div className="container" >
+    <div className="row" style={{display:'flex', alignItems:'center'}}>
+        <div className="col-md-10" >
+            <div style={{display:'flex', alignItems:'center'}}>
+{/* <img src={logo} alt="" style={{width:'60%'}} /> */}
+<Table>
+                    <thead style={{ color:'#000' }}>
+                      <tr>
+                        <th>Wallet History</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+    <tr>
+      <th scope="row">Type</th>
+      <td>Before</td>
+      <td>Amount</td>
+      <td>After</td>
+      <td>Date</td>
+
+    </tr></tbody>
+                  </Table>
+</div>
+        </div>
+       
+    </div>
+</div>
+
+     
+    
+    </div>
                   {/* <h4 style={{ marginBottom: "1%" }}>QBank</h4> */}
-                  <Table>
+                  {/* <Table>
                     <thead style={{ backgroundColor: "#fff8ef" }}>
                       <tr>
                         <th>My Courses / QBank</th>
@@ -543,7 +581,7 @@ const Profile = ({ userMain }) => {
                       </tr>
                     </thead>
                     {courseList}
-                  </Table>
+                  </Table> */}
                 </section>
               </section>
             </>
@@ -617,7 +655,7 @@ const Profile = ({ userMain }) => {
                     style={{
                       marginTop: "30px",
                       padding: "18px 32px 18px 32px",
-                      border: "#FFC600 1px solid",
+                      border: "#3c719a 1px solid",
                       borderRadius: "50px",
                       fontWeight: "700",
                       fontSize: "15px",

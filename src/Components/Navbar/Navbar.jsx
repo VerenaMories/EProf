@@ -207,18 +207,18 @@ export default function Navbar({ar, setAr,userData, logOut}) {
 						marginRight:'3%'
 
                       }}><span className='footerlikeNav'><Link  class="nav-link" to='/contact' title="" style={{textDecoration:'none', color:'#fff'}}>Contacts Us</Link></span></li>
-                                <li style={{paddingLeft:'3%'}} > <div style={{ textAlign: "center"}}>
+                                <li style={{paddingLeft:'3%'}} > <Link  to='/profile' style={{ textAlign: "center"}}>
                
                     <div style={{ maxWidth: "3vw", borderRadius: "50%"}}>
                       <img style={{ borderRadius: "50%" , width:'80%' }} src={defImage} />
-                    </div>                    </div>
+                    </div>                    </Link>
 
                     </li>
-                    <li style={{paddingLeft:'3%'}} > <Link to='/profile' style={{ textAlign: "center"}}>
+                    <li style={{paddingLeft:'3%'}} > <div style={{ textAlign: "center"}}>
                
                <div style={{ maxWidth: "3vw"}} >
                  <img style={{ width:'50%' }} src={wallet} />
-               </div>                    </Link>
+               </div>                    </div>
 
                </li>
                  <li >
