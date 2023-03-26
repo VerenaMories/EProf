@@ -1,0 +1,118 @@
+/* .teacher-carousel {
+    margin: 50px auto;
+    max-width: 1200px;
+  }
+  
+  .teacher {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  .teacher-img {
+    position: relative;
+  }
+  
+  .teacher-img img {
+    width: 100%;
+  }
+  
+  .sc-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  
+  .sc-div:hover {
+    opacity: 1;
+  }
+  
+  .sc-div ul {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .sc-div ul li {
+    display: inline-block;
+    margin:
+  } */
+  .counter{
+    /* background-color: url(../images/counter-bg.webp); */
+  }
+  .counter-wrapper {
+    position: relative;
+    z-index: 5;
+    padding: 25px 30px 35px;
+}
+.bg_cover {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.counter-wrapper::before {
+  position: absolute;
+  content: '';
+  /* background-color: rgba(7,41,77,.9); */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.counter-wrapper .counter-col:first-child {
+ 
+  justify-content: flex-start;
+}
+
+.single-counter {
+  visibility: visible;
+  animation-duration: 1s;
+  animation-delay: 0.2s;
+  animation-name: fadeInLeftBig;
+}
+.single-counter .counter-count {
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: .05em;
+  line-height: 36px;
+  color: #fff;
+}
+
+.AboutItem{
+  visibility: visible; 
+  animation-duration: 2000ms;
+   animation-name: E;
+}
+
+.AboutItem1{
+visibility: visible; animation-duration: 2000ms; animation-delay: 200ms; animation-name: E;
+}
+.AboutItem2{
+  visibility: visible; animation-duration: 2000ms; animation-delay: 400ms; animation-name: E;  }
+  .AboutItem3{
+    visibility: visible; animation-duration: 2000ms; animation-delay: 600ms; animation-name: E;    }
+      
+
+
+
+
+
+
+
+
+

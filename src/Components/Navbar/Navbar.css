@@ -1,0 +1,8 @@
+.btnHover {
+    background-color: #fff !important;
+    color: #3c719a !important;
+  }
+  .btnHover:hover {
+    background-color: #3c719a !important;
+    color: #fff !important;
+  }

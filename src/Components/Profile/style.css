@@ -1,0 +1,97 @@
+/* .section1 {
+  height: 4vw;
+  background-color: #ffc600;
+  margin: auto !important;
+  margin-top: 2% !important;
+  width: 60% !important;
+}
+.imgdiv {
+  position: absolute;
+  width: 8vw !important;
+  height: 8vw;
+  top: 48%;
+  left: 25%;
+  border-radius: 50%;
+}
+.active {
+  color: white;
+  background-color: #0000ffbd;
+  border-radius: 5%;
+}
+.profileinput {
+  font-size: 20px;
+  padding: 1%;
+  padding-left: 3%;
+  border-radius: 0px;
+} */
+.forFont {
+    font-family: "Playfair display";
+    font-size: 16px;
+  }
+  .menitem {
+    padding: 4%;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .active {
+    color: white !important;
+    background-color: #ffc600;
+    border-radius: 10px 0px 0px 10px;
+  }
+  .active > i {
+    color: white !important;
+  }
+  .menrow {
+    position: relative;
+  }
+  .menrow::before {
+    content: "";
+    width: 2px;
+    height: 90%;
+    opacity: 0.5;
+    background-color: grey;
+    position: absolute;
+    top: -8px;
+    right: 2.5%;
+  }
+  .goodmoring {
+    margin-left: 5%;
+    font-size: 26px !important;
+    font-family: "Playfair display";
+  }
+  .imgdiv > img {
+    max-width: 10vw;
+    border: 2px solid #ffc600;
+    border-radius: 10px 10px 10px 10px;
+  }
+  .imgdiv {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .introdiv {
+    padding: 3%;
+    border: 1px solid #ffc600;
+    border-radius: 15px;
+  }
+  .statdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3%;
+    border: 1px solid #ffc600;
+    border-radius: 15px;
+  }
+  .idiv {
+    padding: 5%;
+    background-color: #ffc60036;
+    border-radius: 50%;
+  }
+  .idiv > i {
+    color: #ffc600;
+  }
+  .progress-bar {
+    background-color: #ffc600;
+    color: black;
+  }
+  

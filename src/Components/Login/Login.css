@@ -1,0 +1,10 @@
+.login{
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
+    margin: 16px 0px;
+    padding: 0.875rem 1.438rem;
+    max-width: 422px;
+    width: 100%;
+}
