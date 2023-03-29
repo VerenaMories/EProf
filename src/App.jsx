@@ -27,6 +27,7 @@ import Register from "./Components/Register/Register";
 import Login from "./Components/Login/Login";
 import Cart from './Components/Cart/Cart';
 import Profile from './Components/Profile/Profile';
+// import EachClass from './Components/Classes/EachClass';
 function App() {
   const [ar, setAr] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : "eng");
   const [userData, setUserData] = useState(null);
@@ -72,7 +73,8 @@ function App() {
 
               <Route path='/about' element={
                 <ProtectedRoute>
-                  <AboutFrance /></ProtectedRoute>} />
+                  <AboutFrance />
+                </ProtectedRoute>} />
 
 
             </>
@@ -83,6 +85,7 @@ function App() {
 
 
               <Route path='/' element={<Home />} />
+              {/* <Route path='/class/:id' element={<EachClass />} /> */}
               <Route path='/about' element={
                 // <ProtectedRoute>
                 <About />
@@ -126,7 +129,7 @@ function App() {
                 path="/login"
                 element={<Login getUserData={getUserData} />} />
 
-              <Route path="/register" element={
+              <Route path="/registerR" element={
 
                 <Register />} />
             </>
