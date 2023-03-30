@@ -46,6 +46,7 @@ import maths from '../images/maths.png';
 import ico from '../images/ico.png';
 import verena from '../images/img5.jpg';
 import omar from '../images/img8.jpg';
+import AccordionComp from '../AccordionComponent/AccordionComp';
 
 
 export default function Home() {
@@ -290,209 +291,14 @@ export default function Home() {
 							<h2>Our Classes</h2>
 							<p>Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet. Nulla sagittis faucibus lacus</p>
 						</div>
-						<div style={{ marginBottom: '20px' }}>
-							<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-								<InputLabel id="demo-simple-select-standard-label">Diploma</InputLabel>
-								<Select labelId="demo-simple-select-standard-label"
-									id="demo-simple-select-standard" value={selectedOption} onChange={handleOptionChange}>
-									{/* <MenuItem value="">Diploma</MenuItem> */}
-									<MenuItem value="selectOne"> National</MenuItem>
-									<MenuItem value="optionTwo"> IGCSE</MenuItem>
-									<MenuItem value="optionThree"> American</MenuItem>
-								</Select>
-							</FormControl>
-							{showSecondDropdown && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Study Year</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard" value={selectedOption2} onChange={handleOptionChange2}>
-										{/* <option value="">Study Year</option> */}
-										<MenuItem value="subOptionOne">First Secondary</MenuItem>
-										<MenuItem value="subOptionTwo">Second Secondary</MenuItem>
-										<MenuItem value="subOptionThree">Third Secondary</MenuItem>
-										<MenuItem value="subOptionFour">Third Preparatory</MenuItem>
 
-									</Select>
-								</FormControl>
-
-							)}
-							{showSecondDropdown1 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard" value={selectedOptionInstructor} onChange={handleOptionChangeInstructor}>
-										{/* <MenuItem value="">Subject</option> */}
-										<MenuItem value="subOptionOneEnglish">English</MenuItem>
-										<MenuItem value="subOptionTwoMaths">Maths</MenuItem>
-										<MenuItem value="subOptionThreeBiology">Biology</MenuItem>
-									</Select></FormControl>
-							)}
-							{/*Instructors*/}
-							{showSecondDropdownInstructor1 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Verena</MenuItem>
-										<MenuItem value="subOptionTwo">Nour</MenuItem>
-										<MenuItem value="subOptionThree">Omar</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdownInstructor2 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">sewefy</MenuItem>
-										<MenuItem value="subOptionTwo">verena</MenuItem>
-										<MenuItem value="subOptionThree">Omar</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdownInstructor3 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Salah</MenuItem>
-										<MenuItem value="subOptionTwo">Marc</MenuItem>
-										<MenuItem value="subOptionThree">Hassan</MenuItem>
-									</Select></FormControl>
-							)}
-							{/*Instructors*/}
-
-
-							{showSecondDropdown22 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Art</MenuItem>
-										<MenuItem value="subOptionTwo">Chemistry</MenuItem>
-										<MenuItem value="subOptionThree">physics</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown33 && (
-
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">French</MenuItem>
-										<MenuItem value="subOptionTwo">History</MenuItem>
-										<MenuItem value="subOptionThree">Algebra</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown44 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">German</MenuItem>
-										<MenuItem value="subOptionTwo">Arabic</MenuItem>
-										<MenuItem value="subOptionThree">Mechanics</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown2 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Study Year</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard" value={selectedOption3} onChange={handleOptionChange3}>
-										{/* <MenuItem value="">Study Year</MenuItem> */}
-										<MenuItem value="subOptionOne1">Grade 10</MenuItem>
-										<MenuItem value="subOptionTwo1">Grade 11</MenuItem>
-										<MenuItem value="subOptionThree1">Grade 12</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown11 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Biology</MenuItem>
-										<MenuItem value="subOptionTwo">Maths</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown222 && (
-
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel><Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Maths</MenuItem>
-										<MenuItem value="subOptionTwo">Biology</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown333 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Arabic</MenuItem>
-										<MenuItem value="subOptionTwo">French</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown3 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Study Year</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard" value={selectedOption4} onChange={handleOptionChange4}>
-										{/* <MenuItem value="">Study Year</MenuItem> */}
-										<MenuItem value="subOptionOne11">Grade 10 </MenuItem>
-										<MenuItem value="subOptionTwo11">Grade 11</MenuItem>
-										<MenuItem value="subOptionThree11">Grade 12</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown111 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Biology</MenuItem>
-										<MenuItem value="subOptionTwo">Maths</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown2222 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Maths</MenuItem>
-										<MenuItem value="subOptionTwo">Biology</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-							{showSecondDropdown3333 && (
-								<FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-									<InputLabel id="demo-simple-select-standard-label">Subject</InputLabel>
-									<Select labelId="demo-simple-select-standard-label"
-										id="demo-simple-select-standard">
-										{/* <MenuItem value="">Subject</MenuItem> */}
-										<MenuItem value="subOptionOne">Arabic</MenuItem>
-										<MenuItem value="subOptionTwo">French</MenuItem>
-										<MenuItem value="subOptionThree">English</MenuItem>
-									</Select></FormControl>
-							)}
-						</div>
 						<div class="classes-sec">
 
 							<div id="carouselExampleInterval" class="carousel slide container" data-bs-ride="carousel">
 								<div class="carousel-inner row">
+									<AccordionComp />
 									<Swiper
+										style={{ marginTop: "2%" }}
 										// install Swiper modules
 										modules={[Navigation, Pagination, Scrollbar, A11y]}
 										spaceBetween={50}
