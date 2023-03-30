@@ -168,7 +168,21 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 fontSize: "20px",
                 marginRight: '3%'
 
-              }}>  <span className='footerlikeNav'><Link to='/teachers' class="nav-link" title="" style={{ textDecoration: 'none', color: '#fff' }}>Teachers</Link></span>
+              }}>
+                <span className='footerlikeNav'><Link to='/teachers' class="nav-link" title="" style={{ textDecoration: 'none', color: '#fff' }}>Teachers</Link></span>
+                {/* <ul>
+										<li><a class="nav-link" href="teacher-single.html" title="" style={{textDecoration:'none', color:'#fff'}}>Teacher Single</a></li>
+									</ul> */}
+              </li>
+              <li style={{
+                textDecoration: "none",
+                color: "#000",
+                fontWeight: "700",
+                fontSize: "20px",
+                marginRight: '3%'
+
+              }}>
+                <span className='footerlikeNav'><Link to='/sheets' class="nav-link" title="" style={{ textDecoration: 'none', color: '#fff' }}>Sheets</Link></span>
                 {/* <ul>
 										<li><a class="nav-link" href="teacher-single.html" title="" style={{textDecoration:'none', color:'#fff'}}>Teacher Single</a></li>
 									</ul> */}
@@ -206,7 +220,8 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 fontSize: "20px",
                 marginRight: '3%'
 
-              }}><span className='footerlikeNav'><Link class="nav-link" to='/contact' title="" style={{ textDecoration: 'none', color: '#fff' }}>Contacts Us</Link></span></li>
+              }}>
+                <span className='footerlikeNav'><Link class="nav-link" to='/contact' title="" style={{ textDecoration: 'none', color: '#fff' }}>Contacts Us</Link></span></li>
               <li style={{ paddingLeft: '3%' }} > <Link to='/profile' style={{ textAlign: "center" }}>
 
                 <div style={{ maxWidth: "3vw", borderRadius: "50%" }}>

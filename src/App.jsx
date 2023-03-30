@@ -27,6 +27,7 @@ import Register from "./Components/Register/Register";
 import Login from "./Components/Login/Login";
 import Cart from './Components/Cart/Cart';
 import Profile from './Components/Profile/Profile';
+import Sheets from './Components/Sheets/Sheets';
 // import EachClass from './Components/Classes/EachClass';
 function App() {
   const [ar, setAr] = useState(localStorage.getItem('lang') ? localStorage.getItem('lang') : "eng");
@@ -85,6 +86,8 @@ function App() {
 
 
               <Route path='/' element={<Home />} />
+              <Route path='/sheets' element={<Sheets />} />
+
               {/* <Route path='/class/:id' element={<EachClass />} /> */}
               <Route path='/about' element={
                 // <ProtectedRoute>
