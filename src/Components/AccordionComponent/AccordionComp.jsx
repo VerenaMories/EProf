@@ -58,38 +58,36 @@ export default function AccordionComp() {
         <div>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography>Step 1</Typography>
+                    <Typography>Diploma</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Row style={{ margin: "1%" }}>
-                        <CardCompomnent />
+                        <CardCompomnent helper={"step1"} handleChange={() => setExpanded('panel2')} />
                     </Row>
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                 <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-                    <Typography>Step 2</Typography>
+                    <Typography>Study year</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
-                    </Typography>
+                    <CardCompomnent helper={"step2"} handleChange={() => setExpanded('panel3')} handleChangeBack={() => setExpanded('panel1')} />
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                 <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                    <Typography>Step 3</Typography>
+                    <Typography>Subject</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
-                    </Typography>
+                    <CardCompomnent helper={"step3"} handleChange={() => setExpanded('panel4')} handleChangeBack={() => setExpanded('panel2')} />
+                </AccordionDetails>
+            </Accordion>
+            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
+                    <Typography>Instructor</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <CardCompomnent helper={"step4"} handleChange={() => setExpanded('panel4')} handleChangeBack={() => setExpanded('panel3')} />
                 </AccordionDetails>
             </Accordion>
         </div>
