@@ -205,7 +205,7 @@ export default function Home() {
 
 									<div class="col-lg-3 col-md-6 col-sm-6 aboutItem" >
 										<div class="about-item">
-											<div class="abt-col wow fadeInUp item-icon-title AboutItem" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '19rem', backgroundColor: 'transparent' }}>
+											<div class="abt-col wow fadeInUp item-icon-title AboutItem" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '21rem', backgroundColor: 'transparent' }}>
 												<div class="item-icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 													<img src={icon9} alt="" />
 												</div>
@@ -218,7 +218,7 @@ export default function Home() {
 									</div>
 									<div class="col-lg-3 col-md-6 col-sm-6">
 										<div class="about-item">
-											<div class="abt-col wow fadeInUp item-icon-title AboutItem1" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '19rem', backgroundColor: 'transparent' }}>
+											<div class="abt-col wow fadeInUp item-icon-title AboutItem1" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '21rem', backgroundColor: 'transparent' }}>
 												<div class="item-icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 													<img src={icon7} alt="" />
 												</div>
@@ -230,7 +230,7 @@ export default function Home() {
 									</div>
 									<div class="col-lg-3 col-md-6 col-sm-6">
 										<div class="about-item">
-											<div class="abt-col wow fadeInUp item-icon-title AboutItem2" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '19rem', backgroundColor: 'transparent' }}>
+											<div class="abt-col wow fadeInUp item-icon-title AboutItem2" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '21rem', backgroundColor: 'transparent' }}>
 												<div class="item-icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 													<img src={icon5} alt="" />
 												</div>
@@ -245,7 +245,7 @@ export default function Home() {
 
 									<div class="col-lg-3 col-md-6 col-sm-6">
 										<div class="about-item">
-											<div class="abt-col wow fadeInUp item-icon-title AboutItem3" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '19rem', backgroundColor: 'transparent' }}>
+											<div class="abt-col wow fadeInUp item-icon-title AboutItem3" data-wow-duration="1000ms" data-wow-delay="600ms" style={{ maxWidth: '20.438rem', height: '21rem', backgroundColor: 'transparent' }}>
 												<div class="item-icon" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 													<img src={icon8} alt="" />
 												</div>

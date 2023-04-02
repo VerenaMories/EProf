@@ -29,7 +29,7 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                         textDecoration: "none",
                         color: "#000",
                         fontWeight: "700",
-                        fontSize: "20px",
+                        fontSize: "17px",
 						marginRight:'3%'
                       }}>
                         <span className='footerlikeNav'>
@@ -144,7 +144,7 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
               }}>
                 <span className='footerlikeNav'>
@@ -155,7 +155,7 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
 
               }}>  <span className='footerlikeNav'><Link to='/classes' class="nav-link" href="classes.html" title="" style={{ textDecoration: 'none', color: '#fff' }}>Classes</Link></span>
@@ -165,7 +165,7 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
 
               }}>
@@ -178,7 +178,7 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
 
               }}>
@@ -191,25 +191,25 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
+                marginRight: '3%'
+              }}><span className='footerlikeNav'><Link class="nav-link" to='/' title="" style={{ textDecoration: 'none', color: '#fff' }}>Blogs</Link></span>
+              </li>
+              <li style={{
+                textDecoration: "none",
+                color: "#000",
+                fontWeight: "700",
+                fontSize: "17px",
                 marginRight: '3%'
               }}><span className='footerlikeNav'><Link class="nav-link" to='/about' title="" style={{ textDecoration: 'none', color: '#fff' }}>About Us</Link></span>
 
               </li>
-              <li style={{
-                textDecoration: "none",
-                color: "#000",
-                fontWeight: "700",
-                fontSize: "20px",
-                marginRight: '3%'
-              }}><span className='footerlikeNav'><Link class="nav-link" to='/' title="" style={{ textDecoration: 'none', color: '#fff' }}>Blogs</Link></span>
 
-              </li>
               <li style={{
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
 
               }}><span className='footerlikeNav'><Link class="nav-link" to='/terms' title="" style={{ textDecoration: 'none', color: '#fff' }}>Terms & Conditions</Link></span></li>
@@ -217,11 +217,11 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 textDecoration: "none",
                 color: "#000",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "17px",
                 marginRight: '3%'
 
               }}>
-                <span className='footerlikeNav'><Link class="nav-link" to='/contact' title="" style={{ textDecoration: 'none', color: '#fff' }}>Contacts Us</Link></span></li>
+                <span className='footerlikeNav'><Link class="nav-link" to='/contact' title="" style={{ textDecoration: 'none', color: '#fff' }}>Contact Us</Link></span></li>
               <li style={{ paddingLeft: '3%' }} > <Link to='/profile' style={{ textAlign: "center" }}>
 
                 <div style={{ maxWidth: "3vw", borderRadius: "50%" }}>
@@ -236,13 +236,9 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                 </div>                    </div>
 
               </li>
-              <li >
-                <Link to='/cart'> <i class="fa-solid fa-cart-plus"></i></Link>
-              </li>
+
               <li style={{ padding: "16px 15px" }}>
-                {" "}
                 <div style={{ maxWidth: "10vw", borderRadius: "50%" }}>
-                  {" "}
                   <button
                     className="btn btnHover"
                     onClick={() => {
@@ -252,6 +248,9 @@ export default function Navbar({ ar, setAr, userData, logOut }) {
                     LogIn
                   </button>
                 </div>
+              </li>
+              <li style={{ marginTop: "2%" }}>
+                <Link to='/cart'> <i class="fa-solid fa-cart-plus "></i></Link>
               </li>
             </ul>
             <ul style={{ paddingRight: '2rem', paddingLeft: '0', marginBottom: '0px' }}>   <li >

@@ -122,7 +122,7 @@ const CardCompomnent = (props) => {
                                 <div class="card-body show  ">
                                     <div class="row">
                                         <div class="col">
-                                            <h5><b>Diploma</b></h5>
+                                            <h5><b>Subject</b></h5>
                                             <p> What are you studying ay hagaa?  </p>
                                         </div>
                                     </div>
@@ -130,19 +130,19 @@ const CardCompomnent = (props) => {
                                         <div className='col'>
                                             <input type="radio" id="control_01" name="select" value="1" />
                                             <label for="control_01">
-                                                <h6 style={{ marginTop: '5% ' }}>IGCSE</h6 >
+                                                <h6 style={{ marginTop: '5% ' }}>Subejct 1</h6 >
                                             </label>
                                         </div>
                                         <div className='col'>
                                             <input type="radio" id="control_02" name="select" value="2" />
                                             <label for="control_02">
-                                                <h6 style={{ marginTop: '5% ' }}>American</h6 >
+                                                <h6 style={{ marginTop: '5% ' }}>Subejct 2</h6 >
                                             </label>
                                         </div>
                                         <div className='col'>
                                             <input type="radio" id="control_03" name="select" value="3" />
                                             <label for="control_03">
-                                                <h6 style={{ marginTop: '5% ' }} >National</h6 >
+                                                <h6 style={{ marginTop: '5% ' }} >Subejct 3</h6 >
                                             </label>
                                         </div>
                                     </section>
@@ -173,27 +173,27 @@ const CardCompomnent = (props) => {
                                 <div class="card-body show  ">
                                     <div class="row">
                                         <div class="col">
-                                            <h5><b>Diploma</b></h5>
-                                            <p> What are you studying ay hagaa?  </p>
+                                            <h5><b>Instructor</b></h5>
+                                            <p> Select which instructor  </p>
                                         </div>
                                     </div>
                                     <section className='row'>
                                         <div className='col'>
                                             <input type="radio" id="control_01" name="select" value="1" />
                                             <label for="control_01">
-                                                <h6 style={{ marginTop: '5% ' }}>IGCSE</h6 >
+                                                <h6 style={{ marginTop: '5% ' }}>Instructor 1</h6 >
                                             </label>
                                         </div>
                                         <div className='col'>
                                             <input type="radio" id="control_02" name="select" value="2" />
                                             <label for="control_02">
-                                                <h6 style={{ marginTop: '5% ' }}>American</h6 >
+                                                <h6 style={{ marginTop: '5% ' }}>Instructor 2</h6 >
                                             </label>
                                         </div>
                                         <div className='col'>
                                             <input type="radio" id="control_03" name="select" value="3" />
                                             <label for="control_03">
-                                                <h6 style={{ marginTop: '5% ' }} >National</h6 >
+                                                <h6 style={{ marginTop: '5% ' }} >Instructor 3</h6 >
                                             </label>
                                         </div>
                                     </section>
