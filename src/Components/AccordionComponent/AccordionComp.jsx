@@ -24,11 +24,11 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useNavigate } from "react-router-dom";
 import { Virtual } from "swiper";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import 'react-multi-carousel/lib/styles.css';
-import verena from '../images/ins.jpg';
-import Fade from 'react-reveal/Fade';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "react-multi-carousel/lib/styles.css";
+import verena from "../images/ins.jpg";
+import Fade from "react-reveal/Fade";
 
 import "swiper/css";
 import "swiper/css/virtual";
@@ -54,7 +54,6 @@ const AccordionSummary = styled((props) => (
 ))(({ theme }) => ({
   backgroundColor: "transparent",
 
-  
   flexDirection: "row",
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
@@ -71,24 +70,24 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function AccordionComp() {
   const responsive = {
-		superLargeDesktop: {
-		  // the naming can be any, depends on you.
-		  breakpoint: { max: 4000, min: 3000 },
-		  items: 5
-		},
-		desktop: {
-		  breakpoint: { max: 3000, min: 1024 },
-		  items: 3
-		},
-		tablet: {
-		  breakpoint: { max: 1024, min: 464 },
-		  items: 1
-		},
-		mobile: {
-		  breakpoint: { max: 464, min: 0 },
-		  items: 1
-		}
-	  };
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   const [selectedDiploma, setselectedDiploma] = useState(null);
   const [StudyYearNew, setStudyYearNew] = useState([]);
@@ -102,6 +101,9 @@ export default function AccordionComp() {
   const [Instructor, setInstructor] = useState([]);
   const [AllFilter, setAllFilter] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [expanded, setExpanded] = React.useState("panel1");
+
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -186,10 +188,7 @@ export default function AccordionComp() {
   }, []);
   useEffect(() => {
     let url = `https://eprof-zu1o.onrender.com/admin/allStudyYear`;
-    if (
-     
-      selectedDiploma
-    ) {
+    if (selectedDiploma) {
       url += `?`;
       if (selectedDiploma) {
         url += `diploma=${selectedDiploma}`;
@@ -219,19 +218,14 @@ export default function AccordionComp() {
       });
   }, []);
   useEffect(() => {
-     let url = `https://eprof-zu1o.onrender.com/instructor/all`;
-      if (
-      selectedStudyYear ||
-      selectedSubject ||
-      selectedDiploma
-    )
-    {
+    let url = `https://eprof-zu1o.onrender.com/instructor/all`;
+    if (selectedStudyYear || selectedSubject || selectedDiploma) {
       url += `?`;
       if (selectedStudyYear) {
         url += `studyYear=${selectedStudyYear}&`;
         // console.log("aywa study");
       }
-     
+
       if (selectedSubject) {
         url += `subject=${selectedSubject}&`;
         // console.log("aywa subject");
@@ -240,7 +234,6 @@ export default function AccordionComp() {
         url += `diploma=${selectedDiploma}&`;
         // console.log("aywa diploma");
       }
-      
     }
     axios
       .get(url)
@@ -252,17 +245,20 @@ export default function AccordionComp() {
         // console.log(error);
       });
   }, [selectedStudyYear, selectedSubject, selectedDiploma]);
+
   const handleSelectChange3 = (subjectId, event) => {
     setSelectedSubject(subjectId);
     setSelectedValue2(subjectId);
+    setExpanded("panel4");
   };
   const handleSelectChange2 = (instructorId, event) => {
     setSelectedinstructor(instructorId);
     setSelectedValue3(instructorId);
   };
-  const handleSelectChange4 = ( id,event, diplomaId) => {
+  const handleSelectChange4 = (id, event, diplomaId) => {
     setSelectedValue1(id);
     setselectedDiploma(diplomaId);
+    setExpanded("panel2");
 
     // Handle any other logic related to the selection
   };
@@ -273,16 +269,18 @@ export default function AccordionComp() {
   const handleSelectChange1 = (id, event) => {
     setSelectedStudyYear(id);
     setSelectedValue(id);
+    setExpanded("panel3");
   };
-  const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
+    console.log(newExpanded);
+    console.log(panel);
     setExpanded(newExpanded ? panel : false);
   };
   const navigate = useNavigate();
-function NavIns(v){
-  navigate("/singleTeacher/" + v);
-}
+  function NavIns(v) {
+    navigate("/singleTeacher/" + v);
+  }
   function Nav(s) {
     navigate("/singleClass/" + s);
   }
@@ -307,7 +305,6 @@ function NavIns(v){
                   <div class="col-md-9">
                     <div class=" text-center justify-content-center ">
                       <div class="card-body show  ">
-                       
                         <section
                           className="row"
                           style={{
@@ -315,67 +312,75 @@ function NavIns(v){
                             justifyContent: "space-evenly",
                           }}
                         >
-       	<Fade bottom duration={1000} delay={500}>	
-          		<Carousel swipeable={false}
-      draggable={true}
-      // showDots={true}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      // autoPlay={true}
-      autoPlaySpeed={3000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      deviceType="desktop"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-								 >
-       {diplomaData.map((diploma, index) => (
-        <div
-          key={diploma._id}
-          virtualIndex={index}
-          className={`card ${selectedValue1 === diploma._id ? 'selected' : ''}`}
-          style={{
-            margin: '7%',
-            paddingBottom: '0px',
-            backgroundColor: 'transparent',
-            boxShadow: '0 0 10px rgba(21, 87, 153, 1)',
-            cursor: 'pointer',
-          }}
-          onClick={(e) => handleSelectChange4(diploma._id, e, diploma._id)}
-        >
-          <i
-            className="fa-solid fa-graduation-cap card-img-top fs-1"
-            style={{
-              padding: '.5rem',
-              color: 'rgb(197, 137, 43)',
-            }}
-          ></i>
-          <div className="card-body">
-            <p
-              className="card-text"
-              style={{
-                fontSize: '18.29px',
-                fontWeight: '500',
-                textTransform: 'capitalize',
-                color: 'rgb(60, 113, 154)',
-              }}
-            >
-              {diploma ? diploma.name : ''}
-            </p>
-          </div>
-        </div>
-      ))}
-      </Carousel></Fade>
-
-
+                          <Fade bottom duration={1000} delay={500}>
+                            <Carousel
+                              swipeable={false}
+                              draggable={true}
+                              // showDots={true}
+                              responsive={responsive}
+                              ssr={true}
+                              infinite={true}
+                              // autoPlay={true}
+                              autoPlaySpeed={3000}
+                              keyBoardControl={true}
+                              customTransition="all .5"
+                              transitionDuration={500}
+                              containerClass="carousel-container"
+                              deviceType="desktop"
+                              dotListClass="custom-dot-list-style"
+                              itemClass="carousel-item-padding-40-px"
+                            >
+                              {diplomaData.map((diploma, index) => (
+                                <div
+                                  key={diploma._id}
+                                  virtualIndex={index}
+                                  className={`card ${
+                                    selectedValue1 === diploma._id
+                                      ? "selected"
+                                      : ""
+                                  }`}
+                                  style={{
+                                    margin: "7%",
+                                    paddingBottom: "0px",
+                                    backgroundColor: "transparent",
+                                    boxShadow: "0 0 10px rgba(21, 87, 153, 1)",
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={(e) =>
+                                    handleSelectChange4(
+                                      diploma._id,
+                                      e,
+                                      diploma._id
+                                    )
+                                  }
+                                >
+                                  <i
+                                    className="fa-solid fa-graduation-cap card-img-top fs-1"
+                                    style={{
+                                      padding: ".5rem",
+                                      color: "rgb(197, 137, 43)",
+                                    }}
+                                  ></i>
+                                  <div className="card-body">
+                                    <p
+                                      className="card-text"
+                                      style={{
+                                        fontSize: "18.29px",
+                                        fontWeight: "500",
+                                        textTransform: "capitalize",
+                                        color: "rgb(60, 113, 154)",
+                                      }}
+                                    >
+                                      {diploma ? diploma.name : ""}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </Carousel>
+                          </Fade>
                         </section>
                         <div class="row justify-content-center">
-                          <div class="col">
-                        
-                          </div>
+                          <div class="col"></div>
                         </div>
                       </div>
                     </div>
@@ -400,9 +405,7 @@ function NavIns(v){
                   <div class=" text-center justify-content-center ">
                     <div class="card-body show  ">
                       <div class="row">
-                        <div class="col">
-                        
-                        </div>
+                        <div class="col"></div>
                       </div>
                       <section
                         className="row"
@@ -411,67 +414,71 @@ function NavIns(v){
                           justifyContent: "space-evenly",
                         }}
                       >
-                        <Fade bottom duration={1000} delay={500}>	
-                                          		<Carousel swipeable={false}
-      draggable={true}
-      // showDots={true}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      // autoPlay={true}
-      autoPlaySpeed={3000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      deviceType="desktop"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-								 >
-      {StudyYearNew.map((studyYear, index) => (
-                             
-                             <div
-                             key={studyYear._id}
-                             virtualIndex={index}
-                             className={`card ${selectedValue === studyYear._id ? 'selected' : ''}`}
-                             style={{
-                               margin: '7%',
-                               paddingBottom: '0px',
-                               backgroundColor: 'transparent',
-                               boxShadow: '0 0 10px rgba(21, 87, 153, 1)',
-                               cursor: 'pointer',
-                             }}
-                             onClick={(e) => handleSelectChange1(studyYear._id, e)}
-                             >
-                             <i
-                                    class="fa-solid fa-book  fs-1"
+                        <Fade bottom duration={1000} delay={500}>
+                          <Carousel
+                            swipeable={false}
+                            draggable={true}
+                            // showDots={true}
+                            responsive={responsive}
+                            ssr={true}
+                            infinite={true}
+                            // autoPlay={true}
+                            autoPlaySpeed={3000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={500}
+                            containerClass="carousel-container"
+                            deviceType="desktop"
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px"
+                          >
+                            {StudyYearNew.map((studyYear, index) => (
+                              <div
+                                key={studyYear._id}
+                                virtualIndex={index}
+                                className={`card ${
+                                  selectedValue === studyYear._id
+                                    ? "selected"
+                                    : ""
+                                }`}
+                                style={{
+                                  margin: "7%",
+                                  paddingBottom: "0px",
+                                  backgroundColor: "transparent",
+                                  boxShadow: "0 0 10px rgba(21, 87, 153, 1)",
+                                  cursor: "pointer",
+                                }}
+                                onClick={(e) =>
+                                  handleSelectChange1(studyYear._id, e)
+                                }
+                              >
+                                <i
+                                  class="fa-solid fa-book  fs-1"
+                                  style={{
+                                    padding: ".5rem",
+                                    color: "rgb(197, 137, 43)",
+                                  }}
+                                ></i>
+                                <div className="card-body">
+                                  <p
+                                    className="card-text"
                                     style={{
-                                      padding: ".5rem",
-                                      color: "rgb(197, 137, 43)",
+                                      fontSize: "18.29px",
+                                      fontWeight: "500",
+                                      textTransform: "capitalize",
+                                      color: "rgb(60, 113, 154)",
                                     }}
-                                  ></i>
-                             <div className="card-body">
-                               <p
-                                 className="card-text"
-                                 style={{
-                                   fontSize: '18.29px',
-                                   fontWeight: '500',
-                                   textTransform: 'capitalize',
-                                   color: 'rgb(60, 113, 154)',
-                                 }}
-                               >
-                                 {studyYear ? studyYear.name : ''}
-                               </p>
-                             </div>
-                           </div>
-                             
+                                  >
+                                    {studyYear ? studyYear.name : ""}
+                                  </p>
+                                </div>
+                              </div>
                             ))}
-      </Carousel>
-                  </Fade>    </section>
+                          </Carousel>
+                        </Fade>{" "}
+                      </section>
                       <div class="row justify-content-center">
-                        <div class="col">
-                       
-                        </div>
+                        <div class="col"></div>
                       </div>
                     </div>
                   </div>
@@ -494,9 +501,7 @@ function NavIns(v){
                   <div class=" text-center justify-content-center ">
                     <div class="card-body show  ">
                       <div class="row">
-                        <div class="col">
-                       
-                        </div>
+                        <div class="col"></div>
                       </div>
                       <section
                         className="row"
@@ -505,70 +510,72 @@ function NavIns(v){
                           justifyContent: "space-evenly",
                         }}
                       >
-                    <Fade bottom duration={1000} delay={500}>	
-                            		<Carousel swipeable={false}
-      draggable={true}
-      // showDots={true}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      // autoPlay={true}
-      autoPlaySpeed={3000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      deviceType="desktop"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-								 >
-     {subjectData.map((subject, index) => (
-                              
+                        <Fade bottom duration={1000} delay={500}>
+                          <Carousel
+                            swipeable={false}
+                            draggable={true}
+                            // showDots={true}
+                            responsive={responsive}
+                            ssr={true}
+                            infinite={true}
+                            // autoPlay={true}
+                            autoPlaySpeed={3000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={500}
+                            containerClass="carousel-container"
+                            deviceType="desktop"
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px"
+                          >
+                            {subjectData.map((subject, index) => (
                               <div
-                              key={subject._id}
-                              virtualIndex={index}
-                              className={`card ${selectedValue2  === subject._id ? 'selected' : ''}`}
-                              style={{
-                                margin: '7%',
-                                paddingBottom: '0px',
-                                backgroundColor: 'transparent',
-                                boxShadow: '0 0 10px rgba(21, 87, 153, 1)',
-                                cursor: 'pointer',
-                              }}
-                              onClick={(e) => handleSelectChange3(subject._id, e)}
+                                key={subject._id}
+                                virtualIndex={index}
+                                className={`card ${
+                                  selectedValue2 === subject._id
+                                    ? "selected"
+                                    : ""
+                                }`}
+                                style={{
+                                  margin: "7%",
+                                  paddingBottom: "0px",
+                                  backgroundColor: "transparent",
+                                  boxShadow: "0 0 10px rgba(21, 87, 153, 1)",
+                                  cursor: "pointer",
+                                }}
+                                onClick={(e) =>
+                                  handleSelectChange3(subject._id, e)
+                                }
                               >
-                              <i
-                                     class="fa-solid fa-book-open  fs-1"
-                                     style={{
-                                       padding: ".5rem",
-                                       color: "rgb(197, 137, 43)",
-                                     }}
-                                   ></i>
-                              <div className="card-body">
-                                <p
-                                  className="card-text"
+                                <i
+                                  class="fa-solid fa-book-open  fs-1"
                                   style={{
-                                    fontSize: '18.29px',
-                                    fontWeight: '500',
-                                    textTransform: 'capitalize',
-                                    color: 'rgb(60, 113, 154)',
+                                    padding: ".5rem",
+                                    color: "rgb(197, 137, 43)",
                                   }}
-                                >
-                                  {subject ? subject.name : ''}
-                                </p>
+                                ></i>
+                                <div className="card-body">
+                                  <p
+                                    className="card-text"
+                                    style={{
+                                      fontSize: "18.29px",
+                                      fontWeight: "500",
+                                      textTransform: "capitalize",
+                                      color: "rgb(60, 113, 154)",
+                                    }}
+                                  >
+                                    {subject ? subject.name : ""}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                           
                             ))}
-      </Carousel>
-</Fade>
+                          </Carousel>
+                        </Fade>
                       </section>
                       <div class="row justify-content-center">
-                        <div class="col">
-                        
-                        </div>
+                        <div class="col"></div>
                       </div>
-                 
                     </div>
                   </div>
                 </div>
@@ -590,9 +597,7 @@ function NavIns(v){
                   <div class=" text-center justify-content-center ">
                     <div class="card-body show  ">
                       <div class="row">
-                        <div class="col">
-                       
-                        </div>
+                        <div class="col"></div>
                       </div>
                       <section
                         className="row"
@@ -601,70 +606,72 @@ function NavIns(v){
                           justifyContent: "space-evenly",
                         }}
                       >
-                      
-                      <Fade bottom duration={1000} delay={500}>	
-                      	<Carousel swipeable={false}
-      draggable={true}
-      // showDots={true}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      // autoPlay={true}
-      autoPlaySpeed={3000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      deviceType="desktop"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-								 >
-      {Instructor.map((instructor, index) => (
-         <div
-         key={instructor._id}
-         virtualIndex={index}
-         className={`card ${selectedValue3 === instructor._id ? 'selected' : ''}`}
-         style={{
-           margin: '7%',
-           paddingBottom: '0px',
-           backgroundColor: 'transparent',
-           boxShadow: '0 0 10px rgba(21, 87, 153, 1)',
-           cursor: 'pointer',
-         }}
-         onClick={(e) => handleSelectChange2(instructor._id, e)}
-         >
-         <i
-                                    class="fa-solid fa-person-chalkboard fs-1"
+                        <Fade bottom duration={1000} delay={500}>
+                          <Carousel
+                            swipeable={false}
+                            draggable={true}
+                            // showDots={true}
+                            responsive={responsive}
+                            ssr={true}
+                            infinite={true}
+                            // autoPlay={true}
+                            autoPlaySpeed={3000}
+                            keyBoardControl={true}
+                            customTransition="all .5"
+                            transitionDuration={500}
+                            containerClass="carousel-container"
+                            deviceType="desktop"
+                            dotListClass="custom-dot-list-style"
+                            itemClass="carousel-item-padding-40-px"
+                          >
+                            {Instructor.map((instructor, index) => (
+                              <div
+                                key={instructor._id}
+                                virtualIndex={index}
+                                className={`card ${
+                                  selectedValue3 === instructor._id
+                                    ? "selected"
+                                    : ""
+                                }`}
+                                style={{
+                                  margin: "7%",
+                                  paddingBottom: "0px",
+                                  backgroundColor: "transparent",
+                                  boxShadow: "0 0 10px rgba(21, 87, 153, 1)",
+                                  cursor: "pointer",
+                                }}
+                                onClick={(e) =>
+                                  handleSelectChange2(instructor._id, e)
+                                }
+                              >
+                                <i
+                                  class="fa-solid fa-person-chalkboard fs-1"
+                                  style={{
+                                    padding: ".5rem",
+                                    color: "rgb(197, 137, 43)",
+                                  }}
+                                ></i>
+                                <div className="card-body">
+                                  <p
+                                    className="card-text"
                                     style={{
-                                      padding: ".5rem",
-                                      color: "rgb(197, 137, 43)",
+                                      fontSize: "18.29px",
+                                      fontWeight: "500",
+                                      textTransform: "capitalize",
+                                      color: "rgb(60, 113, 154)",
                                     }}
-                                  ></i>
-         <div className="card-body">
-           <p
-             className="card-text"
-             style={{
-               fontSize: '18.29px',
-               fontWeight: '500',
-               textTransform: 'capitalize',
-               color: 'rgb(60, 113, 154)',
-             }}
-           >
-             {instructor ? instructor.name : ''}
-           </p>
-         </div>
-       </div>            
-                               
+                                  >
+                                    {instructor ? instructor.name : ""}
+                                  </p>
+                                </div>
+                              </div>
                             ))}
-      </Carousel>
-</Fade>
+                          </Carousel>
+                        </Fade>
                       </section>
                       <div class="row justify-content-center">
-                        <div class="col">
-                   
-                        </div>
+                        <div class="col"></div>
                       </div>
-                  
                     </div>
                   </div>
                 </div>
@@ -673,102 +680,106 @@ function NavIns(v){
           </AccordionDetails>
         </Accordion>
       </div>
-     
 
-
-<div className="row p-3">
-<Fade bottom duration={1000} delay={500}>	
-<Carousel
-  responsive={{
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-    },
-  }}
-  containerClass="swiper-container"
-  itemClass="swiper-slide"
-
-  //  // showDots={true}
-  arrows={true}
-  // autoPlay={true}
-  autoPlaySpeed={3000}
-  infinite={true}
-  dotListClass="swiper-dot-list"
-  customTransition="all 1s"
-  
->
-  
-  {AllFilter.map((item) => (
-
-
-    item.active === false && item.block === false ? (
-      <div className="swiper-slide hidden-slide" key={item._id} style={{ display: "none" }}></div>
-    ) : item.active === true && item.block === true ? (
-      <div key={item._id} className="swiper-slide hidden-slide" style={{ display: "none" }}></div>
-    ) : (
-      <div key={item._id}>
-        <div className="classes-col" style={{paddingRight:'2%'}}>
-          <div className="class-thumb" style={{ height: "300px" }}>
-            <div style={{ position: "relative" }}>
-              <span className="badger" style={{ color: "#fff" }}>
-                {item.offline === true ? "center" : "online"}
-              </span>
-              <img
-               onClick={() => Nav(item._id)}
-                src={item.img}
-                alt=""
-                className="w-100"
-                style={{ height: "300px" , cursor:'pointer'}}
-              />
-            </div>
-            {/* {sessionStorage.getItem("loggedIn", true) ? ( */}
-              <div>
-                {item.openBuy === false && item.free === false ? (
-                  <a
-                    onClick={() => {
-                      Nav(item._id);
-                      toggleOpen();
-                    }}
-                    title=""
-                    className="crt-btn"
-                  >
-                    <img src={stopImage} alt="" />
-                  </a>
-                ) : item.openBuy === false && item.free === true ? (
-                  <a
-                    onClick={() => {
-                      Nav(item._id);
-                      toggleOpen();
-                    }}
-                    title=""
-                    className="crt-btn"
-                  >
-                    <img src={R} alt="" />
-                  </a>
-                ) : (
-                  <a
-                    onClick={() => {
-                      Nav(item._id);
-                      // toggleOpen();
-                    }}
-                    title=""
-                    className="crt-btn"
-                  >
-                    <img src={icon10} alt="" />
-                  </a>
-                )}
-                {/* {isOpen && (
+      <div className="row p-3">
+        <Fade bottom duration={1000} delay={500}>
+          <Carousel
+            responsive={{
+              desktop: {
+                breakpoint: { max: 3000, min: 1024 },
+                items: 3,
+                slidesToSlide: 1,
+              },
+              tablet: {
+                breakpoint: { max: 1024, min: 464 },
+                items: 2,
+                slidesToSlide: 1,
+              },
+              mobile: {
+                breakpoint: { max: 464, min: 0 },
+                items: 1,
+                slidesToSlide: 1,
+              },
+            }}
+            containerClass="swiper-container"
+            itemClass="swiper-slide"
+            //  // showDots={true}
+            arrows={true}
+            // autoPlay={true}
+            autoPlaySpeed={3000}
+            infinite={true}
+            dotListClass="swiper-dot-list"
+            customTransition="all 1s"
+          >
+            {AllFilter.map(
+              (item) =>
+                // item.active === false && item.block === false ? (
+                //   <div
+                //     className="swiper-slide hidden-slide"
+                //     key={item._id}
+                //     style={{ display: "none" }}
+                //   ></div>
+                // ) : item.active === true && item.block === true ? (
+                //   <div
+                //     key={item._id}
+                //     className="swiper-slide hidden-slide"
+                //     style={{ display: "none" }}
+                //   ></div>
+                // ) : (
+                item.active &&
+                !item.block && (
+                  <div key={item._id}>
+                    <div className="classes-col" style={{ paddingRight: "2%" }}>
+                      <div className="class-thumb" style={{ height: "300px" }}>
+                        <div style={{ position: "relative" }}>
+                          <span className="badger" style={{ color: "#fff" }}>
+                            {item.offline === true ? "center" : "online"}
+                          </span>
+                          <img
+                            onClick={() => Nav(item._id)}
+                            src={item.img}
+                            alt=""
+                            className="w-100"
+                            style={{ height: "300px", cursor: "pointer" }}
+                          />
+                        </div>
+                        {/* {sessionStorage.getItem("loggedIn", true) ? ( */}
+                        <div>
+                          {item.openBuy === false && item.free === false ? (
+                            <a
+                              onClick={() => {
+                                Nav(item._id);
+                                toggleOpen();
+                              }}
+                              title=""
+                              className="crt-btn"
+                            >
+                              <img src={stopImage} alt="" />
+                            </a>
+                          ) : item.openBuy === false && item.free === true ? (
+                            <a
+                              onClick={() => {
+                                Nav(item._id);
+                                toggleOpen();
+                              }}
+                              title=""
+                              className="crt-btn"
+                            >
+                              <img src={R} alt="" />
+                            </a>
+                          ) : (
+                            <a
+                              onClick={() => {
+                                Nav(item._id);
+                                // toggleOpen();
+                              }}
+                              title=""
+                              className="crt-btn"
+                            >
+                              <img src={icon10} alt="" />
+                            </a>
+                          )}
+                          {/* {isOpen && (
                   <div className="sc-bBXxYQ kUrUbg">
                     <div className="dSDkyS">
                       <button className="close-button" onClick={toggleOpen}>
@@ -784,73 +795,90 @@ function NavIns(v){
                     </div>
                   </div>
                 )} */}
-              </div>
-            {/* // ) : (
+                        </div>
+                        {/* // ) : (
             //   <a onClick={() => Nav(item._id)} title="" className="crt-btn">
             //     <img src={icon10} alt="" />
             //   </a>
             // )} */}
-          </div>
-          <div className="class-info" style={{height:'155px'}}>
-            <h3>
-              <a
-                onClick={() => Nav(item._id)}
-                style={{
-                  textDecoration: "none",
-                  color: "#3c719a",
-                  cursor: "pointer",
-                }}
-                title=""
-              >
-                  {item ? item.name : ""}
-              </a>
-            </h3>
-            <div className="row" style={{ marginBottom: "13px" }}>
-              <div className="col">
-                <span style={{ color: "#c5892b" }}>
-                  {item.studyYear.name?item.studyYear.name:""}
-                </span>
-              </div>
-              <div
-                className="col"
-                style={{ display: "flex", justifyContent: "end" }}
-              >
-                <span style={{ color: "#c5892b", textAlign: "right" }}>
-                  {item.subject.name}
-                </span>
-              </div>
-            </div>
-            <div className="d-flex flex-wrap align-items-center" style={{justifyContent:'space-between'}}>
-              <div className="posted-by">
-                <img
-                  src={item.instructor.img ? item.instructor.img : verena}
-                  // src={item.instructor.img}
-                  alt=""
-                  style={{ width: "45px", height:'45px',borderRadius:'50%' }}
-                />
-                <a
-               onClick={() => NavIns(item.instructor._id)}
-                  title=""
-                  style={{ textDecoration: "none", cursor:'pointer' }}
-                >
-                  {item.instructor.name}
-                </a>
-              </div>
-              <strong className="price" style={{margin:'0'}}>
-                {item.openBuy === false
-                  ? "Free"
-                  : item.free === true
-                    ? "Free"
-                    : item.price + " EGP"}
-              </strong>
-            </div>
-          </div>
-        </div>
+                      </div>
+                      <div className="class-info" style={{ height: "155px" }}>
+                        <h3>
+                          <a
+                            onClick={() => Nav(item._id)}
+                            style={{
+                              textDecoration: "none",
+                              color: "#3c719a",
+                              cursor: "pointer",
+                            }}
+                            title=""
+                          >
+                            {item ? item.name : ""}
+                          </a>
+                        </h3>
+                        <div className="row" style={{ marginBottom: "13px" }}>
+                          <div className="col">
+                            <span style={{ color: "#c5892b" }}>
+                              {item.studyYear.name ? item.studyYear.name : ""}
+                            </span>
+                          </div>
+                          <div
+                            className="col"
+                            style={{ display: "flex", justifyContent: "end" }}
+                          >
+                            <span
+                              style={{ color: "#c5892b", textAlign: "right" }}
+                            >
+                              {item.subject.name}
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          className="d-flex flex-wrap align-items-center"
+                          style={{ justifyContent: "space-between" }}
+                        >
+                          <div className="posted-by">
+                            <img
+                              src={
+                                item.instructor.img
+                                  ? item.instructor.img
+                                  : verena
+                              }
+                              // src={item.instructor.img}
+                              alt=""
+                              style={{
+                                width: "45px",
+                                height: "45px",
+                                borderRadius: "50%",
+                              }}
+                            />
+                            <a
+                              onClick={() => NavIns(item.instructor._id)}
+                              title=""
+                              style={{
+                                textDecoration: "none",
+                                cursor: "pointer",
+                              }}
+                            >
+                              {item.instructor.name}
+                            </a>
+                          </div>
+                          <strong className="price" style={{ margin: "0" }}>
+                            {item.openBuy === false
+                              ? "Free"
+                              : item.free === true
+                              ? "Free"
+                              : item.price + " EGP"}
+                          </strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+            )}
+          </Carousel>
+        </Fade>
       </div>
-    )
-  ))}
-</Carousel></Fade>
-</div>
     </>
   );
 }

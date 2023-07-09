@@ -9,9 +9,9 @@ import icon17 from "../images/icon17.png";
 import visa from "../images/visa.png";
 import codeimage from "../images/code.png";
 import walletStatus from "../images/170848ebd6.png";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "react-multi-carousel/lib/styles.css";
 import ci1 from "../images/ci1.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
@@ -42,7 +42,8 @@ export default function SingleClass() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   //  &&  (new Date(p.students.dateJoin).getTime() + p.timeLimit *24* 60 * 60 * 1000) >= currentDateTime)
   useEffect(() => {
-    axios.get("https://worldtimeapi.org/api/timezone/Africa/Cairo")
+    axios
+      .get("https://worldtimeapi.org/api/timezone/Africa/Cairo")
       .then((response) => response.json())
       .then((data) => setCurrentDateTime(new Date(data.datetime)));
   }, []);
@@ -58,14 +59,7 @@ export default function SingleClass() {
         return null; // Don't render price if the user is a student
       }
       if (p.free === true) {
-        return  <a
-       
-        
-        style={{ textDecoration: "none"   ,  float: 'right'}}
-      >
-    Free
-        
-      </a> ; // Display "Free" if the lecture is free
+        return <a style={{ textDecoration: "none", float: "right" }}>Free</a>; // Display "Free" if the lecture is free
       } else if (p.openBuy === true) {
         const currentDate = currentDateTime.getTime();
 
@@ -90,7 +84,7 @@ export default function SingleClass() {
                   toggleOpen(e);
                   setidLec(p._id);
                 }}
-                style={{ textDecoration: "none"   ,  float: 'right' }}
+                style={{ textDecoration: "none", float: "right" }}
               >
                 {p.price}
                 <i
@@ -98,580 +92,180 @@ export default function SingleClass() {
                   style={{ color: "rgb(197, 137, 43)" }}
                 ></i>
               </a>
-{isMobile?<div>
-                {isOpen && (
-                  <div className="overlaythere10">
-                    <div className="modalhere">
-                      <button className="close-button" onClick={toggleOpen}>
-                        <i className="fa-regular fa-circle-xmark fs-3"></i>
-                      </button>
-                      {showRechargeContent ? (
-                        <div>
-                          <p className="p-button">Recharge wallet</p>
+              {isMobile ? (
+                <div>
+                  {isOpen && (
+                    <div className="overlaythere10">
+                      <div className="modalhere">
+                        <button className="close-button" onClick={toggleOpen}>
+                          <i className="fa-regular fa-circle-xmark fs-3"></i>
+                        </button>
+                        {showRechargeContent ? (
+                          <div>
+                            <p className="p-button">Recharge wallet</p>
 
-                          <img
-                            className={`image-button16 ${
-                              selectedOption === "visa" ? "selected" : ""
-                            }`}
-                            src={visa}
-                            alt=""
-                            style={{
-                              width: "45%",
-                            }}
-                            onClick={() => handlePaymentOptionClick("visa")}
-                          />
-                          <img
-                            className={`image-button26 ${
-                              selectedOption === "code" ? "selected" : ""
-                            }`}
-                            src={codeimage}
-                            alt=""
-                            style={{
-                              width: "40%",
-                            }}
-                            onClick={() => handlePaymentOptionClick("code")}
-                          />
-                          {/* Add the content for recharging the wallet here */}
-                          <p className="p-buttonsec26">
-                            Charge wallet with Credit Card, You can also use a
-                            recharge code to add money to your wallet.
-                          </p>
-                          <button
-                            className="close-button-charge265 btn-defaultEx26"
-                            onClick={() => setShowRechargeContent(false)}
-                          >
-                            Back to Wallet
-                          </button>
-                          {showCodeInput && (
-                            <div
+                            <img
+                              className={`image-button16 ${
+                                selectedOption === "visa" ? "selected" : ""
+                              }`}
+                              src={visa}
+                              alt=""
                               style={{
-                                position: "fixed",
-                                top: "30%",
-                                right: "4%",
-                                bottom: "0",
-                                width: "90%",
-                                height: "45%",
-                                backgroundColor: "#3c719a",
-                                display: "flex",
-                                justifyContent: "flex-end",
-                                alignItems: " center",
-                                zIndex: "99999999999",
-                                borderRadius: "20px",
+                                width: "45%",
                               }}
+                              onClick={() => handlePaymentOptionClick("visa")}
+                            />
+                            <img
+                              className={`image-button26 ${
+                                selectedOption === "code" ? "selected" : ""
+                              }`}
+                              src={codeimage}
+                              alt=""
+                              style={{
+                                width: "40%",
+                              }}
+                              onClick={() => handlePaymentOptionClick("code")}
+                            />
+                            {/* Add the content for recharging the wallet here */}
+                            <p className="p-buttonsec26">
+                              Charge wallet with Credit Card, You can also use a
+                              recharge code to add money to your wallet.
+                            </p>
+                            <button
+                              className="close-button-charge265 btn-defaultEx26"
+                              onClick={() => setShowRechargeContent(false)}
                             >
+                              Back to Wallet
+                            </button>
+                            {showCodeInput && (
                               <div
                                 style={{
+                                  position: "fixed",
+                                  top: "30%",
+                                  right: "4%",
+                                  bottom: "0",
+                                  width: "90%",
+                                  height: "45%",
                                   backgroundColor: "#3c719a",
-                                  width: "97%",
-                                  height: "42vh",
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                  alignItems: " center",
                                   zIndex: "99999999999",
-                                  position: "absolute",
-                                  top: "0",
                                   borderRadius: "20px",
                                 }}
                               >
-                                <button
-                                  className="close-button"
-                                  onClick={toggleOpen}
-                                >
-                                  <i className="fa-regular fa-circle-xmark fs-3"></i>
-                                </button>
-                                <p className="p-buttonThird">
-                                  Enter recharge code
-                                </p>
-                                <img
-                                  className={`image-buttonn `}
-                                  src={codeimage}
-                                  alt=""
-                                  style={{ width: "72%" }}
-                                />
-                                <input
+                                <div
                                   style={{
-                                    width: "69%",
-                                    height: "50px",
-                                    color: "#575757",
-                                    fontSize: "14.23px",
-                                    padding: "0 20px",
-                                    border: "2px solid #f6f4f4",
-                                    top: "58%",
-                                    left: "13%",
+                                    backgroundColor: "#3c719a",
+                                    width: "97%",
+                                    height: "42vh",
+                                    zIndex: "99999999999",
                                     position: "absolute",
-                                    borderRadius: "30px",
+                                    top: "0",
+                                    borderRadius: "20px",
                                   }}
-                                  type="text"
-                                  value={code}
-                                  onChange={(e) => setCode(e.target.value)}
-                                />
-                                {/* <input
+                                >
+                                  <button
+                                    className="close-button"
+                                    onClick={toggleOpen}
+                                  >
+                                    <i className="fa-regular fa-circle-xmark fs-3"></i>
+                                  </button>
+                                  <p className="p-buttonThird">
+                                    Enter recharge code
+                                  </p>
+                                  <img
+                                    className={`image-buttonn `}
+                                    src={codeimage}
+                                    alt=""
+                                    style={{ width: "72%" }}
+                                  />
+                                  <input
+                                    style={{
+                                      width: "69%",
+                                      height: "50px",
+                                      color: "#575757",
+                                      fontSize: "14.23px",
+                                      padding: "0 20px",
+                                      border: "2px solid #f6f4f4",
+                                      top: "58%",
+                                      left: "13%",
+                                      position: "absolute",
+                                      borderRadius: "30px",
+                                    }}
+                                    type="text"
+                                    value={code}
+                                    onChange={(e) => setCode(e.target.value)}
+                                  />
+                                  {/* <input
                                 type="text"
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
                               /> */}
 
-                                <button
-                                  className="close-button-chargee2 btn-defaultEx2"
-                                  onClick={handleSendButtonClick}
-                                >
-                                  Send
-                                </button>
-                                {/* <button onClick={handleSendButtonClick}>
+                                  <button
+                                    className="close-button-chargee2 btn-defaultEx2"
+                                    onClick={handleSendButtonClick}
+                                  >
+                                    Send
+                                  </button>
+                                  {/* <button onClick={handleSendButtonClick}>
                                 Send
                               </button> */}
-                              </div>{" "}
-                            </div>
-                          )}
-                          {!showCodeInput && (
-                            <button
-                              className="close-button-charge26 btn-defaultEx2"
-                              onClick={handleNextButtonClick}
-                            >
-                              Next
-                            </button>
-                          )}
-                          {/* <button className="close-button-charge2 btn-defaultEx2" onClick={handleNextButtonClick}>Next</button> */}
-                        </div>
-                      ) : p.paymentMethod === "Code" ? (
-                        <div>
-                          <p className="p-button">Write your Code</p>
-                          <input
-                            className="form-control"
-                            style={{
-                              position: "absolute",
-                              top: "50%",
-                              left: "25%",
-                            }}
-                            type="text"
-                            value={code}
-                            onChange={(e) => setCode(e.target.value)}
-                          />
-                          <button
-                            className="close-button-charge btn-defaultEx"
-                            onClick={handleSendButtonClick2}
-                          >
-                            Send
-                          </button>
-                        </div>
-                      ) : p.paymentMethod === "Wallet" ? (
-                        <div>
-                          <p className="p-button"> Wallet Information</p>
-                          <img
-                            style={{
-                              position: "absolute",
-                              top: "22%",
-                              left: "10%",
-                              width: "25%",
-                            }}
-                            className="image-button"
-                            src={walletStatus}
-                            alt=""
-                          />
-                          <p
-                            className="p-buttonsec"
-                            style={{
-                              position: "absolute",
-                              top: "55%",
-                              left: "10%",
-                            }}
-                          >
-                            Your Balance is {profile.wallet} EGP
-                          </p>
-                          <button
-                            style={{
-                              position: "absolute",
-                              top: "80%",
-                              left: "10%",
-                            }}
-                            className="close-button-charge btn-defaultEx"
-                            onClick={toggleRechargeContent}
-                          >
-                            Charge Wallet
-                          </button>
-                          <button
-                            style={{
-                              position: "absolute",
-                              top: "80%",
-                              left: "65%",
-                            }}
-                            className="close-button-charge btn-defaultEx"
-                            onClick={payNow}
-                          >
-                            Pay now
-                          </button>
-                        </div>
-                      ) : p.paymentMethod === "Both" ? (
-                        <div>
-                          <p className="p-button">
-                            Which way do you want to get the lecture?
-                            {/* {p.paymentMethod} */}
-                          </p>
-                          <img
-                            className={`image-button2 ${
-                              selectedOption === "code" ? "selected" : ""
-                            }`}
-                            src={codeimage}
-                            alt=""
-                            style={{ width: "55%",left:'45%' }}
-                            onClick={() => {
-                              // console.log("alooo code");
-                              handlePaymentOptionClick("code");
-                            }}
-                          />
-                          <img
-                            style={{
-                              position: "absolute",
-                              top: "22%",
-                              left: "10%",
-                              width: "30%",
-                            }}
-                            className={`image-button ${
-                              selectedOption === "wallet" ? "selected" : ""
-                            }`}
-                            onClick={() => {
-                              // console.log("alooo");
-                              handlePaymentOptionClick("wallet");
-                            }}
-                            src={walletStatus}
-                            alt=""
-                          />
-                          {selectedOption === "wallet" && (
-                            <div>
-                              {/* <img
-                                style={{
-                                  position: "absolute",
-                                  top: "22%",
-                                  left: "10%",
-                                  width: "20%",
-                                }}
-                                className="image-button"
-                                src={walletStatus}
-                                alt=""
-                              /> */}
-                              <p
-                                className="p-buttonsec"
-                                style={{
-                                  position: "absolute",
-                                  top: "55%",
-                                  left: "23%",
-                                }}
-                              >
-                                Your Balance is {profile.wallet} EGP
-                              </p>
+                                </div>{" "}
+                              </div>
+                            )}
+                            {!showCodeInput && (
                               <button
-                                style={{
-                                  position: "absolute",
-                                  top: "68%",
-                                  left: "24%",
-                                }}
-                                className="close-button-charge btn-defaultEx"
-                                onClick={toggleRechargeContent}
+                                className="close-button-charge26 btn-defaultEx2"
+                                onClick={handleNextButtonClick}
                               >
-                                Charge Wallet
+                                Next
                               </button>
-                              <button
-                                style={{
-                                  position: "absolute",
-                                  top: "82%",
-                                  left: "28%",
-                                }}
-                                className="close-button-charge btn-defaultEx"
-                                onClick={payNow} // Added the payNow function as the onClick handler
-                              >
-                                Buy Lecture
-                              </button>
-                            </div>
-                          )}
-                          {selectedOption === "code" && (
-                            <div>
-                              <input
-                                className="form-control"
-                                placeholder="Enter your code"
-                                style={{
-                                  position: "absolute",
-                                  top: "59%",
-                                  left: "25%",
-                                }}
-                                type="text"
-                                value={code}
-                                onChange={(e) => setCode(e.target.value)}
-                              />
-                              <button
-                                style={{
-                                  position: "absolute",
-                                  top: "80%",
-                                  left: "27%",
-                                }}
-                                className="close-button-charge btn-defaultEx"
-                                onClick={handleSendButtonClickBoth}
-                              >
-                                Buy Lecture
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        ""
-                      )}{" "}
-                    </div>
-                  </div>
-                )}
-              </div>:
-              <div>
-              {isOpen && (
-                <div className="overlaythere">
-                  <div className="modalhere">
-                    <button className="close-button" onClick={toggleOpen}>
-                      <i className="fa-regular fa-circle-xmark fs-3"></i>
-                    </button>
-                    {showRechargeContent ? (
-                      <div>
-                        <p className="p-button">Recharge wallet</p>
-
-                        <img
-                          className={`image-button16 ${
-                            selectedOption === "visa" ? "selected" : ""
-                          }`}
-                          src={visa}
-                          alt=""
-                          style={{
-                            width: "45%",
-                            cursor:'pointer'
-                          }}
-                          onClick={() => handlePaymentOptionClick("visa")}
-                        />
-                        <img
-                          className={`image-button26 ${
-                            selectedOption === "code" ? "selected" : ""
-                          }`}
-                          src={codeimage}
-                          alt=""
-                          style={{
-                            width: "40%",
-                            cursor:'pointer'
-                          }}
-                          onClick={() => handlePaymentOptionClick("code")}
-                        />
-                        {/* Add the content for recharging the wallet here */}
-                        <p className="p-buttonsec26 text-center" style={{top:'50%'}}>
-                          Charge wallet with Credit Card, You can also use a
-                          recharge code to add money to your wallet.
-                        </p>
-                        <button
-                          className="close-button-charge265 btn-defaultEx26"
-                          onClick={() => setShowRechargeContent(false)}
-                        >
-                          Back to Wallet
-                        </button>
-                        {showCodeInput && (
-                          <div
-                            style={{
-                              position: "fixed",
-                              top: "30%",
-                              right: "25%",
-                              bottom: "0",
-                              width: "50%",
-                              height: "45%",
-                              backgroundColor: "#3c719a",
-                              display: "flex",
-                              justifyContent: "flex-end",
-                              alignItems: " center",
-                              zIndex: "99999999999",
-                              borderRadius: "20px",
-                            }}
-                          >
-                            <div
+                            )}
+                            {/* <button className="close-button-charge2 btn-defaultEx2" onClick={handleNextButtonClick}>Next</button> */}
+                          </div>
+                        ) : p.paymentMethod === "Code" ? (
+                          <div>
+                            <p className="p-button">Write your Code</p>
+                            <input
+                              className="form-control"
                               style={{
-                                backgroundColor: "#3c719a",
-                                width: "97%",
-                                height: "42vh",
-                                zIndex: "99999999999",
                                 position: "absolute",
-                                top: "0",
-                                borderRadius: "20px",
+                                top: "50%",
+                                left: "25%",
                               }}
-                            >
-                              <button
-                                className="close-button"
-                                onClick={toggleOpen}
-                              >
-                                <i className="fa-regular fa-circle-xmark fs-3"></i>
-                              </button>
-                              <p className="p-buttonThird">
-                                Enter recharge code
-                              </p>
-                              <img
-                                className={`image-buttonn `}
-                                src={codeimage}
-                                alt=""
-                                style={{ width: "32%",left:'29%' }}
-                              />
-                              <input
-                                style={{
-                                  
-                                  height: "50px",
-                                  color: "#575757",
-                                  fontSize: "14.23px",
-                                  padding: "0 20px",
-                                  border: "2px solid #f6f4f4",
-                                  top: "58%",
-                                  left: "25%",
-                                  position: "absolute",
-                                  borderRadius: "30px",
-                                }}
-                                placeholder="Enter Code"
-                                type="text"
-                                value={code}
-                                onChange={(e) => setCode(e.target.value)}
-                              />
-                              {/* <input
                               type="text"
                               value={code}
                               onChange={(e) => setCode(e.target.value)}
-                            /> */}
-
-                              <button
-                                className="close-button-chargee2 btn-defaultEx2"
-                                onClick={handleSendButtonClick}
-                              >
-                                Send
-                              </button>
-                              {/* <button onClick={handleSendButtonClick}>
+                            />
+                            <button
+                              className="close-button-charge btn-defaultEx"
+                              onClick={handleSendButtonClick2}
+                            >
                               Send
-                            </button> */}
-                            </div>{" "}
+                            </button>
                           </div>
-                        )}
-                        {!showCodeInput && (
-                          <button
-                            className="close-button-charge26 btn-defaultEx2"
-                            onClick={handleNextButtonClick}
-                          >
-                            Next
-                          </button>
-                        )}
-                        {/* <button className="close-button-charge2 btn-defaultEx2" onClick={handleNextButtonClick}>Next</button> */}
-                      </div>
-                    ) : p.paymentMethod === "Code" ? (
-                      <div>
-                        <p className="p-button">Write your Code</p>
-                        <input
-                          className="form-control"
-                          style={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "25%",
-                          }}
-                          type="text"
-                          value={code}
-                          onChange={(e) => setCode(e.target.value)}
-                        />
-                        <button
-                          className="close-button-charge btn-defaultEx"
-                          onClick={handleSendButtonClick2}
-                        >
-                          Send
-                        </button>
-                      </div>
-                    ) : p.paymentMethod === "Wallet" ? (
-                      <div>
-                        <p className="p-button"> Wallet Information</p>
-                        <img
-                          style={{
-                            position: "absolute",
-                            top: "22%",
-                            left: "10%",
-                            width: "25%",
-                          }}
-                          className="image-button"
-                          src={walletStatus}
-                          alt=""
-                        />
-                        <p
-                          className="p-buttonsec"
-                          style={{
-                            position: "absolute",
-                            top: "55%",
-                            left: "10%",
-                          }}
-                        >
-                          Your Balance is {profile.wallet} EGP
-                        </p>
-                        <button
-                          style={{
-                            position: "absolute",
-                            top: "80%",
-                            left: "10%",
-                          }}
-                          className="close-button-charge btn-defaultEx"
-                          onClick={toggleRechargeContent}
-                        >
-                          Charge Wallet
-                        </button>
-                        <button
-                          style={{
-                            position: "absolute",
-                            top: "80%",
-                            left: "65%",
-                          }}
-                          className="close-button-charge btn-defaultEx"
-                          onClick={payNow}
-                        >
-                          Pay now
-                        </button>
-                      </div>
-                    ) : p.paymentMethod === "Both" ? (
-                      <div>
-                        <p className="p-button">
-                          Which way do you want to get the lecture?
-                          {/* {p.paymentMethod} */}
-                        </p>
-                        <img
-                          className={`image-button2 ${
-                            selectedOption === "code" ? "selected" : ""
-                          }`}
-                          src={codeimage}
-                          alt=""
-                          style={{ width: "40%",left:'45%',top:'30%' }}
-                          onClick={() => {
-                            // console.log("alooo code");
-                            handlePaymentOptionClick("code");
-                          }}
-                        />
-                        <img
-                          style={{
-                            position: "absolute",
-                            top: "22%",
-                            left: "10%",
-                            width: "25%",
-                          }}
-                          className={`image-button ${
-                            selectedOption === "wallet" ? "selected" : ""
-                          }`}
-                          onClick={() => {
-                            // console.log("alooo");
-                            handlePaymentOptionClick("wallet");
-                          }}
-                          src={walletStatus}
-                          alt=""
-                        />
-                        {selectedOption === "wallet" && (
+                        ) : p.paymentMethod === "Wallet" ? (
                           <div>
-                            {/* <img
+                            <p className="p-button"> Wallet Information</p>
+                            <img
                               style={{
                                 position: "absolute",
                                 top: "22%",
                                 left: "10%",
-                                width: "20%",
+                                width: "25%",
                               }}
                               className="image-button"
                               src={walletStatus}
                               alt=""
-                            /> */}
+                            />
                             <p
                               className="p-buttonsec"
                               style={{
                                 position: "absolute",
-                                top: "68%",
-                                left: "35%",
+                                top: "55%",
+                                left: "10%",
                               }}
                             >
                               Your Balance is {profile.wallet} EGP
@@ -680,7 +274,7 @@ export default function SingleClass() {
                               style={{
                                 position: "absolute",
                                 top: "80%",
-                                left: "15%",
+                                left: "10%",
                               }}
                               className="close-button-charge btn-defaultEx"
                               onClick={toggleRechargeContent}
@@ -691,23 +285,277 @@ export default function SingleClass() {
                               style={{
                                 position: "absolute",
                                 top: "80%",
-                                left: "60%",
+                                left: "65%",
                               }}
                               className="close-button-charge btn-defaultEx"
-                              onClick={payNow} // Added the payNow function as the onClick handler
+                              onClick={payNow}
                             >
-                              Buy Lecture
+                              Pay now
                             </button>
                           </div>
-                        )}
-                        {selectedOption === "code" && (
+                        ) : p.paymentMethod === "Both" ? (
                           <div>
-                            <input
-                              className="form-control"
-                              placeholder="Enter your code"
+                            <p className="p-button">
+                              Which way do you want to get the lecture?
+                              {/* {p.paymentMethod} */}
+                            </p>
+                            <img
+                              className={`image-button2 ${
+                                selectedOption === "code" ? "selected" : ""
+                              }`}
+                              src={codeimage}
+                              alt=""
+                              style={{ width: "55%", left: "45%" }}
+                              onClick={() => {
+                                // console.log("alooo code");
+                                handlePaymentOptionClick("code");
+                              }}
+                            />
+                            <img
                               style={{
                                 position: "absolute",
-                                top: "63%",
+                                top: "22%",
+                                left: "10%",
+                                width: "30%",
+                              }}
+                              className={`image-button ${
+                                selectedOption === "wallet" ? "selected" : ""
+                              }`}
+                              onClick={() => {
+                                // console.log("alooo");
+                                handlePaymentOptionClick("wallet");
+                              }}
+                              src={walletStatus}
+                              alt=""
+                            />
+                            {selectedOption === "wallet" && (
+                              <div>
+                                {/* <img
+                                style={{
+                                  position: "absolute",
+                                  top: "22%",
+                                  left: "10%",
+                                  width: "20%",
+                                }}
+                                className="image-button"
+                                src={walletStatus}
+                                alt=""
+                              /> */}
+                                <p
+                                  className="p-buttonsec"
+                                  style={{
+                                    position: "absolute",
+                                    top: "55%",
+                                    left: "23%",
+                                  }}
+                                >
+                                  Your Balance is {profile.wallet} EGP
+                                </p>
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "68%",
+                                    left: "24%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={toggleRechargeContent}
+                                >
+                                  Charge Wallet
+                                </button>
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "82%",
+                                    left: "28%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={payNow} // Added the payNow function as the onClick handler
+                                >
+                                  Buy Lecture
+                                </button>
+                              </div>
+                            )}
+                            {selectedOption === "code" && (
+                              <div>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter your code"
+                                  style={{
+                                    position: "absolute",
+                                    top: "59%",
+                                    left: "25%",
+                                  }}
+                                  type="text"
+                                  value={code}
+                                  onChange={(e) => setCode(e.target.value)}
+                                />
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "80%",
+                                    left: "27%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={handleSendButtonClickBoth}
+                                >
+                                  Buy Lecture
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          ""
+                        )}{" "}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {isOpen && (
+                    <div className="overlaythere">
+                      <div className="modalhere">
+                        <button className="close-button" onClick={toggleOpen}>
+                          <i className="fa-regular fa-circle-xmark fs-3"></i>
+                        </button>
+                        {showRechargeContent ? (
+                          <div>
+                            <p className="p-button">Recharge wallet</p>
+
+                            <img
+                              className={`image-button16 ${
+                                selectedOption === "visa" ? "selected" : ""
+                              }`}
+                              src={visa}
+                              alt=""
+                              style={{
+                                width: "45%",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handlePaymentOptionClick("visa")}
+                            />
+                            <img
+                              className={`image-button26 ${
+                                selectedOption === "code" ? "selected" : ""
+                              }`}
+                              src={codeimage}
+                              alt=""
+                              style={{
+                                width: "40%",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handlePaymentOptionClick("code")}
+                            />
+                            {/* Add the content for recharging the wallet here */}
+                            <p
+                              className="p-buttonsec26 text-center"
+                              style={{ top: "50%" }}
+                            >
+                              Charge wallet with Credit Card, You can also use a
+                              recharge code to add money to your wallet.
+                            </p>
+                            <button
+                              className="close-button-charge265 btn-defaultEx26"
+                              onClick={() => setShowRechargeContent(false)}
+                            >
+                              Back to Wallet
+                            </button>
+                            {showCodeInput && (
+                              <div
+                                style={{
+                                  position: "fixed",
+                                  top: "30%",
+                                  right: "25%",
+                                  bottom: "0",
+                                  width: "50%",
+                                  height: "45%",
+                                  backgroundColor: "#3c719a",
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                  alignItems: " center",
+                                  zIndex: "99999999999",
+                                  borderRadius: "20px",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    backgroundColor: "#3c719a",
+                                    width: "97%",
+                                    height: "42vh",
+                                    zIndex: "99999999999",
+                                    position: "absolute",
+                                    top: "0",
+                                    borderRadius: "20px",
+                                  }}
+                                >
+                                  <button
+                                    className="close-button"
+                                    onClick={toggleOpen}
+                                  >
+                                    <i className="fa-regular fa-circle-xmark fs-3"></i>
+                                  </button>
+                                  <p className="p-buttonThird">
+                                    Enter recharge code
+                                  </p>
+                                  <img
+                                    className={`image-buttonn `}
+                                    src={codeimage}
+                                    alt=""
+                                    style={{ width: "32%", left: "29%" }}
+                                  />
+                                  <input
+                                    style={{
+                                      height: "50px",
+                                      color: "#575757",
+                                      fontSize: "14.23px",
+                                      padding: "0 20px",
+                                      border: "2px solid #f6f4f4",
+                                      top: "58%",
+                                      left: "25%",
+                                      position: "absolute",
+                                      borderRadius: "30px",
+                                    }}
+                                    placeholder="Enter Code"
+                                    type="text"
+                                    value={code}
+                                    onChange={(e) => setCode(e.target.value)}
+                                  />
+                                  {/* <input
+                              type="text"
+                              value={code}
+                              onChange={(e) => setCode(e.target.value)}
+                            /> */}
+
+                                  <button
+                                    className="close-button-chargee2 btn-defaultEx2"
+                                    onClick={handleSendButtonClick}
+                                  >
+                                    Send
+                                  </button>
+                                  {/* <button onClick={handleSendButtonClick}>
+                              Send
+                            </button> */}
+                                </div>{" "}
+                              </div>
+                            )}
+                            {!showCodeInput && (
+                              <button
+                                className="close-button-charge26 btn-defaultEx2"
+                                onClick={handleNextButtonClick}
+                              >
+                                Next
+                              </button>
+                            )}
+                            {/* <button className="close-button-charge2 btn-defaultEx2" onClick={handleNextButtonClick}>Next</button> */}
+                          </div>
+                        ) : p.paymentMethod === "Code" ? (
+                          <div>
+                            <p className="p-button">Write your Code</p>
+                            <input
+                              className="form-control"
+                              style={{
+                                position: "absolute",
+                                top: "50%",
                                 left: "25%",
                               }}
                               type="text"
@@ -715,28 +563,177 @@ export default function SingleClass() {
                               onChange={(e) => setCode(e.target.value)}
                             />
                             <button
+                              className="close-button-charge btn-defaultEx"
+                              onClick={handleSendButtonClick2}
+                            >
+                              Send
+                            </button>
+                          </div>
+                        ) : p.paymentMethod === "Wallet" ? (
+                          <div>
+                            <p className="p-button"> Wallet Information</p>
+                            <img
+                              style={{
+                                position: "absolute",
+                                top: "22%",
+                                left: "10%",
+                                width: "25%",
+                              }}
+                              className="image-button"
+                              src={walletStatus}
+                              alt=""
+                            />
+                            <p
+                              className="p-buttonsec"
+                              style={{
+                                position: "absolute",
+                                top: "55%",
+                                left: "10%",
+                              }}
+                            >
+                              Your Balance is {profile.wallet} EGP
+                            </p>
+                            <button
                               style={{
                                 position: "absolute",
                                 top: "80%",
-                                left: "36%",
+                                left: "10%",
                               }}
                               className="close-button-charge btn-defaultEx"
-                              onClick={handleSendButtonClickBoth}
+                              onClick={toggleRechargeContent}
                             >
-                              Buy Lecture
+                              Charge Wallet
+                            </button>
+                            <button
+                              style={{
+                                position: "absolute",
+                                top: "80%",
+                                left: "65%",
+                              }}
+                              className="close-button-charge btn-defaultEx"
+                              onClick={payNow}
+                            >
+                              Pay now
                             </button>
                           </div>
-                        )}
+                        ) : p.paymentMethod === "Both" ? (
+                          <div>
+                            <p className="p-button">
+                              Which way do you want to get the lecture?
+                              {/* {p.paymentMethod} */}
+                            </p>
+                            <img
+                              className={`image-button2 ${
+                                selectedOption === "code" ? "selected" : ""
+                              }`}
+                              src={codeimage}
+                              alt=""
+                              style={{ width: "40%", left: "45%", top: "30%" }}
+                              onClick={() => {
+                                // console.log("alooo code");
+                                handlePaymentOptionClick("code");
+                              }}
+                            />
+                            <img
+                              style={{
+                                position: "absolute",
+                                top: "22%",
+                                left: "10%",
+                                width: "25%",
+                              }}
+                              className={`image-button ${
+                                selectedOption === "wallet" ? "selected" : ""
+                              }`}
+                              onClick={() => {
+                                // console.log("alooo");
+                                handlePaymentOptionClick("wallet");
+                              }}
+                              src={walletStatus}
+                              alt=""
+                            />
+                            {selectedOption === "wallet" && (
+                              <div>
+                                {/* <img
+                              style={{
+                                position: "absolute",
+                                top: "22%",
+                                left: "10%",
+                                width: "20%",
+                              }}
+                              className="image-button"
+                              src={walletStatus}
+                              alt=""
+                            /> */}
+                                <p
+                                  className="p-buttonsec"
+                                  style={{
+                                    position: "absolute",
+                                    top: "68%",
+                                    left: "35%",
+                                  }}
+                                >
+                                  Your Balance is {profile.wallet} EGP
+                                </p>
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "80%",
+                                    left: "15%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={toggleRechargeContent}
+                                >
+                                  Charge Wallet
+                                </button>
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "80%",
+                                    left: "60%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={payNow} // Added the payNow function as the onClick handler
+                                >
+                                  Buy Lecture
+                                </button>
+                              </div>
+                            )}
+                            {selectedOption === "code" && (
+                              <div>
+                                <input
+                                  className="form-control"
+                                  placeholder="Enter your code"
+                                  style={{
+                                    position: "absolute",
+                                    top: "63%",
+                                    left: "25%",
+                                  }}
+                                  type="text"
+                                  value={code}
+                                  onChange={(e) => setCode(e.target.value)}
+                                />
+                                <button
+                                  style={{
+                                    position: "absolute",
+                                    top: "80%",
+                                    left: "36%",
+                                  }}
+                                  className="close-button-charge btn-defaultEx"
+                                  onClick={handleSendButtonClickBoth}
+                                >
+                                  Buy Lecture
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          ""
+                        )}{" "}
                       </div>
-                    ) : (
-                      ""
-                    )}{" "}
-                  </div>
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
-              }
-              
             </>
           ); // Display the price and cart icon if the lecture is available for purchase, and show the overlay content when isOpen is true
         }
@@ -759,35 +756,35 @@ export default function SingleClass() {
         //     }
         //   }
         //   console.log(currentDateTime)
-      } 
-      
-      else {
+      } else {
         // User is logged out
         // Redirect to the register page
-        return 
-         
-        <Link to="/registerR"
-        style={{ textDecoration: "none"   ,  float: 'right' }}
-      >
-        {p.price}
-        <i
-          className="fa-solid fa-cart-shopping"
-          style={{ color: "rgb(197, 137, 43)" }}
-        ></i>
-      </Link>
+        return;
+
+        <Link
+          to="/registerR"
+          style={{ textDecoration: "none", float: "right" }}
+        >
+          {p.price}
+          <i
+            className="fa-solid fa-cart-shopping"
+            style={{ color: "rgb(197, 137, 43)" }}
+          ></i>
+        </Link>;
       }
-    }
-    else{
-      return(
-      <Link to="/registerR"
-      style={{ textDecoration: "none"   ,  float: 'right' }}
-    >
-      {p.price}
-      <i
-        className="fa-solid fa-cart-shopping"
-        style={{ color: "rgb(197, 137, 43)" }}
-      ></i>
-    </Link>)
+    } else {
+      return (
+        <Link
+          to="/registerR"
+          style={{ textDecoration: "none", float: "right" }}
+        >
+          {p.price}
+          <i
+            className="fa-solid fa-cart-shopping"
+            style={{ color: "rgb(197, 137, 43)" }}
+          ></i>
+        </Link>
+      );
     }
     return null;
 
@@ -984,7 +981,21 @@ export default function SingleClass() {
         // console.log(response.data);
         //  sessionStorage.setItem('enrolled', true)
         setEnroll(response.data);
-        window.location.reload();
+        console.log(response.data);
+        if (response.data.message !== "UnFollow") {
+          swal({
+            title:
+              "Following this classroom doesn't give you accessto its lectures. You only get notifications about this classroom news",
+            button: {
+              text: "OK",
+              closeModal: false,
+            },
+          }).then(() => {
+            window.location.reload();
+          });
+        } else {
+          window.location.reload();
+        }
 
         // sessionStorage.setItem("enrolled", true);
         // swal("Good job!", "Your Data has been sent successfully!", "success");
@@ -1316,13 +1327,13 @@ export default function SingleClass() {
                             <h3>{subjectinstructor}</h3>
                           </a>
                           <span style={{ color: "rgb(197, 137, 43)" }}>
-                            {subjectName} Instructor
+                            {subjectName}
                           </span>
                         </div>
                       </div>
                       {/* {singleClass.students?'':    */}
                       {sessionStorage.getItem("loggedIn", true) ? (
-                        singleClass.openBuy === false  ? (
+                        singleClass.openBuy === false ? (
                           ""
                         ) : singleClass.openBuy === false ? (
                           <a
@@ -1335,13 +1346,16 @@ export default function SingleClass() {
                             title=""
                             class="btn-default"
                           >
-                            {singleClass.studentsEnrolled.length > 0
+                            {singleClass.studentsEnrolled.filter(
+                              (e) =>
+                                e.student === sessionStorage.getItem("user_id")
+                            ).length > 0
                               ? "UnEnroll"
                               : "Enroll Now"}
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
                             <i class="fa fa-long-arrow-alt-right"></i>
                           </a>
-                        ) : singleClass.openBuy === true? (
+                        ) : singleClass.openBuy === true ? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -1352,7 +1366,10 @@ export default function SingleClass() {
                             title=""
                             class="btn-default"
                           >
-                            {singleClass.studentsEnrolled.length > 0
+                            {singleClass.studentsEnrolled.filter(
+                              (e) =>
+                                e.student === sessionStorage.getItem("user_id")
+                            ).length > 0
                               ? "UnEnroll"
                               : "Enroll Now"}
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
@@ -1363,7 +1380,7 @@ export default function SingleClass() {
                         )
                       ) : singleClass.openBuy === false ? (
                         ""
-                      ) : singleClass.openBuy === false? (
+                      ) : singleClass.openBuy === false ? (
                         <Link
                           to="/registerR"
                           style={{
@@ -1376,7 +1393,7 @@ export default function SingleClass() {
                         >
                           Enroll Now <i class="fa fa-long-arrow-alt-right"></i>
                         </Link>
-                      ) : singleClass.openBuy === true  ? (
+                      ) : singleClass.openBuy === true ? (
                         <Link
                           to="/registerR"
                           style={{
@@ -1466,7 +1483,7 @@ export default function SingleClass() {
                                   }`}
                                   src={visa}
                                   alt=""
-                                  style={{ width: "50%" ,left:'1%'}}
+                                  style={{ width: "50%", left: "1%" }}
                                   onClick={() =>
                                     handlePaymentOptionClick("visa")
                                   }
@@ -1655,7 +1672,11 @@ export default function SingleClass() {
                                   }`}
                                   src={codeimage}
                                   alt=""
-                                  style={{ width: "55%" ,top:'31%',left:'45%'}}
+                                  style={{
+                                    width: "55%",
+                                    top: "31%",
+                                    left: "45%",
+                                  }}
                                   onClick={() =>
                                     handlePaymentOptionClick("code")
                                   }
@@ -1680,7 +1701,6 @@ export default function SingleClass() {
                                 />
                                 {selectedOption === "wallet" && (
                                   <div>
-                                  
                                     <p
                                       className="p-buttonsec"
                                       style={{
@@ -1839,444 +1859,506 @@ export default function SingleClass() {
                                               fontSize: "16px",
                                             }}
                                           >
-                                             {p.block===false?
-                                            <Accordion>
-                                              <Accordion.Item eventKey="2">
-                                               <Accordion.Header>
-                                                  <div
-                                                    className="row"
-                                                    style={{
-                                                      display: "flex",
-                                                      width: "100%",
-                                                    }}
-                                                  >
+                                            {p.block === false ? (
+                                              <Accordion>
+                                                <Accordion.Item eventKey="2">
+                                                  <Accordion.Header>
                                                     <div
-                                                      className="col"
-                                                      style={{ float: "left" }}
+                                                      className="row"
+                                                      style={{
+                                                        display: "flex",
+                                                        width: "100%",
+                                                      }}
                                                     >
-                                                      {p.name ? p.name : ""}
+                                                      <div
+                                                        className="col"
+                                                        style={{
+                                                          float: "left",
+                                                        }}
+                                                      >
+                                                        {p.name ? p.name : ""}
+                                                      </div>
+                                                      <div
+                                                        className="col"
+                                                        style={{
+                                                          float: "right",
+                                                        }}
+                                                      >
+                                                        {renderPrice(p)}
+                                                      </div>
                                                     </div>
-                                                    <div
-                                                      className="col"
-                                                      style={{ float: "right" }}
-                                                    >
-                                                      {renderPrice(p)}
-                                                    </div>
-                                                  </div>
-                                                </Accordion.Header>
-                                                
-                                                <Accordion.Body>
-                                                  {p.subLecs &&
-                                                    p.subLecs.map(
-                                                      (s, index) => (
-                                                        <Accordion.Body
-                                                          key={index}
-                                                          value={s._id}
-                                                        >
-                                                          <Accordion>
-                                                            <Accordion.Item eventKey="3">
-                                                              <Accordion.Header>
-                                                                {s.name
-                                                                  ? s.name
-                                                                  : ""}
-                                                              </Accordion.Header>
-                                                              <Accordion.Body>
-                                                                <p
-                                                                  style={{
-                                                                    fontSize:
-                                                                      "18px",
-                                                                  }}
-                                                                >
-                                                                  <br />
-                                                                  {p.students
-                                                                    .length >
-                                                                    0 &&
-                                                                  Array.isArray(
-                                                                    p.students
-                                                                  ) &&
-                                                                  p.students.some(
-                                                                    (student) =>
-                                                                      student.student ===
-                                                                        sessionStorage.getItem(
-                                                                          "user_id"
-                                                                        ) &&
-                                                                      new Date(
-                                                                        student.dateJoin
-                                                                      ).getTime() +
-                                                                        p.timeLimit *
-                                                                          24 *
-                                                                          60 *
-                                                                          60 *
-                                                                          1000 >=
-                                                                        currentDateTime
-                                                                  ) ? (
-                                                                    p.free ===
-                                                                    true ? (
-                                                                      isMobile ? (
-                                                                        <a
-                                                                          onClick={() => {
-                                                                            nav(
-                                                                              p._id,
-                                                                              s._id
-                                                                            );
-                                                                          }}
-                                                                        >
-                                                                        {s.video&&
-                                                                            s
-                                                                              .video
-                                                                              .name ?  <i
-                                                                            className="fa-brands fa-youtube fs-3"
-                                                                            style={{
-                                                                              color:
-                                                                                "rgb(197, 137, 43)",
-                                                                              paddingRight:
-                                                                                "1%",
-                                                                            }}
-                                                                          ></i>:""}
-                                                                          {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name}{" "}
-                                                                          {/* Access video name here */}
-                                                                        </a>
-                                                                      ) : isMobile ? (
-                                                                        <div className="row"> 
-                                                                          <div className="col-md-1">  <a
-                                                                        onClick={() => {
-                                                                          // document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      >
-                                                                        {s.video&&
-                                                                            s
-                                                                              .video
-                                                                              .name ?
-                                                                         <i
-                                                                            className="fa-brands fa-youtube fs-3"
-                                                                            style={{
-                                                                              color:
-                                                                                "rgb(197, 137, 43)",
-                                                                              paddingRight:
-                                                                                "2%",
-                                                                            }}
-                                                                          ></i>:""}</a></div>
-                                                                          <div className="col-md-11"> <a
-                                                                        onClick={() => {
-                                                                          // document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      > {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name} </a></div>
+                                                  </Accordion.Header>
 
-                                                                       
-                                                                       
-                                                                         {" "}
-                                                                          {/* Access video name here */}
-                                                                       </div>
-                                                                      ) : (
-                                                                      <div className="row"> 
-                                                                        <div className="col-md-1"> <a
-                                                                      onClick={() => {
-                                                                        document.documentElement.requestFullscreen();
-                                                                        nav(
-                                                                          p._id,
-                                                                          s._id
-                                                                        );
-                                                                      }}
-                                                                    > {s.video &&
-                                                                      s
-                                                                        .video
-                                                                        .name?<i
-                                                                            className="fa-brands fa-youtube fs-3"
-                                                                            style={{
-                                                                              color:
-                                                                                "rgb(197, 137, 43)",
-                                                                              paddingRight:
-                                                                                "2%",
+                                                  <Accordion.Body>
+                                                    {p.subLecs &&
+                                                      p.subLecs.map(
+                                                        (s, index) => (
+                                                          <Accordion.Body
+                                                            key={index}
+                                                            value={s._id}
+                                                          >
+                                                            <Accordion>
+                                                              <Accordion.Item eventKey="3">
+                                                                <Accordion.Header>
+                                                                  {s.name
+                                                                    ? s.name
+                                                                    : ""}
+                                                                </Accordion.Header>
+                                                                <Accordion.Body>
+                                                                  <p
+                                                                    style={{
+                                                                      fontSize:
+                                                                        "18px",
+                                                                    }}
+                                                                  >
+                                                                    <br />
+                                                                    {p.students
+                                                                      .length >
+                                                                      0 &&
+                                                                    Array.isArray(
+                                                                      p.students
+                                                                    ) &&
+                                                                    p.students.some(
+                                                                      (
+                                                                        student
+                                                                      ) =>
+                                                                        student.student ===
+                                                                          sessionStorage.getItem(
+                                                                            "user_id"
+                                                                          ) &&
+                                                                        new Date(
+                                                                          student.dateJoin
+                                                                        ).getTime() +
+                                                                          p.timeLimit *
+                                                                            24 *
+                                                                            60 *
+                                                                            60 *
+                                                                            1000 >=
+                                                                          currentDateTime
+                                                                    ) ? (
+                                                                      p.free ===
+                                                                      true ? (
+                                                                        isMobile ? (
+                                                                          <a
+                                                                            onClick={() => {
+                                                                              nav(
+                                                                                p._id,
+                                                                                s._id
+                                                                              );
                                                                             }}
-                                                                          ></i>:""}</a></div>
-                                                                        <div className="col-md-11"> <a
-                                                                      onClick={() => {
-                                                                        document.documentElement.requestFullscreen();
-                                                                        nav(
-                                                                          p._id,
-                                                                          s._id
-                                                                        );
-                                                                      }}
-                                                                    > {s.video &&
+                                                                          >
+                                                                            {s.video &&
                                                                             s
                                                                               .video
-                                                                              .name}</a></div>
-                                                                         
-                                                                        
-                                                                        {" "}
+                                                                              .name ? (
+                                                                              <i
+                                                                                className="fa-brands fa-youtube fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingRight:
+                                                                                    "1%",
+                                                                                }}
+                                                                              ></i>
+                                                                            ) : (
+                                                                              ""
+                                                                            )}
+                                                                            {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name}{" "}
+                                                                            {/* Access video name here */}
+                                                                          </a>
+                                                                        ) : isMobile ? (
+                                                                          <div className="row">
+                                                                            <div className="col-md-1">
+                                                                              {" "}
+                                                                              <a
+                                                                                onClick={() => {
+                                                                                  // document.documentElement.requestFullscreen();
+                                                                                  nav(
+                                                                                    p._id,
+                                                                                    s._id
+                                                                                  );
+                                                                                }}
+                                                                              >
+                                                                                {s.video &&
+                                                                                s
+                                                                                  .video
+                                                                                  .name ? (
+                                                                                  <i
+                                                                                    className="fa-brands fa-youtube fs-3"
+                                                                                    style={{
+                                                                                      color:
+                                                                                        "rgb(197, 137, 43)",
+                                                                                      paddingRight:
+                                                                                        "2%",
+                                                                                    }}
+                                                                                  ></i>
+                                                                                ) : (
+                                                                                  ""
+                                                                                )}
+                                                                              </a>
+                                                                            </div>
+                                                                            <div className="col-md-11">
+                                                                              {" "}
+                                                                              <a
+                                                                                onClick={() => {
+                                                                                  // document.documentElement.requestFullscreen();
+                                                                                  nav(
+                                                                                    p._id,
+                                                                                    s._id
+                                                                                  );
+                                                                                }}
+                                                                              >
+                                                                                {" "}
+                                                                                {s.video &&
+                                                                                  s
+                                                                                    .video
+                                                                                    .name}{" "}
+                                                                              </a>
+                                                                            </div>{" "}
+                                                                            {/* Access video name here */}
+                                                                          </div>
+                                                                        ) : (
+                                                                          <div className="row">
+                                                                            <div className="col-md-1">
+                                                                              {" "}
+                                                                              <a
+                                                                                onClick={() => {
+                                                                                  document.documentElement.requestFullscreen();
+                                                                                  nav(
+                                                                                    p._id,
+                                                                                    s._id
+                                                                                  );
+                                                                                }}
+                                                                              >
+                                                                                {" "}
+                                                                                {s.video &&
+                                                                                s
+                                                                                  .video
+                                                                                  .name ? (
+                                                                                  <i
+                                                                                    className="fa-brands fa-youtube fs-3"
+                                                                                    style={{
+                                                                                      color:
+                                                                                        "rgb(197, 137, 43)",
+                                                                                      paddingRight:
+                                                                                        "2%",
+                                                                                    }}
+                                                                                  ></i>
+                                                                                ) : (
+                                                                                  ""
+                                                                                )}
+                                                                              </a>
+                                                                            </div>
+                                                                            <div className="col-md-11">
+                                                                              {" "}
+                                                                              <a
+                                                                                onClick={() => {
+                                                                                  document.documentElement.requestFullscreen();
+                                                                                  nav(
+                                                                                    p._id,
+                                                                                    s._id
+                                                                                  );
+                                                                                }}
+                                                                              >
+                                                                                {" "}
+                                                                                {s.video &&
+                                                                                  s
+                                                                                    .video
+                                                                                    .name}
+                                                                              </a>
+                                                                            </div>{" "}
+                                                                            {/* Access video name here */}
+                                                                          </div>
+                                                                        )
+                                                                      ) : (
+                                                                        <div className="row">
+                                                                          <div className="col-md-1">
+                                                                            {" "}
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                document.documentElement.requestFullscreen();
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name ? (
+                                                                                <i
+                                                                                  className="fa-brands fa-youtube fs-3"
+                                                                                  style={{
+                                                                                    color:
+                                                                                      "rgb(197, 137, 43)",
+                                                                                    paddingRight:
+                                                                                      "1%",
+                                                                                  }}
+                                                                                ></i>
+                                                                              ) : (
+                                                                                ""
+                                                                              )}
+                                                                            </a>{" "}
+                                                                          </div>
+                                                                          <div className="col-md-1">
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                document.documentElement.requestFullscreen();
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {" "}
+                                                                              {s.video &&
+                                                                                s
+                                                                                  .video
+                                                                                  .name}
+                                                                            </a>
+                                                                          </div>{" "}
                                                                           {/* Access video name here */}
                                                                         </div>
                                                                       )
                                                                     ) : (
                                                                       <div className="row">
-                                                                         
-                                                                        <div className="col-md-1">   <a
-                                                                        onClick={() => {
-                                                                          document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      >
-                                                                        {s.video &&
+                                                                        <div className="col-md-1">
+                                                                          {" "}
+                                                                          <a>
+                                                                            {s.video &&
                                                                             s
                                                                               .video
-                                                                              .name?
-                                                                        <i
-                                                                          className="fa-brands fa-youtube fs-3"
-                                                                          style={{
-                                                                            color:
-                                                                              "rgb(197, 137, 43)",
-                                                                            paddingRight:
-                                                                              "1%",
-                                                                          }}
-                                                                        ></i>:""}</a> </div>
-                                                                        <div className="col-md-1">
-                                                                        <a
-                                                                        onClick={() => {
-                                                                          document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      > {s.video &&
-                                                                          s
-                                                                            .video
-                                                                            .name}</a>
-                                                                           </div>
-                                                                    
-                                                                     {" "}
+                                                                              .name ? (
+                                                                              <i
+                                                                                className="fa-brands fa-youtube fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingRight:
+                                                                                    "1%",
+                                                                                }}
+                                                                              ></i>
+                                                                            ) : (
+                                                                              ""
+                                                                            )}
+                                                                          </a>
+                                                                        </div>{" "}
+                                                                        <div className="col-md-11">
+                                                                          <a>
+                                                                            {" "}
+                                                                            {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name}
+                                                                          </a>
+                                                                        </div>{" "}
                                                                         {/* Access video name here */}
                                                                       </div>
-                                                                    )
-                                                                  ) : (
-                                                                    <div className="row">
-                                                                      <div className="col-md-1">  <a>
-                                                                      {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name ?
-                                                                         <i
-                                                                        className="fa-brands fa-youtube fs-3"
-                                                                        style={{
-                                                                          color:
-                                                                            "rgb(197, 137, 43)",
-                                                                          paddingRight:
-                                                                            "1%",
-                                                                        }}
-                                                                      ></i>:""}</a></div> <div className="col-md-11">
-                                                                    <a>  {s.video &&
-                                                                        s.video
-                                                                          .name}</a></div>
-                                                                   
-                                                                    {" "}
-                                                                      {/* Access video name here */}
-                                                                    </div>
-                                                                  )}
+                                                                    )}
 
-                                                                  {Array.isArray(
-                                                                    s.file
-                                                                  ) &&
-                                                                    s.file.map(
-                                                                      (
-                                                                        v,
-                                                                        index
-                                                                      ) => (
-                                                                        <div
-                                                                          key={
-                                                                            index
-                                                                          }
-                                                                        >
-                                                                          <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          >
-                                                                            <i
-                                                                              className="fa-regular fa-file-pdf fs-3"
-                                                                              style={{
-                                                                                color:
-                                                                                  "rgb(197, 137, 43)",
-                                                                                paddingBottom:
-                                                                                  "2%",
-                                                                              }}
-                                                                            ></i>{" "}
-                                                                            {
-                                                                              v.name
+                                                                    {Array.isArray(
+                                                                      s.file
+                                                                    ) &&
+                                                                      s.file.map(
+                                                                        (
+                                                                          v,
+                                                                          index
+                                                                        ) => (
+                                                                          <div
+                                                                            key={
+                                                                              index
                                                                             }
-                                                                          </a>
-                                                                        </div>
-                                                                      )
-                                                                    )}
-
-                                                                  {Array.isArray(
-                                                                    s.url
-                                                                  ) &&
-                                                                    s.url.map(
-                                                                      (
-                                                                        v,
-                                                                        index
-                                                                      ) => (
-                                                                        <div
-                                                                          key={
-                                                                            index
-                                                                          }
-                                                                        >
-                                                                          <div className="row">
-                                                                          
-                                                                            <div className="col-md-1">
-                                                                            <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          > <i
-                                                                              className="fa-solid fa-link fs-3"
-                                                                              style={{
-                                                                                color:
-                                                                                  "rgb(197, 137, 43)",
-                                                                                paddingBottom:
-                                                                                  "2%",
-                                                                              }}
-                                                                            ></i> </a></div>
-                                                                            <div className="col-md-11" style={{float:'left'}}><a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
                                                                           >
-                                                                            {
-                                                                              v.name
-                                                                            } </a></div>
-                                                                         </div>
-                                                                        </div>
-                                                                      )
-                                                                    )}
-                                                                </p>
-                                                              </Accordion.Body>
-                                                            </Accordion.Item>
-                                                          </Accordion>
-                                                        </Accordion.Body>
-                                                      )
-                                                    )}
-                                                </Accordion.Body>
-                                                {/* <Accordion.Header>
+                                                                            <a
+                                                                              style={{
+                                                                                textDecoration:
+                                                                                  "none",
+                                                                                color:
+                                                                                  "#000",
+                                                                              }}
+                                                                              onClick={() => {
+                                                                                if (
+                                                                                  p.free ===
+                                                                                  true
+                                                                                ) {
+                                                                                  window.open(
+                                                                                    v.url
+                                                                                  );
+                                                                                } else {
+                                                                                  const user_id =
+                                                                                    sessionStorage.getItem(
+                                                                                      "user_id"
+                                                                                    );
+                                                                                  if (
+                                                                                    Array.isArray(
+                                                                                      p.students
+                                                                                    ) &&
+                                                                                    p.students.some(
+                                                                                      (
+                                                                                        student
+                                                                                      ) =>
+                                                                                        student.student ===
+                                                                                        user_id
+                                                                                    )
+                                                                                  ) {
+                                                                                    window.open(
+                                                                                      v.url
+                                                                                    );
+                                                                                  }
+                                                                                }
+                                                                              }}
+                                                                            >
+                                                                              <i
+                                                                                className="fa-regular fa-file-pdf fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingBottom:
+                                                                                    "2%",
+                                                                                }}
+                                                                              ></i>{" "}
+                                                                              {
+                                                                                v.name
+                                                                              }
+                                                                            </a>
+                                                                          </div>
+                                                                        )
+                                                                      )}
+
+                                                                    {Array.isArray(
+                                                                      s.url
+                                                                    ) &&
+                                                                      s.url.map(
+                                                                        (
+                                                                          v,
+                                                                          index
+                                                                        ) => (
+                                                                          <div
+                                                                            key={
+                                                                              index
+                                                                            }
+                                                                          >
+                                                                            <div className="row">
+                                                                              <div className="col-md-1">
+                                                                                <a
+                                                                                  style={{
+                                                                                    textDecoration:
+                                                                                      "none",
+                                                                                    color:
+                                                                                      "#000",
+                                                                                  }}
+                                                                                  onClick={() => {
+                                                                                    if (
+                                                                                      p.free ===
+                                                                                      true
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    } else {
+                                                                                      const user_id =
+                                                                                        sessionStorage.getItem(
+                                                                                          "user_id"
+                                                                                        );
+                                                                                      if (
+                                                                                        Array.isArray(
+                                                                                          p.students
+                                                                                        ) &&
+                                                                                        p.students.some(
+                                                                                          (
+                                                                                            student
+                                                                                          ) =>
+                                                                                            student.student ===
+                                                                                            user_id
+                                                                                        )
+                                                                                      ) {
+                                                                                        window.open(
+                                                                                          v.url
+                                                                                        );
+                                                                                      }
+                                                                                    }
+                                                                                  }}
+                                                                                >
+                                                                                  {" "}
+                                                                                  <i
+                                                                                    className="fa-solid fa-link fs-3"
+                                                                                    style={{
+                                                                                      color:
+                                                                                        "rgb(197, 137, 43)",
+                                                                                      paddingBottom:
+                                                                                        "2%",
+                                                                                    }}
+                                                                                  ></i>{" "}
+                                                                                </a>
+                                                                              </div>
+                                                                              <div
+                                                                                className="col-md-11"
+                                                                                style={{
+                                                                                  float:
+                                                                                    "left",
+                                                                                }}
+                                                                              >
+                                                                                <a
+                                                                                  style={{
+                                                                                    textDecoration:
+                                                                                      "none",
+                                                                                    color:
+                                                                                      "#000",
+                                                                                  }}
+                                                                                  onClick={() => {
+                                                                                    if (
+                                                                                      p.free ===
+                                                                                      true
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    } else {
+                                                                                      const user_id =
+                                                                                        sessionStorage.getItem(
+                                                                                          "user_id"
+                                                                                        );
+                                                                                      if (
+                                                                                        Array.isArray(
+                                                                                          p.students
+                                                                                        ) &&
+                                                                                        p.students.some(
+                                                                                          (
+                                                                                            student
+                                                                                          ) =>
+                                                                                            student.student ===
+                                                                                            user_id
+                                                                                        )
+                                                                                      ) {
+                                                                                        window.open(
+                                                                                          v.url
+                                                                                        );
+                                                                                      }
+                                                                                    }
+                                                                                  }}
+                                                                                >
+                                                                                  {
+                                                                                    v.name
+                                                                                  }{" "}
+                                                                                </a>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        )
+                                                                      )}
+                                                                  </p>
+                                                                </Accordion.Body>
+                                                              </Accordion.Item>
+                                                            </Accordion>
+                                                          </Accordion.Body>
+                                                        )
+                                                      )}
+                                                  </Accordion.Body>
+                                                  {/* <Accordion.Header>
                                  <div
                                    className="row"
                                    style={{
@@ -2293,8 +2375,13 @@ export default function SingleClass() {
                                    </div>
                                  </div>
                                </Accordion.Header> */}
-                                              </Accordion.Item>
-                                            </Accordion>:<div style={{display:'none'}}></div>}
+                                                </Accordion.Item>
+                                              </Accordion>
+                                            ) : (
+                                              <div
+                                                style={{ display: "none" }}
+                                              ></div>
+                                            )}
                                             {/* {p.file.name}  */}
                                           </span>
                                           {/* <a href={p.file.url} target='_blank'><i class="fa-regular fa-file-lines"></i></a> */}
@@ -2379,42 +2466,39 @@ export default function SingleClass() {
                       <div class="classes-section">
                         <div class="classes-sec">
                           <div class="row">
-                          <Carousel
-  responsive={{
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-      slidesToSlide: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-    },
-  }}
-  containerClass="swiper-container"
-  itemClass="swiper-slide"
-
-  //  // showDots={true}
-  arrows={true}
-  // autoPlay={true}
-  autoPlaySpeed={3000}
-  infinite={true}
-  dotListClass="swiper-dot-list"
-  customTransition="all 1s"
-  
->
+                            <Carousel
+                              responsive={{
+                                desktop: {
+                                  breakpoint: { max: 3000, min: 1024 },
+                                  items: 2,
+                                  slidesToSlide: 1,
+                                },
+                                tablet: {
+                                  breakpoint: { max: 1024, min: 464 },
+                                  items: 2,
+                                  slidesToSlide: 1,
+                                },
+                                mobile: {
+                                  breakpoint: { max: 464, min: 0 },
+                                  items: 1,
+                                  slidesToSlide: 1,
+                                },
+                              }}
+                              containerClass="swiper-container"
+                              itemClass="swiper-slide"
+                              //  // showDots={true}
+                              arrows={true}
+                              // autoPlay={true}
+                              autoPlaySpeed={3000}
+                              infinite={true}
+                              dotListClass="swiper-dot-list"
+                              customTransition="all 1s"
+                            >
                               {singleSheetClassRoom.map((item) => (
                                 <SwiperSlide>
                                   <div
                                     className="classes-col p-3"
                                     key={item._id}
-                                  
                                   >
                                     <div
                                       className="class-thumb"
@@ -2719,217 +2803,274 @@ export default function SingleClass() {
                                                                     p.free ===
                                                                     true ? (
                                                                       isMobile ? (
-                                                                        <div className="row"> 
-                                                                          <div className="col-md-1"> 
-                                                                          <a
-                                                                        onClick={() => {
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      >{s.video &&
-                                                                        s
-                                                                          .video
-                                                                          .name ?
-                                                                          <i
-                                                                            className="fa-brands fa-youtube fs-3"
-                                                                            style={{
-                                                                              color:
-                                                                                "rgb(197, 137, 43)",
-                                                                              paddingRight:
-                                                                                "1%",
-                                                                            }}
-                                                                          ></i>:""}</a></div>
-                                                                          <div className="col-md-11">
-                                                                          <a
-                                                                        onClick={() => {
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      >  {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name} </a></div>
-                                                                      
-                                                                         {" "}
-                                                                          {/* Access video name here */}
-                                                                       </div>
-                                                                      ) : (
-                                                                        <div className="row">   
-                                                                          <div className="col-md-1"> <a
-                                                                        onClick={() => {
-                                                                          document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      >
-                                                                         {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name ?
-                                                                        <i
-                                                                          className="fa-brands fa-youtube fs-3"
-                                                                          style={{
-                                                                            color:
-                                                                              "rgb(197, 137, 43)",
-                                                                            paddingRight:
-                                                                              "1%",
-                                                                          }}
-                                                                        ></i>:""}</a></div>
-                                                                          <div className="col-md-11"><a
-                                                                        onClick={() => {
-                                                                          document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      > {s.video &&
-                                                                          s
-                                                                            .video
-                                                                            .name}</a></div>
-                                                                     
-                                                                       
-                                                                       {" "}
-                                                                        {/* Access video name here */}
-                                                                   </div>
-                                                                      )
-                                                                      ) 
-                                                                    : (
-                                                                      <div className="row"> 
-                                                                   
-                                                                      <div className="col-md-1">   <a>
-                                                                      {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name ?
-                                                                        <i
-                                                                        className="fa-brands fa-youtube fs-3"
-                                                                        style={{
-                                                                          color:
-                                                                            "rgb(197, 137, 43)",
-                                                                          paddingRight:
-                                                                            "1%",
-                                                                        }}
-                                                                      ></i>:""}</a></div>
-                                                                      <div className="col-md-11"> <a>{s.video &&
-                                                                        s.video
-                                                                          .name}</a></div>
-                                                                    
-                                                                     {" "}
-                                                                      
-                                                                      {/* Access video name here */}
-                                                                    </div>
-                                                                  )):( p.free ===
-                                                                    true ? (
-                                                                      isMobile ? ( 
                                                                         <div className="row">
-                                                                      
-                                                                          <div className="col-md-1">   <a
-                                                                          onClick={() => {
-                                                                            nav(
-                                                                              p._id,
-                                                                              s._id
-                                                                            );
-                                                                          }}
-                                                                        >
-                                                                          {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name ?
-                                                                          <i
-                                                                            className="fa-brands fa-youtube fs-3"
-                                                                            style={{
-                                                                              color:
-                                                                                "rgb(197, 137, 43)",
-                                                                              paddingRight:
-                                                                                "1%",
-                                                                            }}
-                                                                          ></i>:""}</a> </div>
-                                                                          <div className="col-md-11"><a
-                                                                          onClick={() => {
-                                                                            nav(
-                                                                              p._id,
-                                                                              s._id
-                                                                            );
-                                                                          }}
-                                                                        > {s.video &&
-                                                                            s
-                                                                              .video
-                                                                              .name}</a></div>
-                                                                        
-                                                                         {" "}
+                                                                          <div className="col-md-1">
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name ? (
+                                                                                <i
+                                                                                  className="fa-brands fa-youtube fs-3"
+                                                                                  style={{
+                                                                                    color:
+                                                                                      "rgb(197, 137, 43)",
+                                                                                    paddingRight:
+                                                                                      "1%",
+                                                                                  }}
+                                                                                ></i>
+                                                                              ) : (
+                                                                                ""
+                                                                              )}
+                                                                            </a>
+                                                                          </div>
+                                                                          <div className="col-md-11">
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {" "}
+                                                                              {s.video &&
+                                                                                s
+                                                                                  .video
+                                                                                  .name}{" "}
+                                                                            </a>
+                                                                          </div>{" "}
                                                                           {/* Access video name here */}
                                                                         </div>
                                                                       ) : (
                                                                         <div className="row">
-                                                                        <div className="col-md-1"> <a
-                                                                        onClick={() => {
-                                                                          document.documentElement.requestFullscreen();
-                                                                          nav(
-                                                                            p._id,
-                                                                            s._id
-                                                                          );
-                                                                        }}
-                                                                      > 
-                                                                      {s.video &&
+                                                                          <div className="col-md-1">
+                                                                            {" "}
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                document.documentElement.requestFullscreen();
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name ? (
+                                                                                <i
+                                                                                  className="fa-brands fa-youtube fs-3"
+                                                                                  style={{
+                                                                                    color:
+                                                                                      "rgb(197, 137, 43)",
+                                                                                    paddingRight:
+                                                                                      "1%",
+                                                                                  }}
+                                                                                ></i>
+                                                                              ) : (
+                                                                                ""
+                                                                              )}
+                                                                            </a>
+                                                                          </div>
+                                                                          <div className="col-md-11">
+                                                                            <a
+                                                                              onClick={() => {
+                                                                                document.documentElement.requestFullscreen();
+                                                                                nav(
+                                                                                  p._id,
+                                                                                  s._id
+                                                                                );
+                                                                              }}
+                                                                            >
+                                                                              {" "}
+                                                                              {s.video &&
+                                                                                s
+                                                                                  .video
+                                                                                  .name}
+                                                                            </a>
+                                                                          </div>{" "}
+                                                                          {/* Access video name here */}
+                                                                        </div>
+                                                                      )
+                                                                    ) : (
+                                                                      <div className="row">
+                                                                        <div className="col-md-1">
+                                                                          {" "}
+                                                                          <a>
+                                                                            {s.video &&
                                                                             s
                                                                               .video
-                                                                              .name ?
-                                                                      <i
-                                                                      className="fa-brands fa-youtube fs-3"
-                                                                      style={{
-                                                                        color:
-                                                                          "rgb(197, 137, 43)",
-                                                                        paddingRight:
-                                                                          "1%",
-                                                                      }}
-                                                                    ></i>:""}</a></div><div className="col-md-11">  <a
-                                                                    onClick={() => {
-                                                                      document.documentElement.requestFullscreen();
-                                                                      nav(
-                                                                        p._id,
-                                                                        s._id
-                                                                      );
-                                                                    }}
-                                                                  > {s.video &&
-                                                                      s
-                                                                        .video
-                                                                        .name}</a></div>
-                                                                       
-                                                                      {" "}
+                                                                              .name ? (
+                                                                              <i
+                                                                                className="fa-brands fa-youtube fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingRight:
+                                                                                    "1%",
+                                                                                }}
+                                                                              ></i>
+                                                                            ) : (
+                                                                              ""
+                                                                            )}
+                                                                          </a>
+                                                                        </div>
+                                                                        <div className="col-md-11">
+                                                                          {" "}
+                                                                          <a>
+                                                                            {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name}
+                                                                          </a>
+                                                                        </div>{" "}
                                                                         {/* Access video name here */}
                                                                       </div>
-                                                                      )
-                                                                      ) 
-                                                                    : (
+                                                                    )
+                                                                  ) : p.free ===
+                                                                    true ? (
+                                                                    isMobile ? (
                                                                       <div className="row">
-                                                                    
-                                                                      <div className="col-md-1"><a>
-                                                                   {s.video  &&
-                                                                        s.video
-                                                                          .name?<i
-                                                                        className="fa-brands fa-youtube fs-3"
-                                                                        style={{
-                                                                          color:
-                                                                            "rgb(197, 137, 43)",
-                                                                          paddingRight:
-                                                                            "1%",
-                                                                        }}
-                                                                      ></i>: ""}</a></div>
-                                                                      <div className="col-md-11"><a>
-                                                                      {s.video &&
-                                                                        s.video
-                                                                          .name}{" "}</a></div>
-                                                                      
+                                                                        <div className="col-md-1">
+                                                                          {" "}
+                                                                          <a
+                                                                            onClick={() => {
+                                                                              nav(
+                                                                                p._id,
+                                                                                s._id
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            {s.video &&
+                                                                            s
+                                                                              .video
+                                                                              .name ? (
+                                                                              <i
+                                                                                className="fa-brands fa-youtube fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingRight:
+                                                                                    "1%",
+                                                                                }}
+                                                                              ></i>
+                                                                            ) : (
+                                                                              ""
+                                                                            )}
+                                                                          </a>{" "}
+                                                                        </div>
+                                                                        <div className="col-md-11">
+                                                                          <a
+                                                                            onClick={() => {
+                                                                              nav(
+                                                                                p._id,
+                                                                                s._id
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            {" "}
+                                                                            {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name}
+                                                                          </a>
+                                                                        </div>{" "}
+                                                                        {/* Access video name here */}
+                                                                      </div>
+                                                                    ) : (
+                                                                      <div className="row">
+                                                                        <div className="col-md-1">
+                                                                          {" "}
+                                                                          <a
+                                                                            onClick={() => {
+                                                                              document.documentElement.requestFullscreen();
+                                                                              nav(
+                                                                                p._id,
+                                                                                s._id
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            {s.video &&
+                                                                            s
+                                                                              .video
+                                                                              .name ? (
+                                                                              <i
+                                                                                className="fa-brands fa-youtube fs-3"
+                                                                                style={{
+                                                                                  color:
+                                                                                    "rgb(197, 137, 43)",
+                                                                                  paddingRight:
+                                                                                    "1%",
+                                                                                }}
+                                                                              ></i>
+                                                                            ) : (
+                                                                              ""
+                                                                            )}
+                                                                          </a>
+                                                                        </div>
+                                                                        <div className="col-md-11">
+                                                                          {" "}
+                                                                          <a
+                                                                            onClick={() => {
+                                                                              document.documentElement.requestFullscreen();
+                                                                              nav(
+                                                                                p._id,
+                                                                                s._id
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            {" "}
+                                                                            {s.video &&
+                                                                              s
+                                                                                .video
+                                                                                .name}
+                                                                          </a>
+                                                                        </div>{" "}
+                                                                        {/* Access video name here */}
+                                                                      </div>
+                                                                    )
+                                                                  ) : (
+                                                                    <div className="row">
+                                                                      <div className="col-md-1">
+                                                                        <a>
+                                                                          {s.video &&
+                                                                          s
+                                                                            .video
+                                                                            .name ? (
+                                                                            <i
+                                                                              className="fa-brands fa-youtube fs-3"
+                                                                              style={{
+                                                                                color:
+                                                                                  "rgb(197, 137, 43)",
+                                                                                paddingRight:
+                                                                                  "1%",
+                                                                              }}
+                                                                            ></i>
+                                                                          ) : (
+                                                                            ""
+                                                                          )}
+                                                                        </a>
+                                                                      </div>
+                                                                      <div className="col-md-11">
+                                                                        <a>
+                                                                          {s.video &&
+                                                                            s
+                                                                              .video
+                                                                              .name}{" "}
+                                                                        </a>
+                                                                      </div>
+
                                                                       {/* Access video name here */}
                                                                     </div>
-                                                                  ))}
+                                                                  )}
 
                                                                   {Array.isArray(
                                                                     s.file
@@ -2945,100 +3086,107 @@ export default function SingleClass() {
                                                                           }
                                                                         >
                                                                           <div className="row">
-                                                                          
                                                                             <div className="col-md-1">
-                                                                            <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          >
-                                                                          {v.name? <i
-                                                                              className="fa-regular fa-file-pdf fs-3"
-                                                                              style={{
-                                                                                color:
-                                                                                  "rgb(197, 137, 43)",
-                                                                                paddingBottom:
-                                                                                  "2%",
-                                                                              }}
-                                                                            ></i>:""}</a> </div>
+                                                                              <a
+                                                                                style={{
+                                                                                  textDecoration:
+                                                                                    "none",
+                                                                                  color:
+                                                                                    "#000",
+                                                                                }}
+                                                                                onClick={() => {
+                                                                                  if (
+                                                                                    p.free ===
+                                                                                    true
+                                                                                  ) {
+                                                                                    window.open(
+                                                                                      v.url
+                                                                                    );
+                                                                                  } else {
+                                                                                    const user_id =
+                                                                                      sessionStorage.getItem(
+                                                                                        "user_id"
+                                                                                      );
+                                                                                    if (
+                                                                                      Array.isArray(
+                                                                                        p.students
+                                                                                      ) &&
+                                                                                      p.students.some(
+                                                                                        (
+                                                                                          student
+                                                                                        ) =>
+                                                                                          student.student ===
+                                                                                          user_id
+                                                                                      )
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    }
+                                                                                  }
+                                                                                }}
+                                                                              >
+                                                                                {v.name ? (
+                                                                                  <i
+                                                                                    className="fa-regular fa-file-pdf fs-3"
+                                                                                    style={{
+                                                                                      color:
+                                                                                        "rgb(197, 137, 43)",
+                                                                                      paddingBottom:
+                                                                                        "2%",
+                                                                                    }}
+                                                                                  ></i>
+                                                                                ) : (
+                                                                                  ""
+                                                                                )}
+                                                                              </a>{" "}
+                                                                            </div>
                                                                             <div className="col-md-11">
-                                                                            <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          >
-                                                                            {
-                                                                              v.name
-                                                                            } </a></div>
-                                                                         </div>
+                                                                              <a
+                                                                                style={{
+                                                                                  textDecoration:
+                                                                                    "none",
+                                                                                  color:
+                                                                                    "#000",
+                                                                                }}
+                                                                                onClick={() => {
+                                                                                  if (
+                                                                                    p.free ===
+                                                                                    true
+                                                                                  ) {
+                                                                                    window.open(
+                                                                                      v.url
+                                                                                    );
+                                                                                  } else {
+                                                                                    const user_id =
+                                                                                      sessionStorage.getItem(
+                                                                                        "user_id"
+                                                                                      );
+                                                                                    if (
+                                                                                      Array.isArray(
+                                                                                        p.students
+                                                                                      ) &&
+                                                                                      p.students.some(
+                                                                                        (
+                                                                                          student
+                                                                                        ) =>
+                                                                                          student.student ===
+                                                                                          user_id
+                                                                                      )
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    }
+                                                                                  }
+                                                                                }}
+                                                                              >
+                                                                                {
+                                                                                  v.name
+                                                                                }{" "}
+                                                                              </a>
+                                                                            </div>
+                                                                          </div>
                                                                         </div>
                                                                       )
                                                                     )}
@@ -3057,98 +3205,105 @@ export default function SingleClass() {
                                                                           }
                                                                         >
                                                                           <div className="row">
-                                                                          
                                                                             <div className="col-md-1">
-                                                                            <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          >
-                                                                            <i
-                                                                              className="fa-solid fa-link fs-3"
-                                                                              style={{
-                                                                                color:
-                                                                                  "rgb(197, 137, 43)",
-                                                                                paddingBottom:
-                                                                                  "2%",
-                                                                              }}
-                                                                            ></i> </a></div>
-                                                                         <div className="col-md-11">  <a
-                                                                            style={{
-                                                                              textDecoration:
-                                                                                "none",
-                                                                              color:
-                                                                                "#000",
-                                                                            }}
-                                                                            onClick={() => {
-                                                                              if (
-                                                                                p.free ===
-                                                                                true
-                                                                              ) {
-                                                                                window.open(
-                                                                                  v.url
-                                                                                );
-                                                                              } else {
-                                                                                const user_id =
-                                                                                  sessionStorage.getItem(
-                                                                                    "user_id"
-                                                                                  );
-                                                                                if (
-                                                                                  Array.isArray(
-                                                                                    p.students
-                                                                                  ) &&
-                                                                                  p.students.some(
-                                                                                    (
-                                                                                      student
-                                                                                    ) =>
-                                                                                      student.student ===
-                                                                                      user_id
-                                                                                  )
-                                                                                ) {
-                                                                                  window.open(
-                                                                                    v.url
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            }}
-                                                                          > {
-                                                                              v.name
-                                                                            } </a></div>
-                                                                         </div>
+                                                                              <a
+                                                                                style={{
+                                                                                  textDecoration:
+                                                                                    "none",
+                                                                                  color:
+                                                                                    "#000",
+                                                                                }}
+                                                                                onClick={() => {
+                                                                                  if (
+                                                                                    p.free ===
+                                                                                    true
+                                                                                  ) {
+                                                                                    window.open(
+                                                                                      v.url
+                                                                                    );
+                                                                                  } else {
+                                                                                    const user_id =
+                                                                                      sessionStorage.getItem(
+                                                                                        "user_id"
+                                                                                      );
+                                                                                    if (
+                                                                                      Array.isArray(
+                                                                                        p.students
+                                                                                      ) &&
+                                                                                      p.students.some(
+                                                                                        (
+                                                                                          student
+                                                                                        ) =>
+                                                                                          student.student ===
+                                                                                          user_id
+                                                                                      )
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    }
+                                                                                  }
+                                                                                }}
+                                                                              >
+                                                                                <i
+                                                                                  className="fa-solid fa-link fs-3"
+                                                                                  style={{
+                                                                                    color:
+                                                                                      "rgb(197, 137, 43)",
+                                                                                    paddingBottom:
+                                                                                      "2%",
+                                                                                  }}
+                                                                                ></i>{" "}
+                                                                              </a>
+                                                                            </div>
+                                                                            <div className="col-md-11">
+                                                                              {" "}
+                                                                              <a
+                                                                                style={{
+                                                                                  textDecoration:
+                                                                                    "none",
+                                                                                  color:
+                                                                                    "#000",
+                                                                                }}
+                                                                                onClick={() => {
+                                                                                  if (
+                                                                                    p.free ===
+                                                                                    true
+                                                                                  ) {
+                                                                                    window.open(
+                                                                                      v.url
+                                                                                    );
+                                                                                  } else {
+                                                                                    const user_id =
+                                                                                      sessionStorage.getItem(
+                                                                                        "user_id"
+                                                                                      );
+                                                                                    if (
+                                                                                      Array.isArray(
+                                                                                        p.students
+                                                                                      ) &&
+                                                                                      p.students.some(
+                                                                                        (
+                                                                                          student
+                                                                                        ) =>
+                                                                                          student.student ===
+                                                                                          user_id
+                                                                                      )
+                                                                                    ) {
+                                                                                      window.open(
+                                                                                        v.url
+                                                                                      );
+                                                                                    }
+                                                                                  }
+                                                                                }}
+                                                                              >
+                                                                                {" "}
+                                                                                {
+                                                                                  v.name
+                                                                                }{" "}
+                                                                              </a>
+                                                                            </div>
+                                                                          </div>
                                                                         </div>
                                                                       )
                                                                     )}
@@ -3263,37 +3418,35 @@ export default function SingleClass() {
                       <div class="classes-section">
                         <div class="classes-sec">
                           <div class="row">
-                          <Carousel
-  responsive={{
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-      slidesToSlide: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-    },
-  }}
-  containerClass="swiper-container"
-  itemClass="swiper-slide"
-
-  //  // showDots={true}
-  arrows={true}
-  // autoPlay={true}
-  autoPlaySpeed={3000}
-  infinite={true}
-  dotListClass="swiper-dot-list"
-  customTransition="all 1s"
-  
->
-                             {singleSheetClassRoom.map((item) => (
+                            <Carousel
+                              responsive={{
+                                desktop: {
+                                  breakpoint: { max: 3000, min: 1024 },
+                                  items: 2,
+                                  slidesToSlide: 1,
+                                },
+                                tablet: {
+                                  breakpoint: { max: 1024, min: 464 },
+                                  items: 2,
+                                  slidesToSlide: 1,
+                                },
+                                mobile: {
+                                  breakpoint: { max: 464, min: 0 },
+                                  items: 1,
+                                  slidesToSlide: 1,
+                                },
+                              }}
+                              containerClass="swiper-container"
+                              itemClass="swiper-slide"
+                              //  // showDots={true}
+                              arrows={true}
+                              // autoPlay={true}
+                              autoPlaySpeed={3000}
+                              infinite={true}
+                              dotListClass="swiper-dot-list"
+                              customTransition="all 1s"
+                            >
+                              {singleSheetClassRoom.map((item) => (
                                 <SwiperSlide>
                                   <div
                                     className="classes-col p-3"
@@ -3559,13 +3712,13 @@ export default function SingleClass() {
                             <h3>{subjectinstructor}</h3>
                           </a>
                           <span style={{ color: "rgb(197, 137, 43)" }}>
-                            {subjectName} Instructor
+                            {subjectName}
                           </span>
                         </div>
                       </div>
                       {/* {singleClass.students?'':    */}
                       {sessionStorage.getItem("loggedIn", true) ? (
-                        singleClass.openBuy === false  ? (
+                        singleClass.openBuy === false ? (
                           ""
                         ) : singleClass.openBuy === false ? (
                           <a
@@ -3578,13 +3731,16 @@ export default function SingleClass() {
                             title=""
                             class="btn-default"
                           >
-                            {singleClass.studentsEnrolled.length > 0
+                            {singleClass.studentsEnrolled.filter(
+                              (e) =>
+                                e.student === sessionStorage.getItem("user_id")
+                            ).length > 0
                               ? "UnEnroll"
                               : "Enroll Now"}
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
                             <i class="fa fa-long-arrow-alt-right"></i>
                           </a>
-                        ) : singleClass.openBuy === true? (
+                        ) : singleClass.openBuy === true ? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -3595,7 +3751,10 @@ export default function SingleClass() {
                             title=""
                             class="btn-default"
                           >
-                            {singleClass.studentsEnrolled.length > 0
+                            {singleClass.studentsEnrolled.filter(
+                              (e) =>
+                                e.student === sessionStorage.getItem("user_id")
+                            ).length > 0
                               ? "UnEnroll"
                               : "Enroll Now"}
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
@@ -3604,7 +3763,7 @@ export default function SingleClass() {
                         ) : (
                           ""
                         )
-                      ) : singleClass.openBuy === false  ? (
+                      ) : singleClass.openBuy === false ? (
                         ""
                       ) : singleClass.openBuy === false ? (
                         <Link
@@ -3709,7 +3868,11 @@ export default function SingleClass() {
                                   }`}
                                   src={visa}
                                   alt=""
-                                  style={{ width: "40%",left:'10%',cursor:'pointer' }}
+                                  style={{
+                                    width: "40%",
+                                    left: "10%",
+                                    cursor: "pointer",
+                                  }}
                                   onClick={() =>
                                     handlePaymentOptionClick("visa")
                                   }
@@ -3720,16 +3883,16 @@ export default function SingleClass() {
                                   }`}
                                   src={codeimage}
                                   alt=""
-                                  style={{ width: "40%" ,cursor:'pointer'}}
+                                  style={{ width: "40%", cursor: "pointer" }}
                                   onClick={() =>
                                     handlePaymentOptionClick("code")
                                   }
                                 />
                                 {/* Add the content for recharging the wallet here */}
                                 <p className="p-buttonsec2">
-                                  Charge wallet with your Credit Card,
-                                 You can also use a
-                                  recharge code to add money to your wallet.
+                                  Charge wallet with your Credit Card, You can
+                                  also use a recharge code to add money to your
+                                  wallet.
                                 </p>
                                 <button
                                   className="close-button-charge btn-defaultEx"
@@ -3738,84 +3901,84 @@ export default function SingleClass() {
                                   Back to Wallet
                                 </button>
                                 {showCodeInput && (
- <div
- style={{
-   position: "fixed",
-   top: "30%",
-   right: "25%",
-   bottom: "0",
-   width: "50%",
-   height: "45%",
-   backgroundColor: "#3c719a",
-   display: "flex",
-   justifyContent: "flex-end",
-   alignItems: " center",
-   zIndex: "99999999999",
-   borderRadius: "20px",
- }}
->
- <div
-   style={{
-     backgroundColor: "#3c719a",
-     width: "97%",
-     height: "42vh",
-     zIndex: "99999999999",
-     position: "absolute",
-     top: "0",
-     borderRadius: "20px",
-   }}
- >
-   <button
-     className="close-button"
-     onClick={toggleOpen}
-   >
-     <i className="fa-regular fa-circle-xmark fs-3"></i>
-   </button>
-   <p className="p-buttonThird">
-     Enter recharge code
-   </p>
-   <img
-     className={`image-buttonn `}
-     src={codeimage}
-     alt=""
-     style={{ width: "32%",left:'29%' }}
-   />
-   <input
-     style={{
-       
-       height: "50px",
-       color: "#575757",
-       fontSize: "14.23px",
-       padding: "0 20px",
-       border: "2px solid #f6f4f4",
-       top: "58%",
-       left: "25%",
-       position: "absolute",
-       borderRadius: "30px",
-     }}
-     placeholder="Enter Code"
-     type="text"
-     value={code}
-     onChange={(e) => setCode(e.target.value)}
-   />
-   {/* <input
+                                  <div
+                                    style={{
+                                      position: "fixed",
+                                      top: "30%",
+                                      right: "25%",
+                                      bottom: "0",
+                                      width: "50%",
+                                      height: "45%",
+                                      backgroundColor: "#3c719a",
+                                      display: "flex",
+                                      justifyContent: "flex-end",
+                                      alignItems: " center",
+                                      zIndex: "99999999999",
+                                      borderRadius: "20px",
+                                    }}
+                                  >
+                                    <div
+                                      style={{
+                                        backgroundColor: "#3c719a",
+                                        width: "97%",
+                                        height: "42vh",
+                                        zIndex: "99999999999",
+                                        position: "absolute",
+                                        top: "0",
+                                        borderRadius: "20px",
+                                      }}
+                                    >
+                                      <button
+                                        className="close-button"
+                                        onClick={toggleOpen}
+                                      >
+                                        <i className="fa-regular fa-circle-xmark fs-3"></i>
+                                      </button>
+                                      <p className="p-buttonThird">
+                                        Enter recharge code
+                                      </p>
+                                      <img
+                                        className={`image-buttonn `}
+                                        src={codeimage}
+                                        alt=""
+                                        style={{ width: "32%", left: "29%" }}
+                                      />
+                                      <input
+                                        style={{
+                                          height: "50px",
+                                          color: "#575757",
+                                          fontSize: "14.23px",
+                                          padding: "0 20px",
+                                          border: "2px solid #f6f4f4",
+                                          top: "58%",
+                                          left: "25%",
+                                          position: "absolute",
+                                          borderRadius: "30px",
+                                        }}
+                                        placeholder="Enter Code"
+                                        type="text"
+                                        value={code}
+                                        onChange={(e) =>
+                                          setCode(e.target.value)
+                                        }
+                                      />
+                                      {/* <input
    type="text"
    value={code}
    onChange={(e) => setCode(e.target.value)}
  /> */}
 
-   <button
-     className="close-button-chargee2 btn-defaultEx2"
-     onClick={handleSendButtonClick}
-   >
-     Send
-   </button>
-   {/* <button onClick={handleSendButtonClick}>
+                                      <button
+                                        className="close-button-chargee2 btn-defaultEx2"
+                                        onClick={handleSendButtonClick}
+                                      >
+                                        Send
+                                      </button>
+                                      {/* <button onClick={handleSendButtonClick}>
    Send
  </button> */}
- </div>{" "}
-</div>
-
+                                    </div>{" "}
+                                  </div>
 
                                   // <div>
                                   //   <p className="p-button">
@@ -3886,16 +4049,19 @@ export default function SingleClass() {
                                 <img
                                   className="image-button"
                                   src={walletStatus}
-                                  style={{ width: "30%",left:'35%' }}
+                                  style={{ width: "30%", left: "35%" }}
                                   alt=""
                                 />
-                                <p className="p-buttonsec"  style={{left:'37%'}}>
+                                <p
+                                  className="p-buttonsec"
+                                  style={{ left: "37%" }}
+                                >
                                   Your Balance is {profile.wallet} EGP
                                 </p>
                                 <button
                                   className="close-button-charge btn-defaultEx"
                                   onClick={toggleRechargeContent}
-                                  style={{left:'10%'}}
+                                  style={{ left: "10%" }}
                                 >
                                   Charge Wallet
                                 </button>
@@ -3923,7 +4089,7 @@ export default function SingleClass() {
                                   }`}
                                   src={codeimage}
                                   alt=""
-                                  style={{ width: "40%",cursor:'pointer' }}
+                                  style={{ width: "40%", cursor: "pointer" }}
                                   onClick={() =>
                                     handlePaymentOptionClick("code")
                                   }
@@ -3933,7 +4099,8 @@ export default function SingleClass() {
                                     position: "absolute",
                                     top: "22%",
                                     left: "10%",
-                                    width: "20%",cursor:'pointer'
+                                    width: "20%",
+                                    cursor: "pointer",
                                   }}
                                   className={`image-button ${
                                     selectedOption === "wallet"

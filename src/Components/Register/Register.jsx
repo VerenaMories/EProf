@@ -5,14 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { useRef } from "react";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import DatePicker from 'react-date-picker';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
-import def from '../images/def.png';
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+import def from "../images/def.png";
 import { isMobile } from "react-device-detect";
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 
 const Register = () => {
   const [Governorate, setGovernorate] = useState([]);
@@ -108,10 +108,9 @@ const Register = () => {
           sessionStorage.getItem("loggedIn", true)
         ) {
           // Check if the user is logged in and has a course ID set in local storage
-        
-            navigate("/");
-          }
-        
+
+          navigate("/");
+        }
       })
       .catch((error) => {
         // console.log(error);
@@ -131,24 +130,24 @@ const Register = () => {
     switch (step) {
       case 1:
         return (
-          <div style={{paddingBottom:'3%'}}>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+          <div style={{ paddingBottom: "3%" }}>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-              <div class="form__group field">
-              <input
-              className="form__field"
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={(e) =>
-                setFormData({ ...formData, firstName: e.target.value })
-              }
-              autoComplete="off"
-            />
-             <div className="iconWrap">
-             <i class="fa-solid fa-user-graduate"></i>
+                <div class="form__group field">
+                  <input
+                    className="form__field"
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, firstName: e.target.value })
+                    }
+                    autoComplete="off"
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-user-graduate"></i>
                   </div>
                   <label
                     for="name"
@@ -161,24 +160,24 @@ const Register = () => {
                   </label>
                 </div>
               </div>
-              </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-                <div class="form__group field"> 
-                <input
-                  className="form__field"
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-              autocomplete="off"
-              value={formData.lastName}
-              onChange={(e) =>
-                setFormData({ ...formData, lastName: e.target.value })
-              }
-            />
-              <div className="iconWrap">
-             <i class="fa-solid fa-user-graduate"></i>
+                <div class="form__group field">
+                  <input
+                    className="form__field"
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    placeholder="Last Name"
+                    autocomplete="off"
+                    value={formData.lastName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, lastName: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-user-graduate"></i>
                   </div>
                   <label
                     for="name"
@@ -191,49 +190,57 @@ const Register = () => {
                   </label>
                 </div>
               </div>
-              </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-              <div className="form__group field">
-                {isMobile?<select  style={{width:'180px'}}
-    className="form__field"
-    name="gender"
-    id="gender"
-    value={formData.gender}
-    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-  >
-    <option value=""></option>
-    <option value="female">Female</option>
-    <option value="male">Male</option>
-  </select>:<select  style={{width:'280px'}}
-    className="form__field"
-    name="gender"
-    id="gender"
-    value={formData.gender}
-    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-  >
-    <option value=""></option>
-    <option value="female">Female</option>
-    <option value="male">Male</option>
-  </select>}
-  
-  <div className="iconWrap">
-    <i className="fa-solid fa-venus-mars"></i>
-  </div>
-  <label
-    htmlFor="gender"
-    className="form__label"
-    onClick={() => {
-      document.getElementById("gender").focus();
-    }}
-  >
-    Gender
-  </label>
-</div>
+                <div className="form__group field">
+                  {isMobile ? (
+                    <select
+                      style={{ width: "180px" }}
+                      className="form__field"
+                      name="gender"
+                      id="gender"
+                      value={formData.gender}
+                      onChange={(e) =>
+                        setFormData({ ...formData, gender: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                  ) : (
+                    <select
+                      style={{ width: "280px" }}
+                      className="form__field"
+                      name="gender"
+                      id="gender"
+                      value={formData.gender}
+                      onChange={(e) =>
+                        setFormData({ ...formData, gender: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                  )}
 
+                  <div className="iconWrap">
+                    <i className="fa-solid fa-venus-mars"></i>
+                  </div>
+                  <label
+                    htmlFor="gender"
+                    className="form__label"
+                    onClick={() => {
+                      document.getElementById("gender").focus();
+                    }}
+                  >
+                    Gender
+                  </label>
+                </div>
               </div>
-              </div>
-           
+            </div>
             <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
@@ -264,52 +271,48 @@ const Register = () => {
                 </div>
               </div>
             </div>
-
-            <div
-                          style={{ paddingBottom: "2%", position: "relative" }}
-                        >
-                          <div style={{ margin: "auto" }}>
-                            <div class="form__group field">
-                              <input
-                                class="form__field"
-                                name="password"
-                                required
-                                id="password"
-                                type={show1 ? "text" : "Password"}
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={(e) =>
-                                  setFormData({ ...formData, password: e.target.value })
-                                }
-                              />
-                              <div className="iconWrap">
-                                <i class="fa-solid fa-lock"></i>
-                              </div>
-                              <div
-                                className="ourx"
-                                onClick={() => {
-                                  setShow1(!show1);
-                                }}
-                              >
-                                {/* <i
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
+              <div style={{ margin: "auto" }}>
+                <div class="form__group field">
+                  <input
+                    class="form__field"
+                    name="password"
+                    required
+                    id="password"
+                    type={show1 ? "text" : "Password"}
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <div
+                    className="ourx"
+                    onClick={() => {
+                      setShow1(!show1);
+                    }}
+                  >
+                    {/* <i
                                   class="fa fa-eye fa-2xs"
                                   aria-hidden="true"
                                   style={{ color: show1 ? "#ffc600" : "black" }}
                                 ></i> */}
-                              </div>
-                              <label
-                                for="password"
-                                class="form__label"
-                                onClick={() => {
-                                  document.getElementById("password").focus();
-                                }}
-                              >
-                                Password
-                              </label>
-                            </div>
-                          </div>
-                      
-                        </div>
+                  </div>
+                  <label
+                    for="password"
+                    class="form__label"
+                    onClick={() => {
+                      document.getElementById("password").focus();
+                    }}
+                  >
+                    Password
+                  </label>
+                </div>
+              </div>
+            </div>
             {/* <input
               type="password"
               name="password"
@@ -320,13 +323,13 @@ const Register = () => {
                 setFormData({ ...formData, password: e.target.value })
               }
             /> */}
-            <label style={{width:'50%'}}>
+            <label style={{ width: "50%" }}>
               <input
                 type="file"
                 placeholder="Image"
                 autocomplete="off"
                 onChange={uploadImage}
-                style={{width:'100%'}}
+                style={{ width: "100%" }}
               />
             </label>{" "}
             {/* Add other fields for Step 1 */}
@@ -335,21 +338,23 @@ const Register = () => {
       case 2:
         return (
           <div>
-             <div style={{ paddingBottom: "2%", position: "relative" }}>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                <DatePicker  
-                       className="form__field datePicker" id="birthDate" 
-                       name="birthDate"
-           onChange={(date) =>
-             setFormData({ ...formData, birthDate: date })
-           }
-           value={formData.birthDate }
-                // onChange={onChange}
-                //  value={value} 
-                 />
+                  <DatePicker
+                    format="dd/MM/yyyy"
+                    className="form__field datePicker"
+                    id="birthDate"
+                    name="birthDate"
+                    onChange={(date) =>
+                      setFormData({ ...formData, birthDate: date })
+                    }
+                    value={formData.birthDate}
+                    // onChange={onChange}
+                    //  value={value}
+                  />
 
-                {/* <Calendar  
+                  {/* <Calendar  
                  className="form__field" id="birthDate"
               name="birthDate"
   onChange={(date) =>
@@ -357,7 +362,7 @@ const Register = () => {
   }
   value={formData.birthDate || new Date()}
 /> */}
-                {/* <input
+                  {/* <input
                     className="form__field"
               type="text"
               id="birthDate"
@@ -369,8 +374,8 @@ const Register = () => {
                 setFormData({ ...formData, birthDate: e.target.value })
               }
             />   */}
-            <div className="iconWrap">
-            <i class="fa-solid fa-calendar-days"></i>
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-calendar-days"></i>
                   </div>
                   {/* <label
                     for="name"
@@ -381,26 +386,26 @@ const Register = () => {
                   >
                     Birth Date
                   </label> */}
-             </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                <input
-                  className="form__field"
-              type="number"
-              name="phone"
-              id="phone"
-
-              placeholder="Phone"
-              autocomplete="off"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
-              }
-            />
-               <div className="iconWrap">
-               <i class="fa-solid fa-phone"></i>
+                  <input
+                    className="form__field"
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone"
+                    autocomplete="off"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-phone"></i>
                   </div>
                   <label
                     for="name"
@@ -411,26 +416,27 @@ const Register = () => {
                   >
                     Phone
                   </label>
-                  </div></div>
+                </div>
               </div>
-        
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-                <div class="form__group field"> 
-                <input
-                 className="form__field"
-              type="text"
-              name="parent"
-              id="parent"
-              placeholder="parent"
-              autocomplete="off"
-              value={formData.parent}
-              onChange={(e) =>
-                setFormData({ ...formData, parent: e.target.value })
-              }
-            />
-              <div className="iconWrap">
-              <i class="fa-solid fa-user-group"></i>
+                <div class="form__group field">
+                  <input
+                    className="form__field"
+                    type="text"
+                    name="parent"
+                    id="parent"
+                    placeholder="parent"
+                    autocomplete="off"
+                    value={formData.parent}
+                    onChange={(e) =>
+                      setFormData({ ...formData, parent: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-user-group"></i>
                   </div>
                   <label
                     for="name"
@@ -441,25 +447,26 @@ const Register = () => {
                   >
                     Parent
                   </label>
-                </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-                <div class="form__group field"> 
-                <input
-                 className="form__field"
-              type="number"
-              name="parentPhone"
-              id="parentPhone"
-              placeholder="parentPhone"
-              autocomplete="off"
-              value={formData.parentPhone}
-              onChange={(e) =>
-                setFormData({ ...formData, parentPhone: e.target.value })
-              }
-            /> 
-             <div className="iconWrap">
-             <i class="fa-solid fa-phone"></i>
+                <div class="form__group field">
+                  <input
+                    className="form__field"
+                    type="number"
+                    name="parentPhone"
+                    id="parentPhone"
+                    placeholder="parentPhone"
+                    autocomplete="off"
+                    value={formData.parentPhone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, parentPhone: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-phone"></i>
                   </div>
                   <label
                     for="name"
@@ -470,33 +477,33 @@ const Register = () => {
                   >
                     Parent Phone
                   </label>
-            </div></div>
+                </div>
               </div>
-         
+            </div>
+
             {/* Add other fields for Step 2 */}
           </div>
         );
       case 3:
         return (
           <div>
-             <div style={{ paddingBottom: "2%", position: "relative" }}>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                <input
-                className="form__field" 
-              type="text"
-              name="school"
-              id="school"
-
-              placeholder="School"
-              autocomplete="off"
-              value={formData.school}
-              onChange={(e) =>
-                setFormData({ ...formData, school: e.target.value })
-              }
-            />
-                <div className="iconWrap">
-                <i class="fa-solid fa-school-flag"></i>
+                  <input
+                    className="form__field"
+                    type="text"
+                    name="school"
+                    id="school"
+                    placeholder="School"
+                    autocomplete="off"
+                    value={formData.school}
+                    onChange={(e) =>
+                      setFormData({ ...formData, school: e.target.value })
+                    }
+                  />
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-school-flag"></i>
                   </div>
                   <label
                     for="name"
@@ -507,29 +514,46 @@ const Register = () => {
                   >
                     School
                   </label>
-                  </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                  {isMobile?   <select className="form__field" style={{width:'180px'}}  id="governorate" name="governorate" onChange={handleGovernorateChange}>
-              <option value=""></option>
-              {Governorate.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>:   <select className="form__field" style={{width:'280px'}}  id="governorate" name="governorate" onChange={handleGovernorateChange}>
-              <option value=""></option>
-              {Governorate.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>}
-             
-            <div className="iconWrap">
-            <i class="fa-solid fa-layer-group"></i>
+                  {isMobile ? (
+                    <select
+                      className="form__field"
+                      style={{ width: "180px" }}
+                      id="governorate"
+                      name="governorate"
+                      onChange={handleGovernorateChange}
+                    >
+                      <option value=""></option>
+                      {Governorate.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <select
+                      className="form__field"
+                      style={{ width: "280px" }}
+                      id="governorate"
+                      name="governorate"
+                      onChange={handleGovernorateChange}
+                    >
+                      <option value=""></option>
+                      {Governorate.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-layer-group"></i>
                   </div>
                   <label
                     for="name"
@@ -538,49 +562,55 @@ const Register = () => {
                       document.getElementById("governorate").focus();
                     }}
                   >
-                 Select Governorate
+                    Select Governorate
                   </label>
-                  </div></div>
+                </div>
               </div>
-           
+            </div>
 
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                {isMobile?  <select
-                 className="form__field" style={{width:'180px'}}
-              name="area"
-              id="area"
-              value={formData.area}
-              onChange={(e) =>
-                setFormData({ ...formData, area: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {Area.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>: <select
-                 className="form__field" style={{width:'280px'}}
-              name="area"
-              id="area"
-              value={formData.area}
-              onChange={(e) =>
-                setFormData({ ...formData, area: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {Area.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>}
-               
-            <div className="iconWrap">
-            <i class="fa-solid fa-layer-group"></i>
+                  {isMobile ? (
+                    <select
+                      className="form__field"
+                      style={{ width: "180px" }}
+                      name="area"
+                      id="area"
+                      value={formData.area}
+                      onChange={(e) =>
+                        setFormData({ ...formData, area: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {Area.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <select
+                      className="form__field"
+                      style={{ width: "280px" }}
+                      name="area"
+                      id="area"
+                      value={formData.area}
+                      onChange={(e) =>
+                        setFormData({ ...formData, area: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {Area.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-layer-group"></i>
                   </div>
                   <label
                     for="name"
@@ -589,31 +619,48 @@ const Register = () => {
                       document.getElementById("area").focus();
                     }}
                   >
-                 Select Area
+                    Select Area
                   </label>
-                   </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                {isMobile? <select name="diploma" id="diploma" className="form__field" style={{width:'180px'}} onChange={handleStudyYearChange}>
-              <option value=""></option>
-              {diploma.map((s) => (
-                <option key={s._id} value={s._id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>: <select name="diploma" id="diploma" className="form__field" style={{width:'280px'}} onChange={handleStudyYearChange}>
-              <option value=""></option>
-              {diploma.map((s) => (
-                <option key={s._id} value={s._id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>}
-               
-            <div className="iconWrap">
-            <i class="fa-solid fa-building-flag"></i>
+                  {isMobile ? (
+                    <select
+                      name="diploma"
+                      id="diploma"
+                      className="form__field"
+                      style={{ width: "180px" }}
+                      onChange={handleStudyYearChange}
+                    >
+                      <option value=""></option>
+                      {diploma.map((s) => (
+                        <option key={s._id} value={s._id}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <select
+                      name="diploma"
+                      id="diploma"
+                      className="form__field"
+                      style={{ width: "280px" }}
+                      onChange={handleStudyYearChange}
+                    >
+                      <option value=""></option>
+                      {diploma.map((s) => (
+                        <option key={s._id} value={s._id}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-building-flag"></i>
                   </div>
                   <label
                     for="name"
@@ -622,45 +669,54 @@ const Register = () => {
                       document.getElementById("diploma").focus();
                     }}
                   >
-                 Select Diploma
+                    Select Diploma
                   </label>
-                </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
-                <div class="form__group field"> 
-                {isMobile? <select
-                className="form__field" style={{width:'180px'}} id="studyYear"
-              name="studyYear"
-              value={formData.studyYear}
-              onChange={(e) =>
-                setFormData({ ...formData, studyYear: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {eachDiploma.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>: <select
-                className="form__field" style={{width:'280px'}} id="studyYear"
-              name="studyYear"
-              value={formData.studyYear}
-              onChange={(e) =>
-                setFormData({ ...formData, studyYear: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {eachDiploma.map((x) => (
-                <option key={x._id} value={x._id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>}
-               
-            <div className="iconWrap">
-            <i class="fa-solid fa-graduation-cap"></i>
+                <div class="form__group field">
+                  {isMobile ? (
+                    <select
+                      className="form__field"
+                      style={{ width: "180px" }}
+                      id="studyYear"
+                      name="studyYear"
+                      value={formData.studyYear}
+                      onChange={(e) =>
+                        setFormData({ ...formData, studyYear: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {eachDiploma.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <select
+                      className="form__field"
+                      style={{ width: "280px" }}
+                      id="studyYear"
+                      name="studyYear"
+                      value={formData.studyYear}
+                      onChange={(e) =>
+                        setFormData({ ...formData, studyYear: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {eachDiploma.map((x) => (
+                        <option key={x._id} value={x._id}>
+                          {x.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-graduation-cap"></i>
                   </div>
                   <label
                     for="name"
@@ -669,47 +725,58 @@ const Register = () => {
                       document.getElementById("studyYear").focus();
                     }}
                   >
-                 Select Study Year
+                    Select Study Year
                   </label>
-                </div></div>
+                </div>
               </div>
-              <div style={{ paddingBottom: "2%", position: "relative" }}>
+            </div>
+            <div style={{ paddingBottom: "2%", position: "relative" }}>
               <div style={{ margin: "auto" }}>
                 <div class="form__group field">
-                {isMobile?   <select className="form__field" style={{width:'180px'}} id="languages"
-              name="languages"
-              value={formData.language}
-              onChange={(e) =>
-                setFormData({ ...formData, language: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {/* {eachDiploma.map((diploma) => */}
-                {lang.map((language) => (
-                  <option key={language} value={language}>
-                    {language}
-                  </option>
-                ))}
-              {/* )}  */}
-            </select>:  <select className="form__field" style={{width:'280px'}} id="languages"
-              name="languages"
-              value={formData.language}
-              onChange={(e) =>
-                setFormData({ ...formData, language: e.target.value })
-              }
-            >
-              <option value=""></option>
-              {/* {eachDiploma.map((diploma) => */}
-                {lang.map((language) => (
-                  <option key={language} value={language}>
-                    {language}
-                  </option>
-                ))}
-              {/* )}  */}
-            </select>}
-              
-            <div className="iconWrap">
-            <i class="fa-solid fa-language"></i>
+                  {isMobile ? (
+                    <select
+                      className="form__field"
+                      style={{ width: "180px" }}
+                      id="languages"
+                      name="languages"
+                      value={formData.language}
+                      onChange={(e) =>
+                        setFormData({ ...formData, language: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {/* {eachDiploma.map((diploma) => */}
+                      {lang.map((language) => (
+                        <option key={language} value={language}>
+                          {language}
+                        </option>
+                      ))}
+                      {/* )}  */}
+                    </select>
+                  ) : (
+                    <select
+                      className="form__field"
+                      style={{ width: "280px" }}
+                      id="languages"
+                      name="languages"
+                      value={formData.language}
+                      onChange={(e) =>
+                        setFormData({ ...formData, language: e.target.value })
+                      }
+                    >
+                      <option value=""></option>
+                      {/* {eachDiploma.map((diploma) => */}
+                      {lang.map((language) => (
+                        <option key={language} value={language}>
+                          {language}
+                        </option>
+                      ))}
+                      {/* )}  */}
+                    </select>
+                  )}
+
+                  <div className="iconWrap">
+                    <i class="fa-solid fa-language"></i>
                   </div>
                   <label
                     for="name"
@@ -718,11 +785,12 @@ const Register = () => {
                       document.getElementById("languages").focus();
                     }}
                   >
-                 Select Language
+                    Select Language
                   </label>
-                  </div></div>
+                </div>
               </div>
-        
+            </div>
+
             {/* Add other fields for Step 3 */}
           </div>
         );
@@ -748,11 +816,11 @@ const Register = () => {
   });
   const uploadImage = (x) => {
     const file = x.target.files[0];
-  
+
     if (file) {
       const formDataNew = new FormData();
       formDataNew.append("file", file);
-  
+
       axios
         .post("https://eprof-zu1o.onrender.com/data/upload", formDataNew)
         .then((response) => {
@@ -793,9 +861,9 @@ const Register = () => {
                 "Success",
                 "Verification code submitted go to login!",
                 "success"
-                ).then(() => {
-                  window.location.reload();
-                });
+              ).then(() => {
+                window.location.reload();
+              });
             })
             .catch((error) => {
               // console.log(error);
@@ -828,7 +896,9 @@ const Register = () => {
       showLoaderOnConfirm: true,
       preConfirm: (email) => {
         return axios
-          .post("https://eprof-zu1o.onrender.com/auth/forgetPassword", { email })
+          .post("https://eprof-zu1o.onrender.com/auth/forgetPassword", {
+            email,
+          })
           .then((response) => {
             return response.data;
           })
@@ -886,19 +956,18 @@ const Register = () => {
 
   return (
     <>
-      <div id="container " className="webView" >
-        
+      <div id="container " className="webView">
         <div id="cover">
-       <h1 class="sign-up">Hello, Friend!</h1>
-        <p class="sign-up">
+          <h1 class="sign-up">Hello, Friend!</h1>
+          <p class="sign-up">
             Enter your personal details
             <br /> and start a journey with us
           </p>
           <a class="button sign-up" href="#cover">
-        Sign Up
+            Sign Up
           </a>
           <h1 class="sign-in">Welcome Back!</h1>
-          <p class="sign-in" style={{color:'#fff'}}>
+          <p class="sign-in" style={{ color: "#fff" }}>
             To keep connected with us please
             <br /> login with your personal info
           </p>
@@ -908,81 +977,86 @@ const Register = () => {
           </a>
         </div>
         <div id="login">
-        <Fade top duration={1000} delay={500}>  <h1 style={{ paddingTop: "38%" }}>Sign In</h1></Fade>
-          <form onSubmit={handleSubmitLogin}>
           <Fade top duration={1000} delay={500}>
-          <div style={{ paddingBottom: "2%", position: "relative" }}>
-              <div style={{ margin: "auto" }}>
-                <div class="form__group field">
-                <input
-                className="form__field"
-                id="email1"
-              type="email"
-              placeholder="Email"
-              autocomplete="off"
-              value={Login.email}
-              onChange={(e) => setLogin({ ...Login, email: e.target.value })}
-            />
-             <div className="iconWrap">
-                    <i class="fa-solid fa-at"></i>
+            {" "}
+            <h1 style={{ paddingTop: "38%" }}>Sign In</h1>
+          </Fade>
+          <form onSubmit={handleSubmitLogin}>
+            <Fade top duration={1000} delay={500}>
+              <div style={{ paddingBottom: "2%", position: "relative" }}>
+                <div style={{ margin: "auto" }}>
+                  <div class="form__group field">
+                    <input
+                      className="form__field"
+                      id="email1"
+                      type="email"
+                      placeholder="Email"
+                      autocomplete="off"
+                      value={Login.email}
+                      onChange={(e) =>
+                        setLogin({ ...Login, email: e.target.value })
+                      }
+                    />
+                    <div className="iconWrap">
+                      <i class="fa-solid fa-at"></i>
+                    </div>
+                    <label
+                      for="name"
+                      class="form__label"
+                      onClick={() => {
+                        document.getElementById("email1").focus();
+                      }}
+                    >
+                      Email
+                    </label>
                   </div>
-                  <label
-                    for="name"
-                    class="form__label"
-                    onClick={() => {
-                      document.getElementById("email1").focus();
-                    }}
-                  >
-                    Email
-                  </label>
                 </div>
               </div>
-              </div>
-         </Fade>
-         <Fade top duration={1000} delay={500}>
-              <div
-                          style={{ paddingBottom: "2%", position: "relative" }}
-                        >
-                          <div style={{ margin: "auto" }}>
-                            <div class="form__group field">
-                              <input
-                                class="form__field"
-                                name="password"
-                                required
-                                id="password1"
-                                type={show2 ? "text" : "Password"}
-                                placeholder="Password"
-                                value={Login.password}
-              onChange={(e) => setLogin({ ...Login, password: e.target.value })}
-                              />
-                              <div className="iconWrap">
-                                <i class="fa-solid fa-lock"></i>
-                              </div>
-                              <div
-                                className="ourx"
-                                onClick={() => {
-                                  setShow1(!show2);
-                                }}
-                              >
-                                {/* <i
+            </Fade>
+            <Fade top duration={1000} delay={500}>
+              <div style={{ paddingBottom: "2%", position: "relative" }}>
+                <div style={{ margin: "auto" }}>
+                  <div class="form__group field">
+                    <input
+                      class="form__field"
+                      name="password"
+                      required
+                      id="password1"
+                      type={show2 ? "text" : "Password"}
+                      placeholder="Password"
+                      value={Login.password}
+                      onChange={(e) =>
+                        setLogin({ ...Login, password: e.target.value })
+                      }
+                    />
+                    <div className="iconWrap">
+                      <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div
+                      className="ourx"
+                      onClick={() => {
+                        setShow1(!show2);
+                      }}
+                    >
+                      {/* <i
                                   class="fa fa-eye fa-2xs"
                                   aria-hidden="true"
                                   style={{ color: show2 ? "#ffc600" : "black" }}
                                 ></i> */}
-                              </div>
-                              <label
-                                for="password"
-                                class="form__label"
-                                onClick={() => {
-                                  document.getElementById("password1").focus();
-                                }}
-                              >
-                                Password
-                              </label>
-                            </div>
-                          </div>
-                      
-                        </div></Fade>
+                    </div>
+                    <label
+                      for="password"
+                      class="form__label"
+                      onClick={() => {
+                        document.getElementById("password1").focus();
+                      }}
+                    >
+                      Password
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </Fade>
             {/* <input
               type="password"
               placeholder="Password"
@@ -991,16 +1065,29 @@ const Register = () => {
               onChange={(e) => setLogin({ ...Login, password: e.target.value })}
             />
             <br /> */}
-            <Fade top duration={1000} delay={500}>  <a id="forgot-pass" onClick={openForgotPassword} style={{cursor:"pointer"}}>
-              Forgot your password?
-            </a></Fade>
+            <Fade top duration={1000} delay={500}>
+              {" "}
+              <a
+                id="forgot-pass"
+                onClick={openForgotPassword}
+                style={{ cursor: "pointer" }}
+              >
+                Forgot your password?
+              </a>
+            </Fade>
             <br />
             <input class="submit-btn" type="submit" value="Sign In" />
           </form>
         </div>
         <div id="register">
-        <Fade top duration={1000} delay={500}>   <h3>Create Account</h3></Fade>
-        <Fade top duration={1000} delay={500}>   <p> Use your email for registration:</p></Fade>
+          <Fade top duration={1000} delay={500}>
+            {" "}
+            <h3>Create Account</h3>
+          </Fade>
+          <Fade top duration={1000} delay={500}>
+            {" "}
+            <p> Use your email for registration:</p>
+          </Fade>
           <form onSubmit={handleSubmit} ref={formRef}>
             {renderFormFields()}
             {step > 1 && (

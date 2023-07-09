@@ -5,21 +5,21 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import defImage from "../images/PngItem_1503945.png";
 import "./style.css";
-import dayjs from 'dayjs';
-import Badge from '@mui/material/Badge';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { PickersDay, DateCalendar } from '@mui/x-date-pickers';
-import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+import dayjs from "dayjs";
+import Badge from "@mui/material/Badge";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { PickersDay, DateCalendar } from "@mui/x-date-pickers";
+import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
 import { useRef } from "react";
 import BasicInfo from "./BasicInfo";
 import EducationalInfo from "./EducationalInfo";
 import PersonalInfo from "./PersonalInfo";
-import iddesign from '../images/iddesign.png';
-import swal from 'sweetalert';
+import iddesign from "../images/iddesign.png";
+import swal from "sweetalert";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 
 function getRandomNumber(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -33,18 +33,20 @@ function fakeFetch(date, { signal }) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = date.daysInMonth();
-      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
+      const daysToHighlight = [1, 2, 3].map(() =>
+        getRandomNumber(1, daysInMonth)
+      );
 
       resolve({ daysToHighlight });
     }, 500);
 
     signal.onabort = () => {
       clearTimeout(timeout);
-      reject(new DOMException('aborted', 'AbortError'));
+      reject(new DOMException("aborted", "AbortError"));
     };
   });
 }
-const initialValue = dayjs('2022-05-1');
+const initialValue = dayjs("2022-05-1");
 
 function ServerDay(props) {
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
@@ -56,9 +58,13 @@ function ServerDay(props) {
     <Badge
       key={props.day.toString()}
       overlap="circular"
-      badgeContent={isSelected ? '🌚' : undefined}
+      badgeContent={isSelected ? "🌚" : undefined}
     >
-      <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
+      <PickersDay
+        {...other}
+        outsideCurrentMonth={outsideCurrentMonth}
+        day={day}
+      />
     </Badge>
   );
 }
@@ -84,7 +90,7 @@ const Profile = ({ userMain }) => {
       })
       .catch((error) => {
         // ignore the error if it's caused by `controller.abort`
-        if (error.name !== 'AbortError') {
+        if (error.name !== "AbortError") {
           throw error;
         }
       });
@@ -109,7 +115,7 @@ const Profile = ({ userMain }) => {
     setHighlightedDays([]);
     fetchHighlightedDays(date);
   };
-  
+
   const [user, setUser] = useState({});
   const [active, setActive] = useState(1);
   const [name, setName] = useState("");
@@ -126,33 +132,31 @@ const Profile = ({ userMain }) => {
   // const [myWallet2, setmyWallet2] = useState([]);
 
   const [myWallet, setmyWallet] = useState([]);
-//   const columns = [
-//     { field: '_id', headerName: 'ID', width: 70 },
-//     { field: 'name', headerName: ' Name', width: 130 },
-//     { field: 'walletBefore', headerName: 'before', width: 130 },
-//     { field: 'price', headerName: 'price', width: 130 },
-//     { field: 'walletAfter', headerName: 'after', width: 130 },
-//     { field: 'date', headerName: 'date', width: 130 },
+  //   const columns = [
+  //     { field: '_id', headerName: 'ID', width: 70 },
+  //     { field: 'name', headerName: ' Name', width: 130 },
+  //     { field: 'walletBefore', headerName: 'before', width: 130 },
+  //     { field: 'price', headerName: 'price', width: 130 },
+  //     { field: 'walletAfter', headerName: 'after', width: 130 },
+  //     { field: 'date', headerName: 'date', width: 130 },
 
+  // ];
+  const rows = myWallet.map((item, index) => ({
+    id: index + 1,
+    col1: item.name,
+    col2: item.walletBefore,
+    col3: item.price,
+    col4: item.walletAfter,
+    col5: item.date,
+  }));
 
-// ];
-const rows = myWallet.map((item, index) => ({
-  id: index + 1,
-  col1: item.name,
-  col2: item.walletBefore,
-  col3: item.price,
-  col4: item.walletAfter,
-  col5: item.date,
-}));
-
-const columns = [
-  { field: 'col1', headerName: 'Name', width: 250 },
-  { field: 'col2', headerName: 'Wallet Before', width: 200 },
-  { field: 'col3', headerName: 'Price', width: 200 },
-  { field: 'col4', headerName: 'Wallet After', width: 200 },
-  { field: 'col5', headerName: 'Date', width: 200 },
-
-];
+  const columns = [
+    { field: "col1", headerName: "Name", width: 250 },
+    { field: "col2", headerName: "Wallet Before", width: 200 },
+    { field: "col3", headerName: "Price", width: 200 },
+    { field: "col4", headerName: "Wallet After", width: 200 },
+    { field: "col5", headerName: "Date", width: 200 },
+  ];
   const [stats, setStats] = useState({ baby: "baby", baby: "baby" });
   // async function logOut() {
   //   let { data } = await axios.get(
@@ -177,55 +181,53 @@ const columns = [
   var dayName = days[d.getDay()];
 
   useEffect(() => {
-    const token = sessionStorage.getItem('token'); // retrieve token value from session storage
-axios.get('https://eprof-zu1o.onrender.com/user/walletHistory', {
-  headers: {
-    'Authorization': ` ${token}` // set Authorization header with token value
-  }
-})
-.then(response => {
-  // console.log(response.data);
-  setmyWallet(response.data);
-  // setmyWallet2(response.data);
-})
-.catch(error => {
-  // console.log(error);
-});
- 
+    const token = sessionStorage.getItem("token"); // retrieve token value from session storage
+    axios
+      .get("https://eprof-zu1o.onrender.com/user/walletHistory", {
+        headers: {
+          Authorization: ` ${token}`, // set Authorization header with token value
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        setmyWallet(response.data);
+        // setmyWallet2(response.data);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
   }, []);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = sessionStorage.getItem('token'); // retrieve token value from session storage
-axios.get('https://eprof-zu1o.onrender.com/user/me', {
-  headers: {
-    'Authorization': ` ${token}` // set Authorization header with token value
-  }
-})
-.then(response => {
-  // console.log(response.data);
-  setprofile(response.data.user)
-  setMiniprofile(response.data)
-
-})
-.catch(error => {
-  // console.log(error.response.data.error);
-  if (error.response.data.error==="Token is not in database"){
-    sessionStorage.clear();
-    navigate('/');
-  }
-});
-  
+    const token = sessionStorage.getItem("token"); // retrieve token value from session storage
+    axios
+      .get("https://eprof-zu1o.onrender.com/user/me", {
+        headers: {
+          Authorization: ` ${token}`, // set Authorization header with token value
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        setprofile(response.data.user);
+        setMiniprofile(response.data);
+      })
+      .catch((error) => {
+        // console.log(error.response.data.error);
+        if (error.response.data.error === "Token is not in database") {
+          sessionStorage.clear();
+          navigate("/");
+        }
+      });
   }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
- 
- 
+
   const handleChangePassword = (e) => {
     e.preventDefault();
-   
-    const token = sessionStorage.getItem('token');
+
+    const token = sessionStorage.getItem("token");
     const body = {
       oldPassword: oldPassword,
       newPassword: newPassword,
@@ -235,8 +237,8 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
     axios
       .post("https://eprof-zu1o.onrender.com/auth/changePassword", body, {
         headers: {
-          'Authorization': ` ${token}` // set Authorization header with token value
-        }
+          Authorization: ` ${token}`, // set Authorization header with token value
+        },
       })
       .then((res) => {
         // console.log(res);
@@ -244,7 +246,6 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
           setActive(3);
           // logOut();
           swal("Good job!", "your password changed!", "success");
-
         } else {
           setAlert("Wrong old password.");
         }
@@ -254,31 +255,29 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
       });
   };
   const [formData, setFormData] = useState({
-   
     img: "",
-  
   });
   const sendData = (data) => {
     const token = sessionStorage.getItem("token");
-  
-    axios.patch('https://eprof-zu1o.onrender.com/user/update', data, {
-      headers: {
-        Authorization: ` ${token}`,
-      },
-    })
-      .then(response => {
+
+    axios
+      .patch("https://eprof-zu1o.onrender.com/user/update", data, {
+        headers: {
+          Authorization: ` ${token}`,
+        },
+      })
+      .then((response) => {
         // console.log(response.data);
         swal("Good job!", "Your Data has been sent successfully!", "success");
         sessionStorage.setItem("image", response.data.img);
-        window.location.reload()
-
+        window.location.reload();
       })
-      .catch(error => {
+      .catch((error) => {
         // console.log(error);
         swal("Oops!", "Please try again!", "error");
       });
   };
-  
+
   const uploadImage = (x) => {
     const formDataNew = new FormData();
     formDataNew.append("file", x.target.files[0]);
@@ -290,7 +289,8 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
         // console.log(response.data);
         const updatedFormData = { ...formData, img: response.data.url };
         setFormData(updatedFormData);
-        sendData(updatedFormData);      })
+        sendData(updatedFormData);
+      })
       .catch((error) => {
         // console.log(error);
       });
@@ -300,12 +300,15 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
       <section class="pager-section">
         <div class="container">
           <div class="pager-content text-center">
-          <Fade top duration={1000} delay={500}> <h2>Your Profile</h2></Fade>
+            <Fade top duration={1000} delay={500}>
+              {" "}
+              <h2>Your Profile</h2>
+            </Fade>
             <ul>
               <li>
-              <Link to="/" style={{ textDecoration: "none" }} title="">
-                      Home
-                    </Link>
+                <Link to="/" style={{ textDecoration: "none" }} title="">
+                  Home
+                </Link>
               </li>
               <li>
                 <span>Your Profile</span>
@@ -321,7 +324,7 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
           </h2>
         </div>
       </section>
-   
+
       <Row
         style={{
           paddingTop: "5%",
@@ -342,7 +345,7 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
               aria-hidden="true"
               style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
-          <span className="forFont"> Dashboard</span>
+            <span className="forFont"> Dashboard</span>
           </div>
           <div
             className={active === 2 ? "menitem active" : "menitem"}
@@ -377,7 +380,7 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
               sessionStorage.clear();
               sessionStorage.clear();
               window.location.replace("/");
-            //   logOut();
+              //   logOut();
             }}
           >
             <i
@@ -398,11 +401,21 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                   alignItems: "center",
                 }}
               >
-               <Fade top duration={1000} delay={500}>   <p className="goodmoring">
+                <Fade top duration={1000} delay={500}>
                   {" "}
-                  Happy {dayName}, {profile.firstName }
-                </p></Fade>
-                <div className="imgdiv" style={{ position: 'relative' , height:'20vh', maxWidth:'18vw'}}>
+                  <p className="goodmoring">
+                    {" "}
+                    Happy {dayName}, {profile.firstName}
+                  </p>
+                </Fade>
+                <div
+                  className="imgdiv"
+                  style={{
+                    position: "relative",
+                    height: "20vh",
+                    maxWidth: "18vw",
+                  }}
+                >
                   <img
                     src={
                       sessionStorage.getItem("image") &&
@@ -416,18 +429,33 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                     // 		: defImage
                     // }
                   />
-                  <label htmlFor="imageInput" className="pencil" >
-    <i className="fa-solid fa-pencil" title="Change Image"  style={{fontSize:'16px', color:'#fff'}}></i>
-  </label>
-  <input
-    id="imageInput"
-    type="file"
-    accept="image/*"
-    onChange={uploadImage}
-    style={{ display: "none" }}
-  />
-  <div style={{ position: 'absolute', top: 0, right: '-10px', width: '20px', height: '20px', backgroundColor: '#fff', transform: 'rotate(45deg)', zIndex: -1 }}></div>
-                   {/* <label>
+                  <label htmlFor="imageInput" className="pencil">
+                    <i
+                      className="fa-solid fa-pencil"
+                      title="Change Image"
+                      style={{ fontSize: "16px", color: "#fff" }}
+                    ></i>
+                  </label>
+                  <input
+                    id="imageInput"
+                    type="file"
+                    accept="image/*"
+                    onChange={uploadImage}
+                    style={{ display: "none" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      right: "-10px",
+                      width: "20px",
+                      height: "20px",
+                      backgroundColor: "#fff",
+                      transform: "rotate(45deg)",
+                      zIndex: -1,
+                    }}
+                  ></div>
+                  {/* <label>
               Profile Image :{" "}
               <input
                 type="file"
@@ -439,47 +467,72 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                 </div>
               </section>
               <section>
-              <table>
-              <Fade top duration={1000} delay={500}> 
-                  <thead>
-        <tr style={{borderBottom: '1px solid lightgrey',    display: 'flex', gap: '1.5rem'}}>
-          <th
-
-            className={activeSection === "basicInfo" ? "active" : ""}
-            onClick={() => handleClick("basicInfo")}
-          >
-            Basic Info
-          </th>
-          <th
-            className={activeSection === "educationalInfo" ? "active" : ""}
-            onClick={() => handleClick("educationalInfo")}
-          >
-            Educational Info
-          </th>
-          <th
-            className={activeSection === "personalInfo" ? "active" : ""}
-            onClick={() => handleClick("personalInfo")}
-          >
-            Personal Info
-          </th>
-        </tr>
-      </thead></Fade>
-      <tbody>
-        <tr>
-          <td style={{ display: activeSection !== "educationalInfo" && activeSection !== "personalInfo" ? "block" : "none" }}>
-            {activeSection === "basicInfo" && <BasicInfo />}
-          </td>
-          <td  style={{ display: activeSection !== "personalInfo"  ? "block" : "none" }}>
-            {activeSection === "educationalInfo" && <EducationalInfo />}
-          </td>
-          <td>
-            {activeSection === "personalInfo" && <PersonalInfo />}
-          </td>
-         
-        </tr>
-      </tbody>
-    </table>
-               
+                <table>
+                  <Fade top duration={1000} delay={500}>
+                    <thead>
+                      <tr
+                        style={{
+                          borderBottom: "1px solid lightgrey",
+                          display: "flex",
+                          gap: "1.5rem",
+                        }}
+                      >
+                        <th
+                          className={
+                            activeSection === "basicInfo" ? "active" : ""
+                          }
+                          onClick={() => handleClick("basicInfo")}
+                        >
+                          Basic Info
+                        </th>
+                        <th
+                          className={
+                            activeSection === "educationalInfo" ? "active" : ""
+                          }
+                          onClick={() => handleClick("educationalInfo")}
+                        >
+                          Educational Info
+                        </th>
+                        <th
+                          className={
+                            activeSection === "personalInfo" ? "active" : ""
+                          }
+                          onClick={() => handleClick("personalInfo")}
+                        >
+                          Personal Info
+                        </th>
+                      </tr>
+                    </thead>
+                  </Fade>
+                  <tbody>
+                    <tr>
+                      <td
+                        style={{
+                          display:
+                            activeSection !== "educationalInfo" &&
+                            activeSection !== "personalInfo"
+                              ? "block"
+                              : "none",
+                        }}
+                      >
+                        {activeSection === "basicInfo" && <BasicInfo />}
+                      </td>
+                      <td
+                        style={{
+                          display:
+                            activeSection !== "personalInfo" ? "block" : "none",
+                        }}
+                      >
+                        {activeSection === "educationalInfo" && (
+                          <EducationalInfo />
+                        )}
+                      </td>
+                      <td>
+                        {activeSection === "personalInfo" && <PersonalInfo />}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </section>
             </>
           )}
@@ -492,9 +545,12 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                   alignItems: "center",
                 }}
               >
-               <Fade top duration={1000} delay={500}>   <p className="goodmoring">
-                  Happy {dayName}, {profile.firstName }
-                </p></Fade>
+                <Fade top duration={1000} delay={500}>
+                  {" "}
+                  <p className="goodmoring">
+                    Happy {dayName}, {profile.firstName}
+                  </p>
+                </Fade>
                 <div className="imgdiv">
                   <img
                     src={
@@ -507,7 +563,6 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                 </div>
               </section>
               <section style={{ paddingTop: "3%" }}>
-            
                 <Row
                   style={{
                     paddingTop: "3%",
@@ -517,148 +572,45 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                     justifyContent: "space-between",
                   }}
                 >
-                   <Fade left duration={1000} delay={500}> <h4
-                    style={{
-                      marginBottom: "2%",
-                      fontSize: "24px",
-                      fontFamily: "Poppins",
-                      fontWeight: "800",
-                    }}
-                  >
-                    Dashboard
-                  </h4></Fade>
-               
-               
-                  <Col  className="about-item" style={{ padding: "0" }}>
-                    <div
+                  <Fade left duration={1000} delay={500}>
+                    {" "}
+                    <h4
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
+                        marginBottom: "2%",
+                        fontSize: "24px",
+                        fontFamily: "Poppins",
+                        fontWeight: "800",
                       }}
                     >
-                      <div class="item-icon-title">
-                        <div class="item-icon">
-                          <i class="fa fa-book fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-title"></div>
-                      </div>
-                    </div>
-                    <Fade bottom duration={1000} delay={500}> 
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {miniProfile.enrolled?miniProfile.enrolled:0}
-                      </p>
-                    </div></Fade>
-                    <Fade bottom duration={1000} delay={500}>   
-                         <h3
-                      className="title"
-                      style={{
-                        fontFamily: "Sora",
-                        fontSize: "16px",
-                        fontWeight: "300",
-                        textAlign: "center",
-                      }}
-                    >
-                      Enrolled Courses
-                    </h3></Fade>
-                  </Col>
-                  <Col  className="about-item" style={{ padding: "0" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div class="item-icon-title">
-                        <div class="item-icon">
-                          <i
-                            class="fa fa-graduation-cap fa-2x"
-                            aria-hidden="true"
-                          ></i>{" "}
-                        </div>
-                        <div class="item-title"></div>
-                      </div>
-                    </div>
-                    <Fade bottom duration={1000} delay={500}> 
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {miniProfile.active}
-                      </p>
-                    </div></Fade>
-                    <Fade bottom duration={1000} delay={500}> 
-                    <h3
-                      className="title"
-                      style={{
-                        fontFamily: "Sora",
-                        fontSize: "16px",
-                        fontWeight: "300",
-                        textAlign: "center",
-                      }}
-                    >
-                      Active Courses
-                    </h3></Fade>
-                  </Col>
-                  <Col  className="about-item" style={{ padding: "0" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div class="item-icon-title">
-                        <div class="item-icon">
-                          <i class="fa fa-trophy fa-2x" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-title"></div>
-                      </div>
-                    </div>
-                    <Fade bottom duration={1000} delay={500}> 
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {miniProfile.completed}
-                      </p>
-                    </div></Fade>
-                    <Fade bottom duration={1000} delay={500}> 
-                      <h3
-                      className="title"
-                      style={{
-                        fontFamily: "Sora",
-                        fontSize: "16px",
-                        fontWeight: "300",
-                        textAlign: "center",
-                      }}
-                    >
-                      Completed Courses
-                    </h3></Fade>
-                  </Col>
+                      Dashboard
+                    </h4>
+                  </Fade>
                 </Row>
                 <section>
-                <div  style={{display:'flex', alignItems:'center'}}>
-{/* <h2 className='my-3'>Login Now</h2> */}
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    {/* <h2 className='my-3'>Login Now</h2> */}
 
-
-
-<div className="container" >
-    <div className="row" style={{display:'flex', alignItems:'center'}}>
-        <div className="col-md-12" >
-            <div style={{display:'flex', alignItems:'center'}}>
-{/* <img src={logo} alt="" style={{width:'60%'}} /> */}
-{/* <Table> */}
-              <div style={{ height: 300, width: "100%" }}>  <DataGrid rows={rows} columns={columns} /></div> 
-                  {/* </Table> */}
-</div>
-        </div>
-       
-    </div>
-</div>
-
-     
-    
-    </div>
-              
+                    <div className="container">
+                      <div
+                        className="row"
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <div className="col-md-12">
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            {/* <img src={logo} alt="" style={{width:'60%'}} /> */}
+                            {/* <Table> */}
+                            <div style={{ height: 300, width: "100%" }}>
+                              {" "}
+                              <DataGrid rows={rows} columns={columns} />
+                            </div>
+                            {/* </Table> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </section>
               </section>
             </>
@@ -673,9 +625,12 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                   alignItems: "center",
                 }}
               >
-       <Fade top duration={1000} delay={500}>          <p className="goodmoring">
-                  Happy {dayName}, {profile.firstName}
-                </p></Fade>
+                <Fade top duration={1000} delay={500}>
+                  {" "}
+                  <p className="goodmoring">
+                    Happy {dayName}, {profile.firstName}
+                  </p>
+                </Fade>
                 <div className="imgdiv">
                   <img
                     src={
@@ -691,73 +646,70 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                 <Form>
                   <Row className="mb-3">
                     {/* <Form.Group as={Col} controlId="formGridEmail"> */}
-                      {/* <Form.Label>Old Password</Form.Label> */}
+                    {/* <Form.Label>Old Password</Form.Label> */}
 
-                      <div class="form__group field">
+                    <div class="form__group field">
                       <input
-              className="form__field"
-              style={{width:'250px'}}
-              type="password"
-              id="oldPass"
-              placeholder="Enter old password"
-              value={oldPassword}
-              onChange={(e) => {
-                setOldPassword(e.target.value);
-              }}
-            />
-         <div className="iconWrap2">
-                                <i class="fa-solid fa-lock"></i>
-                              </div>
-                  <label
-                    for="name"
-                    class="form__label2"
-                    onClick={() => {
-                      document.getElementById("oldPass").focus();
-                    }}
-                  >
-              Old Password
-                  </label>
-                     
-                       </div>
-
+                        className="form__field"
+                        style={{ width: "250px" }}
+                        type="password"
+                        id="oldPass"
+                        placeholder="Enter old password"
+                        value={oldPassword}
+                        onChange={(e) => {
+                          setOldPassword(e.target.value);
+                        }}
+                      />
+                      <div className="iconWrap2">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                      <label
+                        for="name"
+                        class="form__label2"
+                        onClick={() => {
+                          document.getElementById("oldPass").focus();
+                        }}
+                      >
+                        Old Password
+                      </label>
+                    </div>
                   </Row>
                   <Row className="mb-3">
                     {/* <Form.Group as={Col} controlId="formGridEmail"> */}
-                      {/* <Form.Label>New Password</Form.Label> */}
-                      <div class="form__group field">
+                    {/* <Form.Label>New Password</Form.Label> */}
+                    <div class="form__group field">
                       <input
-              className="form__field"
-              style={{width:'250px'}}
-              type="password"
-              placeholder="Enter new password"
-              value={newPassword}
-              id="newPass"
-              onChange={(e) => {
-                setNewPassword(e.target.value);
-              }}
-            />
-         <div className="iconWrap2">
-                                <i class="fa-solid fa-lock"></i>
-                              </div>
-                  <label
-                    for="name"
-                    class="form__label2"
-                    onClick={() => {
-                      document.getElementById("newPass").focus();
-                    }}
-                  >
-              New Password
-                  </label>
-                     
-                       </div>
-              
+                        className="form__field"
+                        style={{ width: "250px" }}
+                        type="password"
+                        placeholder="Enter new password"
+                        value={newPassword}
+                        id="newPass"
+                        onChange={(e) => {
+                          setNewPassword(e.target.value);
+                        }}
+                      />
+                      <div className="iconWrap2">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                      <label
+                        for="name"
+                        class="form__label2"
+                        onClick={() => {
+                          document.getElementById("newPass").focus();
+                        }}
+                      >
+                        New Password
+                      </label>
+                    </div>
                   </Row>
 
                   <button
                     class="btn btn-primary btnHover"
                     style={{
                       marginTop: "13px",
-                      marginBottom: "13px",                      padding: "18px 32px 18px 32px",
+                      marginBottom: "13px",
+                      padding: "18px 32px 18px 32px",
                       border: "#3c719a 1px solid",
                       borderRadius: "50px",
                       fontWeight: "700",
@@ -766,11 +718,7 @@ axios.get('https://eprof-zu1o.onrender.com/user/me', {
                     onClick={(e) => {
                       handleChangePassword(e);
                     }}
-                    disabled={
-                      oldPassword == "" ||
-                      newPassword == "" 
-                     
-                    }
+                    disabled={oldPassword == "" || newPassword == ""}
                   >
                     Submit Changes<i class="fa-solid fa-arrow-right-long"></i>
                   </button>

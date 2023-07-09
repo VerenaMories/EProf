@@ -1,133 +1,135 @@
-
 .forFont {
-    font-family: "Playfair display";
-    font-size: 16px;
-  }
-  .menitem {
-    padding: 4%;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  /* .active {
+  font-family: "Playfair display";
+  font-size: 16px;
+}
+.menitem {
+  padding: 4%;
+  font-size: 15px;
+  cursor: pointer;
+}
+/* .active {
     color: white !important;
     background-color: #3c719a;
     border-radius: 10px 0px 0px 10px;
   } */
-  .active > i {
-    color: rgb(197, 137, 43) !important;
-  }
-  .menrow {
-    position: relative;
-  }
-  .menrow::before {
-    content: "";
-    width: 2px;
-    height: 90%;
-    opacity: 0.5;
-    background-color: grey;
-    position: absolute;
-    top: -8px;
-    right: 2.5%;
-  }
-  .goodmoring {
-    /* margin-left: 5%; */
-    font-size: 26px !important;
-    font-family: "Playfair display";
-    line-height: 30px;
-  }
+.active > i {
+  color: rgb(197, 137, 43) !important;
+}
+.menrow {
+  position: relative;
+}
+.menrow::before {
+  content: "";
+  width: 2px;
+  height: 90%;
+  opacity: 0.5;
+  background-color: grey;
+  position: absolute;
+  top: -8px;
+  right: 2.5%;
+}
+.goodmoring {
+  /* margin-left: 5%; */
+  font-size: 26px !important;
+  font-family: "Playfair display";
+  line-height: 30px;
+}
+.imgdiv > img {
+  max-width: 12vw;
+  border: 2px solid #3c719a;
+  border-radius: 10px 10px 10px 10px;
+}
+.pencil {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background-color: rgb(60, 113, 154);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 300px) and (max-width: 540px) {
   .imgdiv > img {
-    max-width: 12vw;
+    max-width: 23vw;
     border: 2px solid #3c719a;
     border-radius: 10px 10px 10px 10px;
+    max-height: 14vh;
   }
-  .pencil{
+  .pencil {
     position: absolute;
-     bottom: -10px;
-     right: -10px;
-      background-color:rgb(60, 113, 154);
-      border-radius:50%;
-      width:40px;
-       height:40px;
-        display:flex;
-         justify-content:center;
-          align-items:center;
-  }
-  @media only screen and (min-width: 300px) and (max-width: 540px) {
-    .imgdiv > img {
-      max-width: 23vw;
-      border: 2px solid #3c719a;
-      border-radius: 10px 10px 10px 10px;
-      max-height: 14vh;
-  }
-  .pencil{
-    position: absolute;
-     bottom: 40px;
-     right: -10px;
-      background-color:rgb(60, 113, 154);
-      border-radius:50%;
-      width:33px;
-       height:33px;
-        display:flex;
-         justify-content:center;
-          align-items:center;
+    bottom: 40px;
+    right: -10px;
+    background-color: rgb(60, 113, 154);
+    border-radius: 50%;
+    width: 33px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
-  .imgdiv {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .introdiv {
-    padding: 3%;
-    border: 1px solid #3c719a;
-    border-radius: 15px;
-  }
-  .statdiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 3%;
-    border: 1px solid #3c719a;
-    border-radius: 15px;
-  }
-  .idiv {
-    padding: 5%;
-    background-color: #3c719a;
-    border-radius: 50%;
-  }
-  .idiv > i {
-    color: #3c719a;
-  }
-  .progress-bar {
-    background-color: #3c719a;
-    color: black;
-  }
-  .profileMain{
-    border: 1px solid rgb(221, 221, 221);
-    background-color: rgb(255, 255, 255);
-    border-radius: 14px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
-    /* margin: 16px 0px; */
-    /* padding: 0.875rem 1.438rem; */
-    /* max-width: 422px; */
-    width: 100%;
-  }
-  .active::before {
-    display: block;
-    content: "";
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background:rgb(60, 113, 154);
-    left: 0px;
-    top: 100%;
-  }
-  
-  .active {
-    position: relative;
-  }
-  
-  /* add the active class to the th element when it's clicked */
-  th.active::before {
-    display: block;
-  }
+.imgdiv {
+  display: flex;
+  justify-content: flex-end;
+}
+.introdiv {
+  padding: 3%;
+  border: 1px solid #3c719a;
+  border-radius: 15px;
+}
+.statdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 3%;
+  border: 1px solid #3c719a;
+  border-radius: 15px;
+}
+.idiv {
+  padding: 5%;
+  background-color: #3c719a;
+  border-radius: 50%;
+}
+.idiv > i {
+  color: #3c719a;
+}
+.progress-bar {
+  background-color: #3c719a;
+  color: black;
+}
+.profileMain {
+  border: 1px solid rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
+  border-radius: 14px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
+  /* margin: 16px 0px; */
+  /* padding: 0.875rem 1.438rem; */
+  /* max-width: 422px; */
+  width: 100%;
+}
+.active::before {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: rgb(60, 113, 154);
+  left: 0px;
+  top: 100%;
+}
+
+.active {
+  position: relative;
+}
+
+/* add the active class to the th element when it's clicked */
+th.active::before {
+  display: block;
+}
+.form__field {
+  margin-left: 10px;
+}

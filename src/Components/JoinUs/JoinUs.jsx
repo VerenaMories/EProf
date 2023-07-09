@@ -230,7 +230,7 @@ export default function JoinUs() {
                             class="input-group-text"
                             for="inputGroupFile01"
                           >
-                            Upload
+                            Upload CV
                           </label>
                           <input
                             type="file"
