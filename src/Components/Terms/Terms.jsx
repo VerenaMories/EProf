@@ -1,15 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
+import Fade from 'react-reveal/Fade';
 
 export default function Terms() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <section class="pager-section">
         <div class="container">
           <div class="pager-content text-center">
-            <h2>Terms & Conditions</h2>
+          <Fade top duration={1000} delay={500}>   <h2>Terms & Conditions</h2></Fade>
             <ul>
               <li>
-                <a href="#" title="">
+                <a style={{textDecoration:'none'}} title="">
                   Home
                 </a>
               </li>
@@ -33,19 +37,19 @@ export default function Terms() {
           <div className="row">
             <div className="col-md-12">
               <div className="container ">
-                <h3
+              <Fade top duration={1000} delay={500}>  <h3
                   style={{
                     fontWeight: "900",
                     lineHeight: "1.2em",
                     fontFamily: "Playfair Display",
                     fontSize: "36px",
-                    padding: "66px 0px 0px 0px",
+                    padding: "40px 0px 0px 0px",
                   }}
                 >
                   By using any of our platforms, you are agreeing to the
                   following:
-                </h3>
-                <p
+                </h3></Fade>
+                <Fade top duration={1000} delay={500}>  <p
                   style={{
                     fontSize: "26px",
                     fontWeight: "700",
@@ -58,7 +62,7 @@ export default function Terms() {
                   }}
                 >
                   Terms & Conditions
-                </p>
+                </p></Fade>
                 <ul>
                   <li
                     style={{
@@ -215,7 +219,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </div>
             </div>
             <div className="col-md-12">
-              <p
+            <Fade top duration={1000} delay={500}>    <p
                 style={{
                   fontSize: "26px",
                   fontWeight: "700",
@@ -227,7 +231,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 Cookies Terms
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{
@@ -292,7 +296,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </ul>
             </div>
             <div className="col-md-12">
-              <p
+            <Fade top duration={1000} delay={500}>    <p
                 style={{
 
                   fontSize: "26px",
@@ -305,7 +309,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 Embedded Content From Other Websites
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{
@@ -336,7 +340,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </ul>
             </div>
             <div className="col-md-12">
-              <p
+            <Fade top duration={1000} delay={500}> <p
                 style={{
                   fontSize: "26px",
                   fontWeight: "700",
@@ -348,7 +352,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 Media
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{
@@ -366,7 +370,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </ul>
             </div>
             <div className="col-md-12">
-              <p
+            <Fade top duration={1000} delay={500}>  <p
                 style={{
                   fontSize: "26px",
                   fontWeight: "700",
@@ -378,7 +382,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 What Rights You Have Over Your Data
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{
@@ -396,7 +400,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </ul>
             </div>
             <div className="col-md-12">
-              <p
+            <Fade top duration={1000} delay={500}>    <p
                 style={{
                   fontSize: "26px",
                   fontWeight: "700",
@@ -408,7 +412,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 How Long We Retain Your Data
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{
@@ -442,7 +446,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
               </ul>
             </div>
             <div className="col-md-12" style={{ paddingBottom: "50px" }}>
-              <p
+            <Fade top duration={1000} delay={500}>    <p
                 style={{
                   fontSize: "26px",
                   fontWeight: "700",
@@ -454,7 +458,7 @@ E prof  does not endorse and is not responsible for, the accuracy or reliability
                 }}
               >
                 Where Your Data Is Sent
-              </p>
+              </p></Fade>
               <ul>
                 <li
                   style={{

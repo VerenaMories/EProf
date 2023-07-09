@@ -5,8 +5,111 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import defImage from "../images/PngItem_1503945.png";
 import "./style.css";
+import dayjs from 'dayjs';
+import Badge from '@mui/material/Badge';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { PickersDay, DateCalendar } from '@mui/x-date-pickers';
+import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+import { useRef } from "react";
+import BasicInfo from "./BasicInfo";
+import EducationalInfo from "./EducationalInfo";
+import PersonalInfo from "./PersonalInfo";
+import iddesign from '../images/iddesign.png';
+import swal from 'sweetalert';
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
+import Fade from 'react-reveal/Fade';
+
+function getRandomNumber(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+/**
+ * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
+ * ⚠️ No IE11 support
+ */
+function fakeFetch(date, { signal }) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      const daysInMonth = date.daysInMonth();
+      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth));
+
+      resolve({ daysToHighlight });
+    }, 500);
+
+    signal.onabort = () => {
+      clearTimeout(timeout);
+      reject(new DOMException('aborted', 'AbortError'));
+    };
+  });
+}
+const initialValue = dayjs('2022-05-1');
+
+function ServerDay(props) {
+  const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
+
+  const isSelected =
+    !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
+
+  return (
+    <Badge
+      key={props.day.toString()}
+      overlap="circular"
+      badgeContent={isSelected ? '🌚' : undefined}
+    >
+      <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
+    </Badge>
+  );
+}
 
 const Profile = ({ userMain }) => {
+  const [activeSection, setActiveSection] = useState("basicInfo");
+  const handleClick = (section) => {
+    setActiveSection(section);
+  };
+
+  const requestAbortController = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
+
+  const fetchHighlightedDays = (date) => {
+    const controller = new AbortController();
+    fakeFetch(date, {
+      signal: controller.signal,
+    })
+      .then(({ daysToHighlight }) => {
+        setHighlightedDays(daysToHighlight);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        // ignore the error if it's caused by `controller.abort`
+        if (error.name !== 'AbortError') {
+          throw error;
+        }
+      });
+
+    requestAbortController.current = controller;
+  };
+
+  useEffect(() => {
+    fetchHighlightedDays(initialValue);
+    // abort request on unmount
+    return () => requestAbortController.current?.abort();
+  }, []);
+
+  const handleMonthChange = (date) => {
+    if (requestAbortController.current) {
+      // make sure that you are aborting useless requests
+      // because it is possible to switch between months pretty quickly
+      requestAbortController.current.abort();
+    }
+
+    setIsLoading(true);
+    setHighlightedDays([]);
+    fetchHighlightedDays(date);
+  };
+  
   const [user, setUser] = useState({});
   const [active, setActive] = useState(1);
   const [name, setName] = useState("");
@@ -17,18 +120,50 @@ const Profile = ({ userMain }) => {
   const [number, setNumber] = useState("");
   const [courseGet, setCourseGet] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [profile, setprofile] = useState({});
 
+  const [miniProfile, setMiniprofile] = useState({});
+  // const [myWallet2, setmyWallet2] = useState([]);
+
+  const [myWallet, setmyWallet] = useState([]);
+//   const columns = [
+//     { field: '_id', headerName: 'ID', width: 70 },
+//     { field: 'name', headerName: ' Name', width: 130 },
+//     { field: 'walletBefore', headerName: 'before', width: 130 },
+//     { field: 'price', headerName: 'price', width: 130 },
+//     { field: 'walletAfter', headerName: 'after', width: 130 },
+//     { field: 'date', headerName: 'date', width: 130 },
+
+
+// ];
+const rows = myWallet.map((item, index) => ({
+  id: index + 1,
+  col1: item.name,
+  col2: item.walletBefore,
+  col3: item.price,
+  col4: item.walletAfter,
+  col5: item.date,
+}));
+
+const columns = [
+  { field: 'col1', headerName: 'Name', width: 250 },
+  { field: 'col2', headerName: 'Wallet Before', width: 200 },
+  { field: 'col3', headerName: 'Price', width: 200 },
+  { field: 'col4', headerName: 'Wallet After', width: 200 },
+  { field: 'col5', headerName: 'Date', width: 200 },
+
+];
   const [stats, setStats] = useState({ baby: "baby", baby: "baby" });
-//   async function logOut() {
-//     let { data } = await axios.get(
-//       "https://student-system.herokuapp.com/user_logout/" +
-//         sessionStorage.getItem("user_id")
-//     );
-//     console.log("tm l logout b ngah");
-//     sessionStorage.clear();
-//     sessionStorage.clear();
-//     window.location.replace("/");
-//   }
+  // async function logOut() {
+  //   let { data } = await axios.get(
+  //     "https://student-system.herokuapp.com/user_logout/" +
+  //       sessionStorage.getItem("user_id")
+  //   );
+  //   console.log("tm l logout b ngah");
+  //   sessionStorage.clear();
+  //   sessionStorage.clear();
+  //   window.location.replace("/");
+  // }
   var days = [
     "Sunday",
     "Monday",
@@ -42,167 +177,156 @@ const Profile = ({ userMain }) => {
   var dayName = days[d.getDay()];
 
   useEffect(() => {
-    axios
-      .get(
-        "https://student-system.herokuapp.com/show_student/" +
-          sessionStorage.getItem("user_id")
-      )
-      .then((res) => {
-        setUser(res.data);
-        setName({
-          first: res.data.name.split(";")[0],
-          last: res.data.name.split(";")[1],
-        });
-        setNumber(res.data.number);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .get(
-        "https://student-system.herokuapp.com/show_home/" +
-          sessionStorage.getItem("user_id")
-      )
-      .then((res) => {
-        console.log(res.data);
-        setStats(res.data);
-        setCourseGet(res.data.courses);
-        console.log(courseGet);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    document.documentElement.scrollTop = 0;
+    const token = sessionStorage.getItem('token'); // retrieve token value from session storage
+axios.get('https://eprof-zu1o.onrender.com/user/walletHistory', {
+  headers: {
+    'Authorization': ` ${token}` // set Authorization header with token value
+  }
+})
+.then(response => {
+  // console.log(response.data);
+  setmyWallet(response.data);
+  // setmyWallet2(response.data);
+})
+.catch(error => {
+  // console.log(error);
+});
+ 
   }, []);
+  const navigate = useNavigate();
 
-  const courseList = courseGet.map((course) => {
-    return (
-      <tbody key={course.id}>
-        <tr>
-          {/* <img src={course.image} alt={course.name} /> */}
-          <td>{course.name}</td>
-          {/* <p>Instructor: {course.instructor}</p>
-        <p>Price: {course.price}</p> */}
-          <td>
-            {" "}
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style={{ width: `${course.progress}%` }}
-              aria-valuenow={`${course.progress}`}
-              aria-valuemax="100"
-            >
-              {course.progress}%
-            </div>
-          </td>
-          {/* <p>{course.progress}%</p> */}
-        </tr>
-      </tbody>
-    );
-  });
-  const handleEdit = (e) => {
-    e.preventDefault();
-    console.log(name, number);
-    const formData = new FormData();
-    formData.append("name", name.first + " " + name.last);
-    formData.append("number", number);
-    formData.append("email", user.email);
-    formData.append("password", "123");
+  useEffect(() => {
+    const token = sessionStorage.getItem('token'); // retrieve token value from session storage
+axios.get('https://eprof-zu1o.onrender.com/user/me', {
+  headers: {
+    'Authorization': ` ${token}` // set Authorization header with token value
+  }
+})
+.then(response => {
+  // console.log(response.data);
+  setprofile(response.data.user)
+  setMiniprofile(response.data)
 
-    axios
-      .patch(
-        "https://student-system.herokuapp.com/update_student/" +
-          sessionStorage.getItem("user_id"),
-        formData
-      )
-      .then((res) => {
-        console.log(res);
-        setUser({
-          ...user,
-          name: name.first + " " + name.last,
-          number: number,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+})
+.catch(error => {
+  // console.log(error.response.data.error);
+  if (error.response.data.error==="Token is not in database"){
+    sessionStorage.clear();
+    navigate('/');
+  }
+});
+  
+  }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+ 
+ 
   const handleChangePassword = (e) => {
     e.preventDefault();
-    console.log(newPassword, oldPassword);
-    if (newPassword !== confirmPassword) {
-      setAlert("The new password and the confirm password do not match.");
-      return;
-    } else if (newPassword === oldPassword) {
-      setAlert("The new password is the same as the old password.");
-      return;
-    } else {
-      setAlert("");
-    }
-
+   
+    const token = sessionStorage.getItem('token');
     const body = {
-      old_password: oldPassword,
-      new_password: newPassword,
-      email: user.email,
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      // email: user.email,
     };
 
     axios
-      .patch("https://student-system.herokuapp.com/forget_password", body)
+      .post("https://eprof-zu1o.onrender.com/auth/changePassword", body, {
+        headers: {
+          'Authorization': ` ${token}` // set Authorization header with token value
+        }
+      })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.success === true) {
           setActive(3);
-        //   logOut();
+          // logOut();
+          swal("Good job!", "your password changed!", "success");
+
         } else {
           setAlert("Wrong old password.");
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+      });
+  };
+  const [formData, setFormData] = useState({
+   
+    img: "",
+  
+  });
+  const sendData = (data) => {
+    const token = sessionStorage.getItem("token");
+  
+    axios.patch('https://eprof-zu1o.onrender.com/user/update', data, {
+      headers: {
+        Authorization: ` ${token}`,
+      },
+    })
+      .then(response => {
+        // console.log(response.data);
+        swal("Good job!", "Your Data has been sent successfully!", "success");
+        sessionStorage.setItem("image", response.data.img);
+        window.location.reload()
+
+      })
+      .catch(error => {
+        // console.log(error);
+        swal("Oops!", "Please try again!", "error");
+      });
+  };
+  
+  const uploadImage = (x) => {
+    const formDataNew = new FormData();
+    formDataNew.append("file", x.target.files[0]);
+    // console.log(x.target.files[0]);
+
+    axios
+      .post("https://eprof-zu1o.onrender.com/data/upload", formDataNew)
+      .then((response) => {
+        // console.log(response.data);
+        const updatedFormData = { ...formData, img: response.data.url };
+        setFormData(updatedFormData);
+        sendData(updatedFormData);      })
+      .catch((error) => {
+        // console.log(error);
       });
   };
   return (
     <>
-      <div className="section "></div>
-      <div class="section page-banner">
-        <div
-        className="p-3"
-          style={{
-            // backgroundColor: "rgba(0,0,0,0.4)",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color:'#3c719a'
-          }}
-        >
-          <div
-            class="container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div class="page-banner-content">
-              {/* <ul class="breadcrumb">
-                        <li><a>Home</a></li>
-                        <li class="active">About</li>
-                    </ul> */}
-              <h2 class="title" style={{ color: "#3c719a" }}>
-                Your <span>Profile.</span>
-              </h2>
-            </div>
+      <section class="pager-section">
+        <div class="container">
+          <div class="pager-content text-center">
+          <Fade top duration={1000} delay={500}> <h2>Your Profile</h2></Fade>
+            <ul>
+              <li>
+              <Link to="/" style={{ textDecoration: "none" }} title="">
+                      Home
+                    </Link>
+              </li>
+              <li>
+                <span>Your Profile</span>
+              </li>
+            </ul>
           </div>
+          <h2 class="page-titlee">
+            <span style={{ fontFamily: "flanella", color: "#c5892b" }}>E</span>{" "}
+            <span style={{ color: "#3c719a", fontFamily: "azonix" }}>
+              {" "}
+              PROF
+            </span>
+          </h2>
         </div>
-      </div>
+      </section>
+   
       <Row
         style={{
           paddingTop: "5%",
           paddingBottom: "2%",
-          width: "80%",
+          // width: "80%",
           margin: "auto",
         }}
       >
@@ -218,7 +342,7 @@ const Profile = ({ userMain }) => {
               aria-hidden="true"
               style={{ color: "#3c719a", marginRight: "2%" }}
             ></i>
-            <span className="forFont"> Dashboard </span>
+          <span className="forFont"> Dashboard</span>
           </div>
           <div
             className={active === 2 ? "menitem active" : "menitem"}
@@ -236,7 +360,7 @@ const Profile = ({ userMain }) => {
           <div
             className={active === 4 ? "menitem active" : "menitem"}
             onClick={() => {
-            //   setActive(4);
+              setActive(4);
             }}
           >
             <i
@@ -250,9 +374,9 @@ const Profile = ({ userMain }) => {
             className={active === 3 ? "menitem active" : "menitem"}
             onClick={() => {
               setActive(3);
-              // sessionStorage.clear();
-              // sessionStorage.clear();
-              // window.location.replace("/");
+              sessionStorage.clear();
+              sessionStorage.clear();
+              window.location.replace("/");
             //   logOut();
             }}
           >
@@ -274,104 +398,88 @@ const Profile = ({ userMain }) => {
                   alignItems: "center",
                 }}
               >
-                <p className="goodmoring">
+               <Fade top duration={1000} delay={500}>   <p className="goodmoring">
                   {" "}
-                  Happy {dayName}, {user.name && user.name.replace(";", " ")}
-                </p>
-                <div className="imgdiv">
+                  Happy {dayName}, {profile.firstName }
+                </p></Fade>
+                <div className="imgdiv" style={{ position: 'relative' , height:'20vh', maxWidth:'18vw'}}>
                   <img
                     src={
-                      sessionStorage.getItem("user_image") &&
-                      sessionStorage.getItem("user_image") !== "undefined"
-                        ? sessionStorage.getItem("user_image")
+                      sessionStorage.getItem("image") &&
+                      sessionStorage.getItem("image") !== "undefined"
+                        ? sessionStorage.getItem("image")
                         : defImage
                     }
                     // src={
-                    // 	sessionStorage.getItem("user_image")
-                    // 		? sessionStorage.getItem("user_image")
+                    // 	sessionStorage.getItem("image")
+                    // 		? sessionStorage.getItem("image")
                     // 		: defImage
                     // }
                   />
+                  <label htmlFor="imageInput" className="pencil" >
+    <i className="fa-solid fa-pencil" title="Change Image"  style={{fontSize:'16px', color:'#fff'}}></i>
+  </label>
+  <input
+    id="imageInput"
+    type="file"
+    accept="image/*"
+    onChange={uploadImage}
+    style={{ display: "none" }}
+  />
+  <div style={{ position: 'absolute', top: 0, right: '-10px', width: '20px', height: '20px', backgroundColor: '#fff', transform: 'rotate(45deg)', zIndex: -1 }}></div>
+                   {/* <label>
+              Profile Image :{" "}
+              <input
+                type="file"
+                placeholder="Image"
+                autocomplete="off"
+                onChange={uploadImage}
+              />
+            </label>{" "} */}
                 </div>
               </section>
               <section>
-                <Form>
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                      <Form.Label>First Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter name"
-                        value={name.first}
-                        onChange={(e) => {
-                          setName({ ...name, first: e.target.value });
-                        }}
-                      />
-                    </Form.Group>
+              <table>
+              <Fade top duration={1000} delay={500}> 
+                  <thead>
+        <tr style={{borderBottom: '1px solid lightgrey',    display: 'flex', gap: '1.5rem'}}>
+          <th
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                      <Form.Label>Last Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Last Name"
-                        value={name.last}
-                        onChange={(e) => {
-                          setName({ ...name, last: e.target.value });
-                        }}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridAddress1">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        placeholder="1234 Main St"
-                        disabled
-                        value={user.email}
-                      />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridAddress1">
-                      <Form.Label>Number</Form.Label>
-                      <Form.Control
-                        placeholder="Enter your Number"
-                        value={number}
-                        onChange={(e) => {
-                          setNumber(e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-                  </Row>
-
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlTextarea1"
-                  >
-                    <Form.Label>Bio</Form.Label>
-                    <Form.Control as="textarea" rows={4} />
-                  </Form.Group>
-                  <button
-                    class="btn btn-primary btnHover"
-                    style={{
-                      marginTop: "30px",
-                      padding: "18px 32px 18px 32px",
-                      border: "#3c719a 1px solid",
-                      borderRadius: "50px",
-                      fontWeight: "700",
-                      fontSize: "15px",
-                    }}
-                    onClick={(e) => {
-                      handleEdit(e);
-                    }}
-                    disabled={
-                      name.first + " " + name.last === user.name &&
-                      number === user.number
-                        ? true
-                        : false
-                    }
-                  >
-                    Submit Changes<i class="fa-solid fa-arrow-right-long"></i>
-                  </button>
-                </Form>
+            className={activeSection === "basicInfo" ? "active" : ""}
+            onClick={() => handleClick("basicInfo")}
+          >
+            Basic Info
+          </th>
+          <th
+            className={activeSection === "educationalInfo" ? "active" : ""}
+            onClick={() => handleClick("educationalInfo")}
+          >
+            Educational Info
+          </th>
+          <th
+            className={activeSection === "personalInfo" ? "active" : ""}
+            onClick={() => handleClick("personalInfo")}
+          >
+            Personal Info
+          </th>
+        </tr>
+      </thead></Fade>
+      <tbody>
+        <tr>
+          <td style={{ display: activeSection !== "educationalInfo" && activeSection !== "personalInfo" ? "block" : "none" }}>
+            {activeSection === "basicInfo" && <BasicInfo />}
+          </td>
+          <td  style={{ display: activeSection !== "personalInfo"  ? "block" : "none" }}>
+            {activeSection === "educationalInfo" && <EducationalInfo />}
+          </td>
+          <td>
+            {activeSection === "personalInfo" && <PersonalInfo />}
+          </td>
+         
+        </tr>
+      </tbody>
+    </table>
+               
               </section>
             </>
           )}
@@ -384,31 +492,22 @@ const Profile = ({ userMain }) => {
                   alignItems: "center",
                 }}
               >
-                <p className="goodmoring">
-                  Happy {dayName}, {user.name && user.name.replace(";", " ")}
-                </p>
+               <Fade top duration={1000} delay={500}>   <p className="goodmoring">
+                  Happy {dayName}, {profile.firstName }
+                </p></Fade>
                 <div className="imgdiv">
                   <img
                     src={
-                      sessionStorage.getItem("user_image") &&
-                      sessionStorage.getItem("user_image") !== "undefined"
-                        ? sessionStorage.getItem("user_image")
+                      sessionStorage.getItem("image") &&
+                      sessionStorage.getItem("image") !== "undefined"
+                        ? sessionStorage.getItem("image")
                         : defImage
                     }
                   />
                 </div>
               </section>
               <section style={{ paddingTop: "3%" }}>
-                <div className="introdiv">
-                  <p style={{ fontSize: "17px" }}>
-                    Welcome to our online platform! We're excited to have you
-                    join our community of learners. Our platform offers engaging
-                    tools and resources to help you succeed. Our team is
-                    dedicated to providing support whenever you need it. We're
-                    committed to making your learning experience fun,
-                    challenging, and rewarding. Let's get started!
-                  </p>
-                </div>
+            
                 <Row
                   style={{
                     paddingTop: "3%",
@@ -418,7 +517,7 @@ const Profile = ({ userMain }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <h4
+                   <Fade left duration={1000} delay={500}> <h4
                     style={{
                       marginBottom: "2%",
                       fontSize: "24px",
@@ -427,8 +526,10 @@ const Profile = ({ userMain }) => {
                     }}
                   >
                     Dashboard
-                  </h4>
-                  <Col xs={3} className="about-item" style={{ padding: "0" }}>
+                  </h4></Fade>
+               
+               
+                  <Col  className="about-item" style={{ padding: "0" }}>
                     <div
                       style={{
                         display: "flex",
@@ -443,25 +544,26 @@ const Profile = ({ userMain }) => {
                         <div class="item-title"></div>
                       </div>
                     </div>
-
+                    <Fade bottom duration={1000} delay={500}> 
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {stats.enrolled}
+                        {miniProfile.enrolled?miniProfile.enrolled:0}
                       </p>
-                    </div>
-                    <h3
+                    </div></Fade>
+                    <Fade bottom duration={1000} delay={500}>   
+                         <h3
                       className="title"
                       style={{
                         fontFamily: "Sora",
-                        fontSize: "20px",
+                        fontSize: "16px",
                         fontWeight: "300",
                         textAlign: "center",
                       }}
                     >
                       Enrolled Courses
-                    </h3>
+                    </h3></Fade>
                   </Col>
-                  <Col xs={3} className="about-item" style={{ padding: "0" }}>
+                  <Col  className="about-item" style={{ padding: "0" }}>
                     <div
                       style={{
                         display: "flex",
@@ -479,25 +581,26 @@ const Profile = ({ userMain }) => {
                         <div class="item-title"></div>
                       </div>
                     </div>
-
+                    <Fade bottom duration={1000} delay={500}> 
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {stats.active}
+                        {miniProfile.active}
                       </p>
-                    </div>
+                    </div></Fade>
+                    <Fade bottom duration={1000} delay={500}> 
                     <h3
                       className="title"
                       style={{
                         fontFamily: "Sora",
-                        fontSize: "20px",
+                        fontSize: "16px",
                         fontWeight: "300",
                         textAlign: "center",
                       }}
                     >
                       Active Courses
-                    </h3>
+                    </h3></Fade>
                   </Col>
-                  <Col xs={3} className="about-item" style={{ padding: "0" }}>
+                  <Col  className="about-item" style={{ padding: "0" }}>
                     <div
                       style={{
                         display: "flex",
@@ -512,53 +615,40 @@ const Profile = ({ userMain }) => {
                         <div class="item-title"></div>
                       </div>
                     </div>
-
+                    <Fade bottom duration={1000} delay={500}> 
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <p style={{ fontSize: "27px", fontFamily: "Sora" }}>
-                        {stats.completed}
+                        {miniProfile.completed}
                       </p>
-                    </div>
-                    <h3
+                    </div></Fade>
+                    <Fade bottom duration={1000} delay={500}> 
+                      <h3
                       className="title"
                       style={{
                         fontFamily: "Sora",
-                        fontSize: "20px",
+                        fontSize: "16px",
                         fontWeight: "300",
                         textAlign: "center",
                       }}
                     >
                       Completed Courses
-                    </h3>
+                    </h3></Fade>
                   </Col>
                 </Row>
                 <section>
-                <div className="profileMain" style={{display:'flex', alignItems:'center'}}>
+                <div  style={{display:'flex', alignItems:'center'}}>
 {/* <h2 className='my-3'>Login Now</h2> */}
 
 
 
 <div className="container" >
     <div className="row" style={{display:'flex', alignItems:'center'}}>
-        <div className="col-md-10" >
+        <div className="col-md-12" >
             <div style={{display:'flex', alignItems:'center'}}>
 {/* <img src={logo} alt="" style={{width:'60%'}} /> */}
-<Table>
-                    <thead style={{ color:'#000' }}>
-                      <tr>
-                        <th>Wallet History</th>
-                       
-                      </tr>
-                    </thead>
-                    <tbody>
-    <tr>
-      <th scope="row">Type</th>
-      <td>Before</td>
-      <td>Amount</td>
-      <td>After</td>
-      <td>Date</td>
-
-    </tr></tbody>
-                  </Table>
+{/* <Table> */}
+              <div style={{ height: 300, width: "100%" }}>  <DataGrid rows={rows} columns={columns} /></div> 
+                  {/* </Table> */}
 </div>
         </div>
        
@@ -568,20 +658,7 @@ const Profile = ({ userMain }) => {
      
     
     </div>
-                  {/* <h4 style={{ marginBottom: "1%" }}>QBank</h4> */}
-                  {/* <Table>
-                    <thead style={{ backgroundColor: "#fff8ef" }}>
-                      <tr>
-                        <th>My Courses / QBank</th>
-                        <th
-                          style={{ display: "flex", justifyContent: "center" }}
-                        >
-                          Progress
-                        </th>
-                      </tr>
-                    </thead>
-                    {courseList}
-                  </Table> */}
+              
                 </section>
               </section>
             </>
@@ -596,15 +673,15 @@ const Profile = ({ userMain }) => {
                   alignItems: "center",
                 }}
               >
-                <p className="goodmoring">
-                  Happy {dayName}, {user.name.replace(";", " ")}
-                </p>
+       <Fade top duration={1000} delay={500}>          <p className="goodmoring">
+                  Happy {dayName}, {profile.firstName}
+                </p></Fade>
                 <div className="imgdiv">
                   <img
                     src={
-                      sessionStorage.getItem("user_image") &&
-                      sessionStorage.getItem("user_image") !== "undefined"
-                        ? sessionStorage.getItem("user_image")
+                      sessionStorage.getItem("image") &&
+                      sessionStorage.getItem("image") !== "undefined"
+                        ? sessionStorage.getItem("image")
                         : defImage
                     }
                   />
@@ -613,48 +690,74 @@ const Profile = ({ userMain }) => {
               <section>
                 <Form>
                   <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                      <Form.Label>Old Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Enter old password"
-                        value={oldPassword}
-                        onChange={(e) => {
-                          setOldPassword(e.target.value);
-                        }}
-                      />
-                    </Form.Group>
+                    {/* <Form.Group as={Col} controlId="formGridEmail"> */}
+                      {/* <Form.Label>Old Password</Form.Label> */}
+
+                      <div class="form__group field">
+                      <input
+              className="form__field"
+              style={{width:'250px'}}
+              type="password"
+              id="oldPass"
+              placeholder="Enter old password"
+              value={oldPassword}
+              onChange={(e) => {
+                setOldPassword(e.target.value);
+              }}
+            />
+         <div className="iconWrap2">
+                                <i class="fa-solid fa-lock"></i>
+                              </div>
+                  <label
+                    for="name"
+                    class="form__label2"
+                    onClick={() => {
+                      document.getElementById("oldPass").focus();
+                    }}
+                  >
+              Old Password
+                  </label>
+                     
+                       </div>
+
                   </Row>
                   <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                      <Form.Label>New Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Enter new password"
-                        value={newPassword}
-                        onChange={(e) => {
-                          setNewPassword(e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridEmail">
-                      <Form.Label>Confirm New Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        placeholder="Confirm new password"
-                        value={confirmPassword}
-                        onChange={(e) => {
-                          setConfirmPassword(e.target.value);
-                        }}
-                      />
-                    </Form.Group>
+                    {/* <Form.Group as={Col} controlId="formGridEmail"> */}
+                      {/* <Form.Label>New Password</Form.Label> */}
+                      <div class="form__group field">
+                      <input
+              className="form__field"
+              style={{width:'250px'}}
+              type="password"
+              placeholder="Enter new password"
+              value={newPassword}
+              id="newPass"
+              onChange={(e) => {
+                setNewPassword(e.target.value);
+              }}
+            />
+         <div className="iconWrap2">
+                                <i class="fa-solid fa-lock"></i>
+                              </div>
+                  <label
+                    for="name"
+                    class="form__label2"
+                    onClick={() => {
+                      document.getElementById("newPass").focus();
+                    }}
+                  >
+              New Password
+                  </label>
+                     
+                       </div>
+              
                   </Row>
 
                   <button
                     class="btn btn-primary btnHover"
                     style={{
-                      marginTop: "30px",
-                      padding: "18px 32px 18px 32px",
+                      marginTop: "13px",
+                      marginBottom: "13px",                      padding: "18px 32px 18px 32px",
                       border: "#3c719a 1px solid",
                       borderRadius: "50px",
                       fontWeight: "700",
@@ -665,8 +768,8 @@ const Profile = ({ userMain }) => {
                     }}
                     disabled={
                       oldPassword == "" ||
-                      newPassword == "" ||
-                      confirmPassword == ""
+                      newPassword == "" 
+                     
                     }
                   >
                     Submit Changes<i class="fa-solid fa-arrow-right-long"></i>

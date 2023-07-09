@@ -25,7 +25,7 @@ function getUser(e){
 let myUser={...user};
 myUser [e.target.name]= e.target.value;
 setUser(myUser);
- console.log("Here")
+//  console.log("Here")
 
 //console.log(user)
 }
@@ -53,21 +53,21 @@ else{
 //  let {data}= await 
  axios.post('http://192.168.1.162:3000/login', user).then((data)=>{
    if(data.data.success){
-  console.log('data reg3et sah');
+  // console.log('data reg3et sah');
   
   
   localStorage.setItem('userToken' , data.data.admin_id);
   
-  console.log(data.data.admin_id)
+  // console.log(data.data.admin_id)
   // console.log(data.message)
   
   props.getUserData();
-  console.log('hamadaa')
+  // console.log('hamadaa')
   navigate('/home');
   setIsLoading(false)
    }
    else{
-    console.log('false')
+    // console.log('false')
      setError(data.message);
      setIsLoading(false)
   
