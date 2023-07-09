@@ -838,7 +838,7 @@ export default function SingleClass() {
     axios
       .get("https://eprof-zu1o.onrender.com/adminSheet/classRooms/" + _id)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         setSingleSheetClassRoom(response.data);
       })
       .catch((error) => {
@@ -900,7 +900,7 @@ export default function SingleClass() {
     );
 
     setSingleClass(data.classRoom);
-    // console.log(data.classRoom);
+    console.log(data.classRoom);
     //   setTeacherData(data.instructor);
     //   console.log(data.instructor);
     // console.log(data.instructor);
@@ -1322,11 +1322,9 @@ export default function SingleClass() {
                       </div>
                       {/* {singleClass.students?'':    */}
                       {sessionStorage.getItem("loggedIn", true) ? (
-                        singleClass.openBuy === false &&
-                        singleClass.free === false ? (
+                        singleClass.openBuy === false  ? (
                           ""
-                        ) : singleClass.openBuy === false &&
-                          singleClass.free === true ? (
+                        ) : singleClass.openBuy === false ? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -1343,8 +1341,7 @@ export default function SingleClass() {
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
                             <i class="fa fa-long-arrow-alt-right"></i>
                           </a>
-                        ) : singleClass.openBuy === true &&
-                          singleClass.free === false ? (
+                        ) : singleClass.openBuy === true? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -1364,11 +1361,9 @@ export default function SingleClass() {
                         ) : (
                           ""
                         )
-                      ) : singleClass.openBuy === false &&
-                        singleClass.free === false ? (
+                      ) : singleClass.openBuy === false ? (
                         ""
-                      ) : singleClass.openBuy === false &&
-                        singleClass.free === true ? (
+                      ) : singleClass.openBuy === false? (
                         <Link
                           to="/registerR"
                           style={{
@@ -1381,8 +1376,7 @@ export default function SingleClass() {
                         >
                           Enroll Now <i class="fa fa-long-arrow-alt-right"></i>
                         </Link>
-                      ) : singleClass.openBuy === true &&
-                        singleClass.free === false ? (
+                      ) : singleClass.openBuy === true  ? (
                         <Link
                           to="/registerR"
                           style={{
@@ -3571,11 +3565,9 @@ export default function SingleClass() {
                       </div>
                       {/* {singleClass.students?'':    */}
                       {sessionStorage.getItem("loggedIn", true) ? (
-                        singleClass.openBuy === false &&
-                        singleClass.free === false ? (
+                        singleClass.openBuy === false  ? (
                           ""
-                        ) : singleClass.openBuy === false &&
-                          singleClass.free === true ? (
+                        ) : singleClass.openBuy === false ? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -3592,8 +3584,7 @@ export default function SingleClass() {
                             {/* {enroll.message=== "UnFollow"?'UnEnroll':'Enroll Now'} */}
                             <i class="fa fa-long-arrow-alt-right"></i>
                           </a>
-                        ) : singleClass.openBuy === true &&
-                          singleClass.free === false ? (
+                        ) : singleClass.openBuy === true? (
                           <a
                             onClick={() => followInstructor()}
                             style={{
@@ -3613,11 +3604,9 @@ export default function SingleClass() {
                         ) : (
                           ""
                         )
-                      ) : singleClass.openBuy === false &&
-                        singleClass.free === false ? (
+                      ) : singleClass.openBuy === false  ? (
                         ""
-                      ) : singleClass.openBuy === false &&
-                        singleClass.free === true ? (
+                      ) : singleClass.openBuy === false ? (
                         <Link
                           to="/registerR"
                           style={{
@@ -3630,8 +3619,7 @@ export default function SingleClass() {
                         >
                           Enroll Now <i class="fa fa-long-arrow-alt-right"></i>
                         </Link>
-                      ) : singleClass.openBuy === true &&
-                        singleClass.free === false ? (
+                      ) : singleClass.openBuy === true ? (
                         <Link
                           to="/registerR"
                           style={{
@@ -3645,7 +3633,7 @@ export default function SingleClass() {
                           Enroll Now <i class="fa fa-long-arrow-alt-right"></i>
                         </Link>
                       ) : (
-                        ""
+                        "hello"
                       )}
                       {/* singleClass.students?'': */}
                       {sessionStorage.getItem("loggedIn", true) ? (
